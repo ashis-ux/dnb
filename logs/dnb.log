@@ -1,0 +1,92 @@
+2026-06-13 17:17:18 INFO  [restartedMain] com.bsp.dnb.DnbApplication - Starting DnbApplication using Java 21.0.11 with PID 16440 (C:\Users\Administrator\eclipse-workspace\dnb\target\classes started by Administrator in C:\Users\Administrator\eclipse-workspace\dnb)
+2026-06-13 17:17:18 DEBUG [restartedMain] com.bsp.dnb.DnbApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-13 17:17:18 INFO  [restartedMain] com.bsp.dnb.DnbApplication - The following 1 profile is active: "dev"
+2026-06-13 17:17:19 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-13 17:17:19 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 2 JPA repository interfaces.
+2026-06-13 17:17:19 INFO  [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8088 (http)
+2026-06-13 17:17:19 INFO  [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-13 17:17:19 INFO  [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-13 17:17:19 INFO  [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-13 17:17:19 INFO  [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 505 ms
+2026-06-13 17:17:19 INFO  [restartedMain] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-13 17:17:19 INFO  [restartedMain] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-13 17:17:19 INFO  [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-13 17:17:19 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Starting...
+2026-06-13 17:17:19 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-8 - Added connection oracle.jdbc.driver.T4CConnection@3c85f0
+2026-06-13 17:17:19 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Start completed.
+2026-06-13 17:17:19 WARN  [restartedMain] org.hibernate.dialect.Dialect - HHH000511: The 12.2.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+2026-06-13 17:17:19 WARN  [restartedMain] org.hibernate.orm.deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-13 17:17:19 INFO  [restartedMain] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-8)']
+	Database driver: undefined/unknown
+	Database version: 12.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-13 17:17:19 INFO  [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-13 17:17:19 INFO  [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-13 17:17:19 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-13 17:17:20 WARN  [restartedMain] o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2026-06-13 17:17:20 INFO  [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-06-13 17:17:20 INFO  [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8088 (http) with context path '/'
+2026-06-13 17:17:20 INFO  [restartedMain] com.bsp.dnb.DnbApplication - Started DnbApplication in 1.265 seconds (process running for 3950.581)
+2026-06-13 17:17:20 INFO  [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-06-13 17:18:06 INFO  [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-13 17:18:06 INFO  [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-13 17:18:06 INFO  [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-06-13 17:18:06 INFO  [http-nio-8088-exec-1] c.b.dnb.controller.DnbMastController - Received request to fetch all DNB records
+2026-06-13 17:18:06 INFO  [http-nio-8088-exec-1] c.b.d.serviceImpl.DnbMastServiceImpl - Fetching all DNB records
+2026-06-13 17:18:07 INFO  [http-nio-8088-exec-1] c.b.d.serviceImpl.DnbMastServiceImpl - Total DNB records found : 934
+2026-06-13 17:19:03 INFO  [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-06-13 17:19:03 INFO  [Thread-33] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-13 17:19:03 INFO  [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-13 17:19:03 INFO  [Thread-33] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-13 17:19:03 INFO  [Thread-33] com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Shutdown initiated...
+2026-06-13 17:19:03 INFO  [Thread-33] com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Shutdown completed.
+2026-06-13 17:19:03 INFO  - Starting DnbApplication using Java 21.0.11 with PID 16440 (C:\Users\Administrator\eclipse-workspace\dnb\target\classes started by Administrator in C:\Users\Administrator\eclipse-workspace\dnb)
+2026-06-13 17:19:03 DEBUG - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-13 17:19:03 INFO  - The following 1 profile is active: "dev"
+2026-06-13 17:19:04 INFO  - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-13 17:19:04 INFO  - Finished Spring Data repository scanning in 9 ms. Found 2 JPA repository interfaces.
+2026-06-13 17:19:04 INFO  - Tomcat initialized with port 8088 (http)
+2026-06-13 17:19:04 INFO  - Starting service [Tomcat]
+2026-06-13 17:19:04 INFO  - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-13 17:19:04 INFO  - Initializing Spring embedded WebApplicationContext
+2026-06-13 17:19:04 INFO  - Root WebApplicationContext: initialization completed in 303 ms
+2026-06-13 17:19:04 INFO  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-13 17:19:04 INFO  - HHH000026: Second-level cache disabled
+2026-06-13 17:19:04 INFO  - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-13 17:19:04 INFO  - HikariPool-9 - Starting...
+2026-06-13 17:19:04 INFO  - HikariPool-9 - Added connection oracle.jdbc.driver.T4CConnection@21d5f34
+2026-06-13 17:19:04 INFO  - HikariPool-9 - Start completed.
+2026-06-13 17:19:04 WARN  - HHH000511: The 12.2.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+2026-06-13 17:19:04 WARN  - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-13 17:19:04 INFO  - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-9)']
+	Database driver: undefined/unknown
+	Database version: 12.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-13 17:19:04 INFO  - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-13 17:19:04 INFO  - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-13 17:19:04 WARN  - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-13 17:19:04 WARN  - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2026-06-13 17:19:04 INFO  - LiveReload server is running on port 35729
+2026-06-13 17:19:04 INFO  - Tomcat started on port 8088 (http) with context path '/'
+2026-06-13 17:19:04 INFO  - Started DnbApplication in 0.951 seconds (process running for 4055.262)
+2026-06-13 17:19:04 INFO  - Condition evaluation unchanged
+
+
+
+2026-06-13 17:20:27 INFO  - Received request to fetch all DNB records
+2026-06-13 17:20:27 INFO  - Fetching all DNB records
+2026-06-13 17:20:27 INFO  - Total DNB records found : 934
+2026-06-13 17:22:27 INFO  - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-06-13 17:22:27 INFO  - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-13 17:22:28 INFO  - Graceful shutdown complete
+2026-06-13 17:22:28 INFO  - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-13 17:22:28 INFO  - HikariPool-9 - Shutdown initiated...
+2026-06-13 17:22:28 INFO  - HikariPool-9 - Shutdown completed.

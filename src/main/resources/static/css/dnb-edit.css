@@ -1,0 +1,311 @@
+ 
+/* ==========================
+   General
+========================== */
+
+body {
+
+    background-color: #f4f6fa;
+
+    font-family: "Segoe UI",
+                 Tahoma,
+                 Geneva,
+                 Verdana,
+                 sans-serif;
+
+    margin: 0;
+
+    padding: 0;
+}
+
+
+/* ==========================
+   Header
+========================== */
+
+.header-navbar {
+
+    background-color: #1E4588;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    min-height: 70px;
+}
+
+.logo {
+
+    width: 50px;
+
+    height: 50px;
+
+    object-fit: contain;
+
+    background-color: #ffffff;
+
+    border-radius: 50%;
+
+    padding: 4px;
+}
+
+.nav-link {
+
+    font-weight: 500;
+}
+
+.nav-link:hover {
+
+    color: #FFD700 !important;
+}
+
+
+/* ==========================
+   Main Container
+========================== */
+
+.container {
+
+    max-width: 1100px;
+}
+
+
+/* ==========================
+   Card
+========================== */
+
+.card {
+
+    border: none;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+.card-header {
+
+    border-bottom: none;
+}
+
+.form-header {
+
+    background-color: #1E4588;
+
+    color: #ffffff;
+
+    padding: 15px 20px;
+}
+
+.card-footer {
+
+    background-color: #f8f9fa;
+
+    font-size: 13px;
+
+    color: #666666;
+
+    padding: 10px;
+}
+
+
+/* ==========================
+   Labels
+========================== */
+
+.col-form-label {
+
+    font-weight: 600;
+
+    color: #1E4588;
+}
+
+.required {
+
+    color: red;
+}
+
+
+/* ==========================
+   Search Section
+========================== */
+
+#searchId {
+
+    border-radius: 8px;
+}
+
+#searchId:focus {
+
+    border-color: #1E4588;
+
+    box-shadow:
+        0 0 0 0.2rem
+        rgba(30, 69, 136, 0.20);
+}
+
+
+/* ==========================
+   Edit Form Section
+========================== */
+
+#editSection {
+
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+
+/* ==========================
+   Form Controls
+========================== */
+
+.form-control,
+.form-select {
+
+    border-radius: 8px;
+
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus,
+.form-select:focus {
+
+    border-color: #1E4588;
+
+    box-shadow:
+        0 0 0 0.2rem
+        rgba(30, 69, 136, 0.20);
+}
+
+
+/* ==========================
+   Buttons
+========================== */
+
+.btn {
+
+    min-width: 120px;
+
+    border-radius: 8px;
+
+    font-weight: 500;
+}
+
+.btn-primary {
+
+    background-color: #1E4588;
+
+    border-color: #1E4588;
+}
+
+.btn-primary:hover {
+
+    background-color: #16376B;
+
+    border-color: #16376B;
+}
+
+.btn-success {
+
+    background-color: #198754;
+
+    border-color: #198754;
+}
+
+.btn-success:hover {
+
+    background-color: #157347;
+
+    border-color: #157347;
+}
+
+.btn-secondary {
+
+    background-color: #6c757d;
+
+    border-color: #6c757d;
+}
+
+
+/* ==========================
+   Alerts
+========================== */
+
+.alert {
+
+    border-radius: 8px;
+
+    margin-bottom: 20px;
+}
+
+
+/* ==========================
+   Divider
+========================== */
+
+hr {
+
+    border-top: 2px solid #dee2e6;
+
+    margin-top: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+/* ==========================
+   Animation
+========================== */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 768px) {
+
+    .logo {
+
+        width: 40px;
+
+        height: 40px;
+    }
+
+    .btn {
+
+        width: 100%;
+
+        margin-bottom: 10px;
+    }
+
+    .card-body {
+
+        padding: 20px;
+    }
+
+    .col-form-label {
+
+        margin-bottom: 5px;
+    }
+
+    #searchId {
+
+        margin-bottom: 10px;
+    }
+}
+

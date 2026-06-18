@@ -1,0 +1,278 @@
+
+/* ==========================
+   General Styling
+========================== */
+
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    background-color: #F4F6FA;
+
+    overflow-x: hidden;
+}
+
+
+/* ==========================
+   Header
+========================== */
+
+.header-navbar {
+
+    background-color: #1E4588;
+
+    min-height: 70px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    z-index: 1000;
+}
+
+.logo {
+
+    height: 50px;
+
+    width: 50px;
+
+    object-fit: contain;
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    padding: 3px;
+}
+
+.navbar h5 {
+
+    font-weight: 600;
+
+    margin-bottom: 0;
+}
+
+.navbar small {
+
+    font-size: 12px;
+}
+
+
+/* ==========================
+   Sidebar
+========================== */
+
+.sidebar {
+
+    min-height: calc(100vh - 70px);
+
+    background-color: #F8F9FA;
+
+    border-right: 1px solid #D6D6D6;
+
+    padding: 10px;
+}
+
+
+/* ==========================
+   Accordion
+========================== */
+
+.accordion-item {
+
+    border: none;
+
+    margin-bottom: 8px;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+.accordion-button {
+
+    background-color: #1E4588;
+
+    color: white;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+
+    background-color: #6B85B5;
+
+    color: white;
+}
+
+.accordion-button:focus {
+
+    box-shadow: none;
+}
+
+.accordion-button::after {
+
+    filter: brightness(0) invert(1);
+}
+
+
+/* ==========================
+   Accordion Body
+========================== */
+
+.accordion-body {
+
+    padding: 0;
+
+    background-color: white;
+}
+
+.menu-link {
+
+    display: block;
+
+    padding: 12px 20px;
+
+    color: #1E4588;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    border-bottom: 1px solid #EEEEEE;
+
+    transition: all 0.3s ease;
+}
+
+.menu-link:hover {
+
+    background-color: #E8EEF8;
+
+    color: #1E4588;
+
+    padding-left: 28px;
+}
+
+.menu-link:last-child {
+
+    border-bottom: none;
+}
+
+
+/* ==========================
+   Exit Button
+========================== */
+
+.exit-btn {
+
+    font-weight: 600;
+
+    border-radius: 8px;
+
+    margin-top: 10px;
+}
+
+
+/* ==========================
+   Main Content
+========================== */
+
+.content-area {
+
+    padding: 25px;
+}
+
+
+/* ==========================
+   Welcome Card
+========================== */
+
+.card {
+
+    border: none;
+
+    border-radius: 12px;
+}
+
+.card-header {
+
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.welcome-header {
+
+    background-color: #1E4588;
+
+    color: white;
+
+    font-weight: 600;
+
+    font-size: 18px;
+
+    padding: 15px 20px;
+}
+
+.card-body {
+
+    padding: 50px;
+}
+
+.card-body h3 {
+
+    color: #1E4588;
+
+    font-weight: 600;
+}
+
+.card-body p {
+
+    color: #666666;
+
+    font-size: 16px;
+}
+
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+
+        min-height: auto;
+    }
+
+    .content-area {
+
+        padding: 15px;
+    }
+
+    .card-body {
+
+        padding: 30px 20px;
+    }
+
+    .navbar h5 {
+
+        font-size: 16px;
+    }
+
+    .navbar small {
+
+        display: none;
+    }
+
+    .logo {
+
+        height: 40px;
+
+        width: 40px;
+    }
+}

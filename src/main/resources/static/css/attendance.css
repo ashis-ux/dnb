@@ -1,0 +1,377 @@
+
+/* ==========================
+   General
+========================== */
+
+body {
+
+    background-color: #f4f6fa;
+
+    font-family: "Segoe UI",
+                 Tahoma,
+                 Geneva,
+                 Verdana,
+                 sans-serif;
+
+    margin: 0;
+
+    padding: 0;
+}
+
+
+/* ==========================
+   Header
+========================== */
+
+.header-navbar {
+
+    background-color: #1E4588;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    min-height: 70px;
+}
+
+.logo {
+
+    width: 50px;
+
+    height: 50px;
+
+    object-fit: contain;
+
+    background-color: #ffffff;
+
+    border-radius: 50%;
+
+    padding: 4px;
+}
+
+.nav-link {
+
+    font-weight: 500;
+}
+
+.nav-link:hover {
+
+    color: #FFD700 !important;
+}
+
+
+/* ==========================
+   Card
+========================== */
+
+.card {
+
+    border: none;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+.form-header {
+
+    background-color: #1E4588;
+
+    color: #ffffff;
+
+    padding: 15px 20px;
+}
+
+.card-footer {
+
+    background-color: #f8f9fa;
+
+    font-size: 13px;
+
+    color: #666666;
+
+    padding: 10px;
+}
+
+
+/* ==========================
+   Alerts
+========================== */
+
+.alert {
+
+    margin: 20px;
+
+    border-radius: 8px;
+}
+
+
+/* ==========================
+   YYMM Section
+========================== */
+
+.input-group-text {
+
+    background-color: #ffffff;
+
+    font-weight: 600;
+}
+
+#yymm {
+
+    background-color: #ffffff;
+
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* ==========================
+   Buttons
+========================== */
+
+.btn {
+
+    border-radius: 8px;
+
+    min-width: 90px;
+
+    font-weight: 500;
+
+    margin-left: 5px;
+}
+
+.btn-light {
+
+    background-color: #ffffff;
+
+    color: #1E4588;
+}
+
+.btn-light:hover {
+
+    background-color: #f2f2f2;
+}
+
+.btn-success {
+
+    background-color: #198754;
+
+    border-color: #198754;
+}
+
+.btn-success:hover {
+
+    background-color: #157347;
+
+    border-color: #157347;
+}
+
+.btn-secondary {
+
+    background-color: #6c757d;
+
+    border-color: #6c757d;
+}
+
+.btn-danger {
+
+    background-color: #dc3545;
+
+    border-color: #dc3545;
+}
+
+
+/* ==========================
+   Attendance Table
+========================== */
+
+.table {
+
+    margin-bottom: 0;
+
+    font-size: 14px;
+}
+
+.table thead th {
+
+    background-color: #1E4588;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1;
+}
+
+.table tbody td {
+
+    vertical-align: middle;
+
+    text-align: center;
+}
+
+.table tbody tr:hover {
+
+    background-color: #f8fbff;
+}
+
+
+/* ==========================
+   Input Fields inside Grid
+========================== */
+
+.attendance-input {
+
+    width: 70px;
+
+    text-align: center;
+
+    border-radius: 6px;
+
+    border: 1px solid #ced4da;
+}
+
+.attendance-input:focus {
+
+    border-color: #1E4588;
+
+    box-shadow:
+        0 0 0 0.2rem
+        rgba(30, 69, 136, 0.20);
+
+    outline: none;
+}
+
+
+/* ==========================
+   Read Only Fields
+========================== */
+
+.employee-id {
+
+    font-weight: 600;
+
+    color: #1E4588;
+}
+
+.employee-name {
+
+    text-align: left !important;
+
+    min-width: 250px;
+
+    font-weight: 500;
+}
+
+.employee-doj {
+
+    white-space: nowrap;
+}
+
+
+/* ==========================
+   Table Container
+========================== */
+
+.table-responsive {
+
+    max-height: 550px;
+
+    overflow-y: auto;
+}
+
+
+/* ==========================
+   Empty Grid Message
+========================== */
+
+.empty-row {
+
+    padding: 30px;
+
+    font-style: italic;
+
+    color: #666666;
+}
+
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 992px) {
+
+    .form-header .btn {
+
+        margin-top: 10px;
+
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+    .employee-name {
+
+        min-width: 180px;
+    }
+
+    .attendance-input {
+
+        width: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .logo {
+
+        width: 40px;
+
+        height: 40px;
+    }
+
+    .table {
+
+        font-size: 12px;
+    }
+
+    .attendance-input {
+
+        width: 50px;
+    }
+
+    .employee-name {
+
+        min-width: 150px;
+    }
+	.modal-content {
+
+	    border-radius: 15px;
+
+	    overflow: hidden;
+	}
+
+	.modal-header {
+
+	    border-bottom: none;
+	}
+
+	.modal-footer {
+
+	    border-top: none;
+	}
+
+	.modal-body {
+
+	    font-size: 16px;
+	}
+}
+ 

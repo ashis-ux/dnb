@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>DNB Adjustment Entry</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          th:href="@{/css/dnb-adjustment.css}">
+
+</head>
+
+<body>
+
+<header class="top-header">
+
+    <div class="header-left">
+
+        <img th:src="@{/images/sail-logo.png}"
+             class="logo"
+             alt="SAIL">
+
+        <div>
+
+            <h2>DNB Management System</h2>
+
+        </div>
+
+    </div>
+
+    <div class="header-right">
+
+        Adjustment Entry
+
+    </div>
+
+</header>
+
+<div id="successPopup"
+     class="message success-message"
+     style="display:none;">
+</div>
+
+<div id="errorPopup"
+     class="message error-message"
+     style="display:none;">
+</div>
+
+<div class="attendance-card">
+
+    <div class="attendance-card-header">
+
+        <div class="screen-title">
+
+            Adjustment Entry
+
+        </div>
+
+        <div class="toolbar">
+
+            <div class="yymm-group">
+
+                <label>
+
+                    YYMM
+
+                </label>
+
+                <input type="text"
+                       id="yymm"
+                       maxlength="6">
+
+            </div>
+
+            <button id="btnLoad"
+                    class="btn btn-load">
+
+                <i class="fa fa-search"></i>
+
+                Load
+
+            </button>
+
+            <button id="btnSave"
+                    class="btn btn-save">
+
+                <i class="fa fa-floppy-disk"></i>
+
+                Save
+
+            </button>
+
+            <button id="btnClear"
+                    class="btn btn-clear">
+
+                <i class="fa fa-rotate-left"></i>
+
+                Clear
+
+            </button>
+
+            <button id="btnExit"
+                    class="btn btn-exit">
+
+                <i class="fa fa-right-from-bracket"></i>
+
+                Exit
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table id="adjustmentTable">
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Name</th>
+
+                <th>For Month</th>
+
+                <th>Days</th>
+
+                <th>Category / Period</th>
+
+                <th>Amount</th>
+
+                <th>Stop Adj</th>
+
+                <th>Paid</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody id="adjustmentBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="attendance-footer">
+
+        Steel Authority of India Limited
+
+    </div>
+
+</div>
+
+<script th:src="@{/js/dnb-adjustment.js}"></script>
+
+</body>
+
+</html>

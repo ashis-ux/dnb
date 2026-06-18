@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>DNB Master Report</title>
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<link rel="stylesheet"
+      href="/css/dnb-master-report.css">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark header-navbar">
+
+    <div class="container-fluid">
+
+        <div class="d-flex align-items-center">
+
+            <img src="/images/sail-logo.png"
+                 alt="SAIL"
+                 class="logo">
+
+            <div class="ms-3">
+
+                <h5 class="mb-0 text-white">
+                    DNB Management System
+                </h5>
+
+                <small class="text-light">
+                    Centralized DNB Processing System
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container-fluid mt-4">
+
+    <div id="successPopup"
+         class="alert alert-success"
+         style="display:none;">
+    </div>
+
+    <div id="errorPopup"
+         class="alert alert-danger"
+         style="display:none;">
+    </div>
+
+    <div class="card shadow">
+
+        <div class="card-header form-header">
+
+            <h5 class="mb-0">
+                DNB Master Report
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row mb-4">
+
+                <div class="col-md-3">
+
+                    <label class="form-label">
+
+                        YYMM
+
+                        <span class="text-danger">*</span>
+
+                    </label>
+
+                    <select id="yymm"
+                            class="form-select">
+
+                        <option value="">
+                            Select YYMM
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="row mb-4">
+
+                <div class="col-md-12 text-center">
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="btnSearch">
+
+                        <i class="bi bi-search"></i>
+                        View Report
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-success ms-2"
+                        id="btnExport">
+
+                        <i class="bi bi-file-earmark-excel"></i>
+                        Export Excel
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary ms-2"
+                        id="btnClear">
+
+                        <i class="bi bi-arrow-clockwise"></i>
+                        Clear
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table id="reportTable"
+                       class="table table-bordered table-striped table-hover">
+
+                    <thead class="table-dark">
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>DOB</th>
+                        <th>DOJ</th>
+                        <th>DOS</th>
+                        <th>Status</th>
+                        <th>Stipend</th>
+                        <th>Daily Rate</th>
+                        <th>Sex</th>
+                        <th>Bank</th>
+                        <th>Account No</th>
+                        <th>PAN</th>
+                        <th>Category</th>
+                        <th>Category Desc</th>
+                        <th>Speciality</th>
+                        <th>Training Duration</th>
+                        <th>Stop Pay</th>
+                        <th>Tuition Fee</th>
+                        <th>DNB Type</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="reportBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div id="paginationContainer"
+                 class="mt-3 text-center">
+            </div>
+
+        </div>
+
+        <div class="card-footer text-center">
+
+            Developed & Maintained by C&IT, BSP
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="/js/dnb-master-report.js"></script>
+
+</body>
+
+</html>
