@@ -276,16 +276,18 @@ const DnbMasterReport = {
 
     exportExcel: function () {
 
-        let yymm =
-            $("#yymm").val();
+		let yymm =
+		        $("#yymm").val();
 
-        if (!yymm) {
+		    if (!yymm) {
 
-            DnbMasterReport.showError(
-                "Please select YYMM");
+		        $("#errorPopup")
+		            .text(
+		                "Please select YYMM before exporting.")
+		            .show();
 
-            return;
-        }
+		        return;
+		    }
 
         window.location.href =
             "/api/reports/dnb-master/export/"
@@ -299,6 +301,9 @@ const DnbMasterReport = {
         $("#paginationContainer").empty();
 
         $("#yymm").val("");
+		
+		$("#errorPopup")
+		       .hide();
 
         this.hideMessages();
     },

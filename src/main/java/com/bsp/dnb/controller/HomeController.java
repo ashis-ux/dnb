@@ -38,5 +38,15 @@ public class HomeController {
     public String dnb_master_report() {
         return "dnb-master-report";
     }
+    
+    @GetMapping("/attendance-report")
+    public String dnb_attendance_report() {
+        return "attendance-report";
+    }
+    
+    @GetMapping("/adjustment-report")
+    public String dnb_adjustment_report() {
+        return "adjustment-report";
+    }
 
 }

@@ -39,6 +39,9 @@ public interface DnbMastRepository
 	List<DnbMast> findByYymm(
 	        Integer yymm);
 	
+	List<DnbMast> findByCatgIn(
+	        List<Integer> catgs);
+	
 	Page<DnbMast> findByYymmAndCatgIn(
 	        Integer yymm,
 	        List<Integer> catgs,

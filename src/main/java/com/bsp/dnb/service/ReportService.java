@@ -18,4 +18,6 @@ public interface ReportService {
     ByteArrayInputStream exportDnbMasterReport(Integer yymm);
     
     List<Integer> getAvailableYymm();
+    
+    
 }

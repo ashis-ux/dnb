@@ -292,4 +292,6 @@ public class ReportServiceImpl
         return  
         		dnbMastRepository.findDistinctYymm();
     }
+    
+    
 }
