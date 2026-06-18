@@ -5,10 +5,32 @@
 
     <meta charset="UTF-8">
 
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>DNB Adjustment Entry</title>
 
+ 
+
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+          href="/bootstrap/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="/bootstrap/all.min.css">
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <!-- Common Header CSS -->
+
+    <link rel="stylesheet"
+          href="/css/header.css">
+
+    <!-- Existing Page CSS -->
 
     <link rel="stylesheet"
           th:href="@{/css/dnb-adjustment.css}">
@@ -17,41 +39,30 @@
 
 <body>
 
-<header class="top-header">
+<!-- Common Header -->
 
-    <div class="header-left">
+<div th:replace="~{fragments/header :: header}">
+</div>
 
-        <img th:src="@{/images/sail-logo.png}"
-             class="logo"
-             alt="SAIL">
-
-        <div>
-
-            <h2>DNB Management System</h2>
-
-        </div>
-
-    </div>
-
-    <div class="header-right">
-
-        Adjustment Entry
-
-    </div>
-
-</header>
+<!-- Success Message -->
 
 <div id="successPopup"
      class="message success-message"
      style="display:none;">
 </div>
 
+<!-- Error Message -->
+
 <div id="errorPopup"
      class="message error-message"
      style="display:none;">
 </div>
 
+<!-- Main Card -->
+
 <div class="attendance-card">
+
+    <!-- Card Header -->
 
     <div class="attendance-card-header">
 
@@ -117,31 +128,33 @@
 
     </div>
 
+    <!-- Table -->
+
     <div class="table-wrapper">
 
         <table id="adjustmentTable">
 
             <thead>
 
-            <tr>
+                <tr>
 
-                <th>ID</th>
+                    <th>ID</th>
 
-                <th>Name</th>
+                    <th>Name</th>
 
-                <th>For Month</th>
+                    <th>For Month</th>
 
-                <th>Days</th>
+                    <th>Days</th>
 
-                <th>Category / Period</th>
+                    <th>Category / Period</th>
 
-                <th>Amount</th>
+                    <th>Amount</th>
 
-                <th>Stop Adj</th>
+                    <th>Stop Adj</th>
 
-                <th>Paid</th>
+                    <th>Paid</th>
 
-            </tr>
+                </tr>
 
             </thead>
 
@@ -153,6 +166,8 @@
 
     </div>
 
+    <!-- Footer -->
+
     <div class="attendance-footer">
 
         Steel Authority of India Limited
@@ -160,6 +175,15 @@
     </div>
 
 </div>
+
+ 
+
+<script src="/bootstrap/bootstrap.bundle.min.js"></script>
+ 
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+ 
 
 <script th:src="@{/js/dnb-adjustment.js}"></script>
 

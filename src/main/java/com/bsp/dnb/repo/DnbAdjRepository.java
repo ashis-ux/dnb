@@ -35,10 +35,8 @@ public interface DnbAdjRepository
      Page<DnbAdj> findAuthorizedAdjustments(
              @Param("yymm")
              Integer yymm,
-
              @Param("employeeIds")
              List<Integer> employeeIds,
-
              Pageable pageable);
 
      @Query("""

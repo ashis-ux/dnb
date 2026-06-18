@@ -1,0 +1,221 @@
+.header-navbar {
+
+    background-color: #1E4588;
+
+    min-height: 70px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+
+.logo {
+
+    height: 50px;
+
+    width: 50px;
+
+    object-fit: contain;
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    padding: 3px;
+}
+ 
+
+/* MOBILE MENU */
+
+.offcanvas {
+
+    width: 280px;
+}
+
+.offcanvas-header {
+
+    background-color: #1E4588;
+
+    color: white;
+}
+
+.offcanvas-header small {
+
+    color: rgba(255,255,255,.8);
+}
+
+.offcanvas-body {
+
+    background-color: #F8F9FA;
+
+    padding: 10px;
+}
+
+/* HOME PAGE STYLE */
+
+#mobileMenu .accordion-item {
+
+    border: none;
+
+    margin-bottom: 8px;
+
+    background: transparent;
+}
+
+#mobileMenu .accordion-button {
+
+    background-color: #294F97 !important;
+
+    color: white !important;
+
+    border-radius: 8px !important;
+
+    font-weight: 600;
+
+    min-height: 52px;
+
+    box-shadow: none !important;
+}
+
+#mobileMenu .accordion-button:not(.collapsed) {
+
+    background-color: #294F97 !important;
+
+    color: white !important;
+}
+
+#mobileMenu .accordion-button:focus {
+
+    box-shadow: none !important;
+}
+
+#mobileMenu .accordion-button::after {
+
+    filter: brightness(0) invert(1);
+}
+
+#mobileMenu .accordion-body {
+
+    padding: 0 !important;
+
+    background: white;
+}
+
+#mobileMenu .menu-link {
+
+    display: block !important;
+
+    width: 100%;
+
+    padding: 12px 20px;
+
+    color: #1E4588;
+
+    text-decoration: none;
+
+    border-bottom: 1px solid #EEEEEE;
+}
+
+#mobileMenu .menu-link:hover {
+
+    background-color: #E8EEF8;
+
+    color: #1E4588;
+
+    padding-left: 28px;
+
+    transition: .3s;
+}
+
+.exit-btn {
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    min-height: 50px;
+}
+
+@media (max-width: 768px) {
+
+    .mobile-menu-btn {
+
+        display: block;
+    }
+
+    .welcome-user {
+
+        display: none;
+    }
+
+    .navbar small {
+
+        display: none;
+    }
+
+    .logo {
+
+        width: 40px;
+
+        height: 40px;
+    }
+
+    .header-navbar h5 {
+
+        font-size: 15px;
+    }
+}
+
+/* Add this to your header.css file */
+.d-flex button[data-bs-target="#mobileMenu"]:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+/* 1. Force links into a clean, horizontal row on all screen sizes */
+.navbar-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: .5rem; /* Evenly spaces the Home, Profile, and Logout links */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 2. Style individual navigation link elements */
+.navbar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Spaces the icons away from the text labels */
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 6px; /* Smooth corners for the hover effect */
+    transition: all 0.2s ease-in-out; /* Smooth transition when hovering */
+    opacity: 0.9;
+}
+
+/* 3. Interactive hover effects for desktop users */
+.navbar-nav .nav-link:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.15); /* Adds a subtle glass glow background */
+    color: #ffffff !important;
+}
+
+/* 4. Active click feedback (visual pop when clicked) */
+.navbar-nav .nav-link:active {
+    transform: scale(0.97); 
+}
+
+/* 5. Clean look for icons inside navigation items */
+.navbar-nav .nav-link i {
+    font-size: 1.1rem; /* Makes the Bootstrap icons slightly more legible */
+    line-height: 1;
+}
+
+/* 6. Special styling for Logout to indicate a clear exit action */
+.navbar-nav .nav-item:last-child .nav-link:hover {
+    background-color: rgba(220, 53, 69, 0.2); /* Soft red background glow on logout hover */
+    color: #ff8787 !important;
+}
+

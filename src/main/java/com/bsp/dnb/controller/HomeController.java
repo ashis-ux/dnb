@@ -48,5 +48,10 @@ public class HomeController {
     public String dnb_adjustment_report() {
         return "adjustment-report";
     }
+    
+    @GetMapping("/paybill-report")
+    public String paybill_report() {
+        return "paybill-report";
+    }
 
 }
