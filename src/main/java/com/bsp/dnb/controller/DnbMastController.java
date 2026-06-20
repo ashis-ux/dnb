@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.bsp.dnb.dto.DnbMastDto;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/dnb")
 @Slf4j
 @CrossOrigin(origins = "*")
+@PreAuthorize("hasRole('SUPER_ADMIN')")
 public class DnbMastController {
 	
 	private static final Logger log =

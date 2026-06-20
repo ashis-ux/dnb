@@ -24,6 +24,7 @@ import com.bsp.dnb.dto.DnbMasterReportDto;
 import com.bsp.dnb.entity.DnbMast;
 import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
+import com.bsp.dnb.repo.RoleCategoryRepository;
 import com.bsp.dnb.service.ReportService;
 
 import jakarta.transaction.Transactional;
@@ -41,6 +42,9 @@ public class ReportServiceImpl
 
     @Autowired
     private CategoryRepository categoryRepository;
+    
+    @Autowired
+    private RoleCategoryRepository roleCategoryRepository;
     
     private static final Logger log =
             LoggerFactory.getLogger(
@@ -135,10 +139,10 @@ public class ReportServiceImpl
         List<DnbMast> authorizedEmployees =
                 employees.stream()
                         .filter(emp ->
-                                categoryRepository
-                                        .existsByCatgAndDnbRole_Id(
-                                                emp.getCatg(),
-                                                loggedInRole))
+                                roleCategoryRepository
+                                        .existsByRoleIdAndCatg(
+                                                loggedInRole,
+                                                emp.getCatg()))
                         .toList();
 
         log.info(

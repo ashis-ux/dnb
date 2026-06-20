@@ -287,7 +287,6 @@ const AdjustmentReport = {
 	},
 
     clearScreen: function () {
-
         $("#reportBody")
             .empty();
 

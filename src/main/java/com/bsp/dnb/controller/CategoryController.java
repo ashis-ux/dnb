@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.bsp.dnb.dto.CategoryDto;
@@ -17,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api/categories")
 @Slf4j
+@PreAuthorize("hasRole('SUPER_ADMIN')")
 public class CategoryController {
 	
 	private static final Logger log =
@@ -98,6 +100,13 @@ public class CategoryController {
 
         return ResponseEntity.ok(
                 categoryService.getLoggedInUserCategories());
+    }
+    
+    @GetMapping("/logged-in-user-all-categories")
+    public ResponseEntity<List<CategoryDto>> getLoggedInUserAllCategories() {
+
+        return ResponseEntity.ok(
+                categoryService.getLoggedInUserAllCategories());
     }
     
     @GetMapping("/stipend")

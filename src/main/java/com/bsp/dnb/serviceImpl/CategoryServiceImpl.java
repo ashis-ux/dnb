@@ -18,6 +18,7 @@ import com.bsp.dnb.service.CategoryService;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -109,77 +110,84 @@ public class CategoryServiceImpl implements CategoryService {
 	    }
 
 	    List<Category> categories =
-	            categoryRepository.findByDnbRole_Id(roleId);
-
+	            categoryRepository.findByRole(roleId);
 	    return categories.stream()
 	            .map(this::entityToDto)
 	            .collect(Collectors.toList());
 	}
     
-    private void validateRequest(CategoryDto dto) {
-        if (dto.getDescription() == null
-                || dto.getDescription().trim().isEmpty()) {
-            throw new BadRequestException(
-                    "Description is mandatory");
-        }
-        if (dto.getRoleId() == null) {
-            throw new BadRequestException(
-                    "Role is mandatory");
-        }
-        if (dto.getYear() == null
-                || dto.getYear() < 1
-                || dto.getYear() > 9) {
-            throw new BadRequestException(
-                    "Year should be between 1 and 9");
-        }
-        if (!dnbRoleRepository.existsById(
-                dto.getRoleId())) {
-            throw new ResourceNotFoundException(
-                    "Role not found with ID : "
-                            + dto.getRoleId());
-        }
-    }
+	private void validateRequest(
+	        CategoryDto dto) {
 
-    private CategoryDto entityToDto(Category entity) {
-        CategoryDto dto = new CategoryDto();
-        dto.setCatg(entity.getCatg());
+	    if (dto.getDescription() == null
+	            || dto.getDescription()
+	                    .trim()
+	                    .isEmpty()) {
+
+	        throw new BadRequestException(
+	                "Description is mandatory");
+	    }
+
+	    if (dto.getYear() == null
+	            || dto.getYear() < 1
+	            || dto.getYear() > 9) {
+
+	        throw new BadRequestException(
+	                "Year should be between 1 and 9");
+	    }
+	}
+
+    private CategoryDto entityToDto(
+            Category entity) {
+
+        CategoryDto dto =
+                new CategoryDto();
+
+        dto.setCatg(
+                entity.getCatg());
+
         dto.setDescription(
                 entity.getDescription());
-        dto.setStipend(entity.getStipend());
-        dto.setYear(entity.getYear());
-        dto.setType(entity.getType());
-        if (entity.getDnbRole() != null) {
-            dto.setRoleId(
-                    entity.getDnbRole().getId());
-            dto.setRoleName(
-                    entity.getDnbRole().getName());
-        }
+
+        dto.setStipend(
+                entity.getStipend());
+
+        dto.setYear(
+                entity.getYear());
+
+        dto.setType(
+                entity.getType());
+
         return dto;
     }
 
-    private Category dtoToEntity(CategoryDto dto) {
-        Category category = new Category();
-        category.setCatg(dto.getCatg());
+    private Category dtoToEntity(
+            CategoryDto dto) {
+
+        Category category =
+                new Category();
+
+        category.setCatg(
+                dto.getCatg());
+
         category.setDescription(
                 dto.getDescription()
                         .trim()
                         .toUpperCase());
-        category.setStipend(dto.getStipend());
-        category.setYear(dto.getYear());
+
+        category.setStipend(
+                dto.getStipend());
+
+        category.setYear(
+                dto.getYear());
+
         category.setType(
                 dto.getType() == null
                         ? null
                         : dto.getType()
                                 .trim()
                                 .toUpperCase());
-        DnbRole role =
-                dnbRoleRepository.findById(
-                        dto.getRoleId())
-                        .orElseThrow(() ->
-                                new ResourceNotFoundException(
-                                        "Role not found with ID : "
-                                                + dto.getRoleId()));
-        category.setDnbRole(role);
+
         return category;
     }
     
@@ -191,6 +199,16 @@ public class CategoryServiceImpl implements CategoryService {
 
         return categoryRepository
                 .findCategoriesForDropdown(loggedInRole)
+                .stream()
+                .map(this::entityToDto)
+                .collect(Collectors.toList());
+    }
+    
+    @Override
+    public List<CategoryDto> getLoggedInUserAllCategories() {
+
+        return categoryRepository
+                .findByRole(loggedInRole)
                 .stream()
                 .map(this::entityToDto)
                 .collect(Collectors.toList());

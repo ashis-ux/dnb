@@ -19,6 +19,8 @@ public interface CategoryService {
     
     List<CategoryDto> getLoggedInUserCategories();
     
+    public List<CategoryDto> getLoggedInUserAllCategories();
+    
     public Integer findStipend(
             Integer catg,
             Integer year);

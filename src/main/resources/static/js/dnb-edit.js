@@ -65,6 +65,32 @@ function searchDnb() {
         });
 }
 
+function validateDOS(){
+	const doj =
+	        document.getElementById("doj").value;
+
+	    const dos =
+	        document.getElementById("dos").value;
+
+	    if (doj && dos) {
+
+	        const dojDate =
+	            new Date(doj);
+
+	        const dosDate =
+	            new Date(dos);
+
+	        if (dosDate <= dojDate) {
+
+	            showError(
+	                "DOS must be greater than DOJ");
+
+	            return false;
+	        }
+	    }
+		return true;
+}
+
 function populateForm(data) {
 
     document.getElementById(
@@ -129,6 +155,8 @@ function populateForm(data) {
         "tuitionFeeInd")
         .value =
         data.tuitionFeeInd;
+		
+		setEditableFields();
 }
 
 function updateDnb() {
@@ -275,6 +303,37 @@ function loadCategories() {
         });
 }
 
+function setEditableFields() {
+
+    // Read Only Fields
+
+    document.getElementById("name").disabled = true;
+
+    document.getElementById("sexCode").disabled = true;
+
+    document.getElementById("empStatus").disabled = true;
+
+    document.getElementById("bankCd").readOnly = true;
+
+    document.getElementById("bankAcno").readOnly = true;
+
+    document.getElementById("catg").disabled = true;
+
+    document.getElementById("tuitionFeeInd").disabled = true;
+
+    // Editable Fields
+
+    document.getElementById("dob").readOnly = false;
+
+    document.getElementById("pan").readOnly = false;
+
+    document.getElementById("doj").readOnly = false;
+
+    document.getElementById("dos").readOnly = false;
+
+    document.getElementById("speciality").readOnly = false;
+}
+
 function validateForm() {
 
     if (isBlank("name")) {
@@ -284,6 +343,11 @@ function validateForm() {
 
         return false;
     }
+	
+	if (!validateDOS()) {
+
+		    return false;
+		}
 
     if (!validatePan()) {
 

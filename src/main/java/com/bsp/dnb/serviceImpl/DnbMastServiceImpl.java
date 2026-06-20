@@ -16,6 +16,7 @@ import com.bsp.dnb.exception.DuplicateResourceException;
 import com.bsp.dnb.exception.ResourceNotFoundException;
 import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
+import com.bsp.dnb.repo.RoleCategoryRepository;
 import com.bsp.dnb.service.DnbMastService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,9 @@ public class DnbMastServiceImpl implements DnbMastService {
 	
 	@Autowired
     private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private RoleCategoryRepository roleCategoryRepository;
 	
 	 
 
@@ -183,10 +187,10 @@ public class DnbMastServiceImpl implements DnbMastService {
             Integer catg) {
 
         boolean allowed =
-                categoryRepository
-                        .existsByCatgAndDnbRole_Id(
-                                catg,
-                                loggedInRole);
+                roleCategoryRepository
+                        .existsByRoleIdAndCatg(
+                                loggedInRole,
+                                catg);
 
         if (!allowed) {
 
@@ -294,7 +298,22 @@ public class DnbMastServiceImpl implements DnbMastService {
         }
 
         if (dto.getCatg() == null) {
-            throw new BadRequestException("Category is mandatory");
+
+            throw new BadRequestException(
+                    "Category is mandatory");
+        }
+
+        boolean allowed =
+                roleCategoryRepository
+                        .existsByRoleIdAndCatg(
+                                loggedInRole,
+                                dto.getCatg());
+
+        if (!allowed) {
+
+            throw new BadRequestException(
+                    "You are not authorized to use Category : "
+                            + dto.getCatg());
         }
 
         if (dto.getSpeciality() == null

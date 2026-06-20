@@ -31,8 +31,7 @@ function setPreviousMonth() {
 
 function loadAttendance() {
 
-    const yymm =
-        document.getElementById(
+    const yymm = document.getElementById(
             "yymm")
             .value
             .trim();
@@ -208,7 +207,7 @@ function saveAttendance() {
         return;
     }
 
-    const yymm =
+    const yymm = 
         parseInt(
             document.getElementById(
                 "yymm").value);
@@ -377,8 +376,10 @@ function validateAttendanceGrid() {
             + ml
             + abs;
 
+			if (total === 0) {
+			    continue;
+			}
         if (total !== eligible) {
-
             const empId =
                 row.querySelector(
                     ".employee-id")

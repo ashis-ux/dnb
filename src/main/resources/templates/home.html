@@ -25,45 +25,81 @@
 
 	<!-- Header -->
 
-	<nav class="navbar navbar-expand-lg navbar-dark header-navbar">
+	<nav class="navbar navbar-expand-lg navbar-dark header-navbar d-flex flex-nowrap">
 
-		<div class="container-fluid">
+		    <div class="container-fluid p-0 d-flex flex-nowrap align-items-center">
 
-			<!-- Logo -->
+		        <!-- Left Side: Trigger + Logo + Brand Text -->
+		        <div class="d-flex align-items-center flex-nowrap">
+		            
+		            <!-- Anchor tag menu trigger -->
+		            <a class="text-white border-0 fs-5 p-1 ms-2 d-flex align-items-center justify-content-center"
+		               role="button"
+		               data-bs-toggle="offcanvas"
+		               data-bs-target="#mobileMenu"
+		               style="background: transparent; width: auto !important; min-width: auto !important; text-decoration: none;">
+		                <i class="bi bi-list"></i>
+		            </a>
 
-			<div class="d-flex align-items-center">
+		            <!-- Logo -->
+		            <img src="/images/sail-logo.png" alt="SAIL Logo" class="logo ms-2">
 
-				<img src="/images/sail-logo.png" alt="SAIL Logo" class="logo">
+		            <!-- Title Group (Added text-nowrap to prevent text wrapping on mobile) -->
+		            <div class="ms-3 text-nowrap">
+		                <h5 class="mb-0 text-white">DNB Management System</h5>
+		                <small class="text-light">Centralized DNB Processing System</small>
+		            </div>
 
-				<div class="ms-3">
+		        </div>
 
-					<h5 class="mb-0 text-white">
-						DNB Management System
-					</h5>
+				<div class="ms-auto">
 
-					<small class="text-light">
-						Centralized DNB Processing System
-					</small>
+				                <ul class="navbar-nav">
 
-				</div>
+				                    <li class="nav-item">
 
-			</div>
+				                        <a class="nav-link text-white"
+				                           href="/">
 
-			<!-- Right Side -->
+				                            <i class="bi bi-house-fill"></i>
 
-			<div class="ms-auto">
+				                            Home
 
-				<span class="text-white fw-bold">
+				                        </a>
 
-					Welcome User
+				                    </li>
 
-				</span>
+				                    <li class="nav-item">
 
-			</div>
+				                        <a class="nav-link text-white"
+				                           href="#">
 
-		</div>
+				                            <i class="bi bi-person-circle"></i>
 
-	</nav>
+				                            User Profile
+
+				                        </a>
+
+				                    </li>
+
+				                    <li class="nav-item">
+
+				                        <a class="nav-link text-white"
+				                           href="#">
+
+				                            <i class="bi bi-box-arrow-right"></i>
+
+				                            Logout
+
+				                        </a>
+
+				                    </li>
+
+				                </ul>
+
+				            </div>
+
+		</nav>
 
 	<!-- Body -->
 
@@ -190,7 +226,7 @@
 
 									</a>
 
-									<a href="#" class="menu-link">
+									<a href="/dnb-adjustment" class="menu-link">
 
 										Attendance Adjustment
 
@@ -232,12 +268,12 @@
 									    Attendance Report
 						            </a>
 									
-									<a href="/dnb-master-report" class="menu-link">
-							 			DNB Masters Report
+									<a href="/adjustment-report" class="menu-link">
+							 			Adjustment Report
 									</a>
-									<a href="/attendance-report" class="menu-link">
-									    Attendance Report
-									 </a>
+									<a href="/paybill-report" class="menu-link">
+									    Paybill Report
+								    </a>
 
 								</div>
 

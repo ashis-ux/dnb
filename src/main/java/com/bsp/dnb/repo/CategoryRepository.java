@@ -13,23 +13,31 @@ import com.bsp.dnb.entity.Category;
 public interface CategoryRepository
         extends JpaRepository<Category, Integer> {
 	
-	boolean existsByDnbRole_Id(Long roleId);
-	
-	List<Category> findByDnbRole_Id(Long roleId);
-	
-	boolean existsByCatgAndDnbRole_Id(
-	        Integer catg,
-	        Long roleId);
-	
-	@Query("""
-		       SELECT c
-		       FROM Category c
-		       WHERE c.dnbRole.id = :roleId
-		       AND c.year = 1
-		       ORDER BY c.catg
-		       """)
+	@Query(value = """
+		       SELECT c.*
+		       FROM DNB_CATG_MAST c
+		       JOIN DNB_ROLE_CATEGORY rc
+		            ON c.CATG = rc.CATG
+		       WHERE rc.ROLE_ID = :roleId
+		       AND c.YEAR = 1
+		       ORDER BY c.CATG
+		       """,
+		       nativeQuery = true)
 		List<Category> findCategoriesForDropdown(
 		        @Param("roleId") Long roleId);
+	
+	@Query(value = """
+			SELECT c.*
+			FROM DNB_CATG_MAST c
+			JOIN DNB_ROLE_CATEGORY rc
+			     ON c.CATG = rc.CATG
+			WHERE rc.ROLE_ID = :roleId
+			ORDER BY c.CATG,c.YEAR
+			""",
+			nativeQuery = true)
+			List<Category> findByRole(
+			        @Param("roleId")
+			        Long roleId);
 	
 	 @Query(
 		        value = """
@@ -47,11 +55,13 @@ public interface CategoryRepository
 		            @Param("year")
 		            Integer year);
 	 
-	 @Query("""
-		       SELECT DISTINCT c.catg
-		       FROM Category c
-		       WHERE c.dnbRole.id = :roleId
-		       """)
+	 @Query(value = """
+		       SELECT DISTINCT CATG
+		       FROM DNB_ROLE_CATEGORY
+		       WHERE ROLE_ID = :roleId
+		       ORDER BY CATG
+		       """,
+		       nativeQuery = true)
 		List<Integer> findAllowedCategories(
 		        @Param("roleId") Long roleId);
 

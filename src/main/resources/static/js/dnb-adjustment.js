@@ -67,7 +67,7 @@ function setPreviousMonth() {
 function loadCategories() {
 
     fetch(
-        "/api/categories/logged-in-user")
+        "/api/categories/logged-in-user-all-categories")
 
         .then(response =>
             response.json())
@@ -94,8 +94,8 @@ function loadAdjustments() {
 
     clearMessages();
 
-    const yymm =
-        document.getElementById(
+    const yymm =202606
+    const yymm1=    document.getElementById(
             "yymm")
             .value;
 
@@ -164,8 +164,7 @@ function populateGrid(data) {
 
                 <td>
 
-				<select class="forym">
-
+				<select class="forym"  ${disabled}>
 				    ${buildForymOptions(
 				            document.getElementById(
 				                "yymm").value,
@@ -175,23 +174,25 @@ function populateGrid(data) {
 				</select>
 
                 </td>
-
-                <td>
-
-                    <select class="days"
-                            ${disabled}>
-                    </select>
-
-                </td>
+				
+				<td>
+				    <select class="days"
+				            ${disabled}>
+				        <option value="${emp.days|| 0}" selected>
+				            ${emp.days || 0}
+				        </option>
+				    </select>
+				</td>
 
                 <td>
 
                     <select class="categorySelect"
                             ${disabled}>
 
-                        ${buildCategoryOptions(
-                            emp.catg,
-                            emp.yr)}
+							${buildCategoryOptions(
+							        emp.catg,
+							        emp.catg,
+							        emp.yr)}
 
                     </select>
 
@@ -267,37 +268,36 @@ function populateGrid(data) {
 ---------------------------- */
 
 function buildCategoryOptions(
-    selectedCatg,
-    selectedYr) {
+        empCatg,
+        selectedCatg,
+        selectedYr) {
 
     let html =
         '<option value="">Select</option>';
 
-    categoryList.forEach(cat => {
+    categoryList
+        .filter(cat => cat.catg == empCatg)
+        .forEach(cat => {
 
-        const selected =
+            const selected =
+                cat.catg == selectedCatg &&
+                cat.year == selectedYr
+                    ? "selected"
+                    : "";
 
-            cat.catg === selectedCatg
-            &&
-            cat.year === selectedYr
+            html += `
+                <option
+                    value="${cat.catg}_${cat.year}"
+                    data-catg="${cat.catg}"
+                    data-year="${cat.year}"
+                    data-stipend="${cat.stipend}"
+                    ${selected}>
 
-            ? "selected"
-            : "";
+                    ${cat.description}
+                    - Year ${cat.year}
 
-        html +=
-
-            `<option
-                value="${cat.catg}_${cat.year}"
-                data-catg="${cat.catg}"
-                data-year="${cat.year}"
-                data-stipend="${cat.stipend}"
-                ${selected}>
-
-                ${cat.description}
-                - Year ${cat.year}
-
-            </option>`;
-    });
+                </option>`;
+        });
 
     return html;
 }
@@ -462,23 +462,22 @@ function populateDaysDropdown(
 
     select.innerHTML = "";
 
+    forym = String(forym);
+
     if (!forym ||
         forym.length !== 6) {
+
+        select.innerHTML =
+            '<option value="0" selected>0</option>';
 
         return;
     }
 
     const year =
-        parseInt(
-            forym.substring(
-                0,
-                4));
+        parseInt(forym.substring(0, 4));
 
     const month =
-        parseInt(
-            forym.substring(
-                4,
-                6));
+        parseInt(forym.substring(4, 6));
 
     const maxDays =
         new Date(
@@ -487,20 +486,22 @@ function populateDaysDropdown(
             0)
             .getDate();
 
-    for (let i = 1;
-         i <= maxDays;
-         i++) {
+    select.innerHTML +=
+        `<option value="0"
+            ${selectedValue == 0 ? "selected" : ""}>
+            0
+        </option>`;
+
+    for (let i = 1; i <= maxDays; i++) {
 
         select.innerHTML +=
-
             `<option value="${i}"
-                     ${i === selectedValue ? "selected" : ""}>
-
+                ${i == selectedValue ? "selected" : ""}>
                 ${i}
-
             </option>`;
     }
 }
+
 
 /* ---------------------------
    Calculate Amount
@@ -574,8 +575,8 @@ function calculateAmount(row) {
 
 function saveAdjustments() {
 
-    const yymm =
-        parseInt(
+    const yymm =202606
+    const yymm1=    parseInt(
             document.getElementById(
                 "yymm")
                 .value);
@@ -646,7 +647,7 @@ function saveAdjustments() {
 					    forym: forym,
 
 					    days: days,
-
+                        
 					    catg: parseInt(
 					        option.dataset.catg),
 

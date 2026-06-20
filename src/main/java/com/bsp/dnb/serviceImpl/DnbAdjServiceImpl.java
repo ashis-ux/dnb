@@ -2,6 +2,7 @@ package com.bsp.dnb.serviceImpl;
 
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -57,11 +58,20 @@ public class DnbAdjServiceImpl implements DnbAdjService {
 	                    yymm);
 	    List<DnbMastDto> employees =
 	            dnbMastService.findEligibleForAttendance();
-
+	    
+	    employees =
+	            new ArrayList<>(
+	                    employees.stream()
+	                            .collect(
+	                                    Collectors.toMap(
+	                                            DnbMastDto::getId,
+	                                            Function.identity(),
+	                                            (existing, duplicate) -> existing,
+	                                            LinkedHashMap::new))
+	                            .values());
 	    List<DnbAdj> adjustments =
 	            repository.findByIdYymm(
 	                    yymm);
-
 	    Map<Integer, DnbAdj> adjustmentMap =
 	            adjustments.stream()
 	                    .collect(
@@ -69,21 +79,15 @@ public class DnbAdjServiceImpl implements DnbAdjService {
 	                                    a -> a.getId().getId(),
 	                                    Function.identity(),
 	                                    (a, b) -> a));
-
 	    List<AdjustmentEntryDto> response =
 	            new ArrayList<>();
-
 	    for (DnbMastDto emp : employees) {
-
 	        AdjustmentEntryDto dto =
 	                new AdjustmentEntryDto();
-
 	        dto.setYymm(yymm);
-
 	        dto.setId(emp.getId());
-
 	        dto.setName(emp.getName());
-	        
+	       
 	        dto.setDoj(
 	        		emp.getDoj());
 
@@ -124,6 +128,9 @@ public class DnbAdjServiceImpl implements DnbAdjService {
 	            dto.setPaidInd(
 	                    adj.getPaidInd());
 	        } else {
+	        	
+	        	dto.setCatg(
+	        			emp.getCatg());
 
 	            dto.setDays(0);
 

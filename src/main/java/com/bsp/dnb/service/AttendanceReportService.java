@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.bsp.dnb.dto.AttendanceReportDto;
-import com.bsp.dnb.dto.DnbMasterReportDto;
 
 public interface AttendanceReportService {
 	

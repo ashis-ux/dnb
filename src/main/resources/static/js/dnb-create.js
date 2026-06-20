@@ -228,6 +228,15 @@ function validateForm() {
 
         return false;
     }
+	
+	if (isBlank("dos")) {
+
+	       showError(
+	           "DOS is mandatory");
+
+	       return false;
+	   }
+
 
     if (isBlank("sexCode")) {
 
@@ -286,10 +295,41 @@ function validateForm() {
 
 	    return false;
 	}
+	
+	if (!validateDOS()) {
+
+		    return false;
+		}
 
 	return true;
 
-    return true;
+    
+}
+
+function validateDOS(){
+	const doj =
+	        document.getElementById("doj").value;
+
+	    const dos =
+	        document.getElementById("dos").value;
+
+	    if (doj && dos) {
+
+	        const dojDate =
+	            new Date(doj);
+
+	        const dosDate =
+	            new Date(dos);
+
+	        if (dosDate <= dojDate) {
+
+	            showError(
+	                "DOS must be greater than DOJ");
+
+	            return false;
+	        }
+	    }
+		return true;
 }
 
 function validatePan() {

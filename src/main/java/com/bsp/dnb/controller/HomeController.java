@@ -14,13 +14,11 @@ public class HomeController {
     
     @GetMapping("/dnb/create")
     public String createDnb() {
-
         return "dnb-create";
     }
     
     @GetMapping("/dnb/edit")
     public String editDnb() {
-
         return "dnb-edit";
     }
     

@@ -25,10 +25,23 @@ public interface DnbMastRepository
 //		List<DnbMast> findEligibleForAttendance(
 //		        Date previousMonthStart);
 	
-	@Query(value = "SELECT dm.* FROM DNBMAST dm JOIN DNB_CATG_MAST cm ON dm.CATG = cm.CATG WHERE cm.ROLE = :roleId AND dm.EMP_STATUS = 0 AND ( dm.DOS IS NULL OR dm.DOS > :previousMonthStart) ORDER BY dm.NAME", nativeQuery = true)
-	List<DnbMast> findEligibleForAttendance(
-	        @Param("roleId") Long roleId,
-	        @Param("previousMonthStart") Date previousMonthStart);
+	@Query(value = """
+			SELECT DISTINCT dm.*
+			FROM DNBMAST dm
+			JOIN DNB_ROLE_CATEGORY rc
+			     ON dm.CATG = rc.CATG
+			WHERE rc.ROLE_ID = :roleId
+			AND dm.EMP_STATUS = 0
+			AND (
+			    dm.DOS IS NULL
+			    OR dm.DOS > :previousMonthStart
+			)
+			ORDER BY dm.NAME
+			""",
+			nativeQuery = true)
+			List<DnbMast> findEligibleForAttendance(
+			        @Param("roleId") Long roleId,
+			        @Param("previousMonthStart") Date previousMonthStart);
 	boolean existsByPanIgnoreCase(String pan);
 	boolean existsByPanIgnoreCaseAndIdNot(String pan, Integer id);
 	

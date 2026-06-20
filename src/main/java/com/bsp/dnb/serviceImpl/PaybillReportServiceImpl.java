@@ -29,6 +29,7 @@ import com.bsp.dnb.entity.DnbPbill;
 import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
 import com.bsp.dnb.repo.DnbPbillRepository;
+import com.bsp.dnb.repo.RoleCategoryRepository;
 import com.bsp.dnb.service.PaybillReportService;
 
 @Service
@@ -47,6 +48,9 @@ public class PaybillReportServiceImpl
 
     @Autowired
     private CategoryRepository categoryRepository;
+    
+    @Autowired
+    private RoleCategoryRepository roleCategoryRepository;
 
     @Value("${app.logged-in-role}")
     private Long loggedInRole;
@@ -255,10 +259,9 @@ public class PaybillReportServiceImpl
             }
 
             boolean hasAccess =
-                    categoryRepository
-                            .existsByCatgAndDnbRole_Id(
-                                    employee.getCatg(),
-                                    loggedInRole);
+            		roleCategoryRepository
+                            .existsByRoleIdAndCatg(loggedInRole,
+                                    employee.getCatg());
 
             if (!hasAccess) {
 

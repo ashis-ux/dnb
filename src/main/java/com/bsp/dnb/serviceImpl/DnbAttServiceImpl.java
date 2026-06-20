@@ -51,121 +51,7 @@ public class DnbAttServiceImpl implements DnbAttService {
     @Autowired
     private DnbPbillRepository pbillRepository;
 
-    @Override
-    public DnbAttDto save(DnbAttDto dto) {
-
-        log.info("Saving attendance for ID : {}, YYMM : {}",
-                dto.getId(), dto.getYymm());
-        validateRequest(dto);
-        DnbAttId key = new DnbAttId(
-                dto.getYymm(),
-                dto.getId());
-        if (repository.existsById(key)) {
-
-            log.error("Attendance already exists for ID : {}, YYMM : {}",
-                    dto.getId(), dto.getYymm());
-
-            throw new DuplicateResourceException(
-                    "Attendance already exists for ID : "
-                            + dto.getId()
-                            + " and YYMM : "
-                            + dto.getYymm());
-        }
-
-        if (!dnbMastRepository.existsById(dto.getId())) {
-
-            log.error("DNB Master not found with ID : {}",
-                    dto.getId());
-
-            throw new ResourceNotFoundException(
-                    "DNB Master not found with ID : "
-                            + dto.getId());
-        }
-
-        DnbAtt savedEntity =
-                repository.save(dtoToEntity(dto));
-
-        log.info("Attendance saved successfully");
-
-        return entityToDto(savedEntity);
-    }
-
-    @Override
-    public DnbAttDto update(DnbAttDto dto) {
-
-        log.info("Updating attendance for ID : {}, YYMM : {}",
-                dto.getId(), dto.getYymm());
-
-        validateRequest(dto);
-
-        DnbAttId key = new DnbAttId(
-                dto.getYymm(),
-                dto.getId());
-
-        DnbAtt existingEntity =
-                repository.findById(key)
-                        .orElseThrow(() -> {
-
-                            log.error("Attendance record not found");
-
-                            return new ResourceNotFoundException(
-                                    "Attendance record not found");
-                        });
-
-        existingEntity.setDuty(dto.getDuty());
-        existingEntity.setAl(dto.getAl());
-        existingEntity.setCl(dto.getCl());
-        existingEntity.setAbs(dto.getAbs());
-        existingEntity.setPl(dto.getPl());
-        existingEntity.setMl(dto.getMl());
-
-        DnbAtt updatedEntity =
-                repository.save(existingEntity);
-
-        log.info("Attendance updated successfully");
-
-        return entityToDto(updatedEntity);
-    }
-
-    @Override
-    public DnbAttDto findById(Integer yymm,
-                              Integer id) {
-
-        log.info("Fetching attendance for ID : {}, YYMM : {}",
-                id, yymm);
-
-        DnbAttId key = new DnbAttId(yymm, id);
-
-        DnbAtt entity =
-                repository.findById(key)
-                        .orElseThrow(() -> {
-
-                            log.error("Attendance record not found");
-
-                            return new ResourceNotFoundException(
-                                    "Attendance record not found");
-                        });
-
-        log.info("Attendance fetched successfully");
-
-        return entityToDto(entity);
-    }
-
-    @Override
-    public List<DnbAttDto> findAll() {
-
-        log.info("Fetching all attendance records");
-
-        List<DnbAtt> entities =
-                repository.findAll();
-
-        log.info("Total attendance records found : {}",
-                entities.size());
-
-        return entities.stream()
-                .map(this::entityToDto)
-                .collect(Collectors.toList());
-    }
+    
 
     @Override
     @Transactional
@@ -185,11 +71,8 @@ public class DnbAttServiceImpl implements DnbAttService {
         Integer yymm =
                 dtoList.get(0).getYymm();
 
-        /*
-         * Lock attendance if paybill generated
-         */
+         
         if (pbillRepository.existsByIdYymm(yymm)) {
-
             throw new BadRequestException(
                     "Paybill has already been generated for YYMM : "
                             + yymm
@@ -201,15 +84,26 @@ public class DnbAttServiceImpl implements DnbAttService {
 
         for (DnbAttDto dto : dtoList) {
 
-            validateAttendance(dto);
-
+            int total=validateAttendance(dto);
             DnbAttId id =
                     new DnbAttId(
                             dto.getYymm(),
                             dto.getId());
+            
+            //if the Total number of 
+            if (total == 0) {
 
+                if (repository.existsById(id)) {
+                    repository.deleteById(id);
+                    log.info(
+                            "Attendance deleted for ID : {}, YYMM : {} because total days is 0",
+                            dto.getId(),
+                            dto.getYymm());
+                }
+
+                continue;
+            }
             DnbAtt entity;
-
             /*
              * UPDATE
              */
@@ -236,6 +130,7 @@ public class DnbAttServiceImpl implements DnbAttService {
                         new DnbAtt();
 
                 entity.setId(id);
+                
 
                 log.info(
                         "Creating attendance for ID : {}, YYMM : {}",
@@ -264,7 +159,7 @@ public class DnbAttServiceImpl implements DnbAttService {
         return response;
     }
     
-    private void validateAttendance(
+    private int validateAttendance(
             DnbAttDto dto) {
 
         DnbMastDto employee =
@@ -283,6 +178,8 @@ public class DnbAttServiceImpl implements DnbAttService {
                 + nvl(dto.getPl())
                 + nvl(dto.getMl())
                 + nvl(dto.getAbs());
+        
+        if (total==0)return total;
 
         if (total != eligibleDays) {
 
@@ -294,6 +191,7 @@ public class DnbAttServiceImpl implements DnbAttService {
                             + " days. Entered : "
                             + total);
         }
+        return total;
     }
     
     private int calculateEligibleDays(
@@ -403,6 +301,9 @@ public class DnbAttServiceImpl implements DnbAttService {
 
         List<DnbMastDto> eligibleEmployees =
                 dnbMastService.findEligibleForAttendance();
+        log.info(
+        	    "Employee Count : {}",
+        	    eligibleEmployees.size());
         eligibleEmployees =
                 new ArrayList<>(
                         eligibleEmployees.stream()
@@ -556,8 +457,10 @@ public class DnbAttServiceImpl implements DnbAttService {
                  * Default Duty =
                  * Eligible Days
                  */
+            	
+            	dto.setEligibleDays(eligibleDays);
                 dto.setDuty(
-                        eligibleDays);
+                        0);
 
                 dto.setAl(0);
 
@@ -569,7 +472,6 @@ public class DnbAttServiceImpl implements DnbAttService {
 
                 dto.setAbs(0);
             }
-
             response.add(dto);
         }
 
@@ -608,7 +510,7 @@ public class DnbAttServiceImpl implements DnbAttService {
             throw new BadRequestException(
                     "Invalid YYMM format");
         }
-        if (year < 2000 || year > 2100) {
+        if (year < 1970 || year > 2100) {
             throw new BadRequestException(
                     "Invalid year in YYMM");
         }

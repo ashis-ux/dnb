@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.bsp.dnb.dto.AdjustmentReportDto;
@@ -17,12 +18,14 @@ import com.bsp.dnb.service.AdjustmentReportService;
 @RestController
 @RequestMapping("/api/adjustment-report")
 @CrossOrigin(origins = "*")
+@PreAuthorize("hasRole('SUPER_ADMIN')")
 public class AdjustmentReportController {
 
     @Autowired
     private AdjustmentReportService adjustmentReportService;
 
     @GetMapping("/{yymm}")
+    
     public ResponseEntity<Page<AdjustmentReportDto>>
     getAdjustmentReport(
             @PathVariable Integer yymm,

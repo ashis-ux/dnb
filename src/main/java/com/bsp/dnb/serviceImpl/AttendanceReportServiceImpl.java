@@ -30,6 +30,7 @@ import com.bsp.dnb.entity.DnbMast;
 import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbAttRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
+import com.bsp.dnb.repo.RoleCategoryRepository;
 import com.bsp.dnb.service.AttendanceReportService;
 
 import jakarta.transaction.Transactional;
@@ -51,6 +52,11 @@ public class AttendanceReportServiceImpl
 
     @Autowired
     private CategoryRepository categoryRepository;
+    
+    @Autowired
+    private RoleCategoryRepository roleCategoryRepository;
+    
+    
 
     @Value("${app.logged-in-role}")
     private Long loggedInRole;
@@ -194,10 +200,9 @@ public class AttendanceReportServiceImpl
                 }
 
                 boolean hasAccess =
-                        categoryRepository
-                                .existsByCatgAndDnbRole_Id(
-                                        employee.getCatg(),
-                                        loggedInRole);
+                		roleCategoryRepository
+                                .existsByRoleIdAndCatg(loggedInRole,
+                                        employee.getCatg());
 
                 if (!hasAccess) {
                     continue;
