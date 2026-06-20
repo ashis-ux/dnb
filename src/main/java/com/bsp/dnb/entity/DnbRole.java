@@ -1,20 +1,31 @@
 package com.bsp.dnb.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "DNB_ROLE")
+@Table(name = "APP_ROLE")
 public class DnbRole {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ROLE_ID")
     private Long id;
 
-    @Column(name = "NAME", nullable = false, length = 6)
+    @Column(name = "ROLE_NAME", nullable = false, length = 100)
     private String name;
+
+    @Column(name = "DESCRIPTION", length = 500)
+    private String description;
+
+    @Column(name = "ACTIVE")
+    private Integer active;
+
+    @Column(name = "CREATED_AT")
+    private LocalDateTime createdAt;
 
     public DnbRole() {
     }
@@ -35,4 +46,27 @@ public class DnbRole {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }
