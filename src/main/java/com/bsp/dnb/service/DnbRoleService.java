@@ -13,4 +13,6 @@ public interface DnbRoleService {
     DnbRoleDto findById(Long id);
 
     List<DnbRoleDto> findAll();
+    
+    Long getRoleId();
 }

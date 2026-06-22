@@ -30,6 +30,7 @@ import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
 import com.bsp.dnb.repo.DnbPbillRepository;
 import com.bsp.dnb.repo.RoleCategoryRepository;
+import com.bsp.dnb.service.DnbRoleService;
 import com.bsp.dnb.service.PaybillReportService;
 
 @Service
@@ -51,9 +52,9 @@ public class PaybillReportServiceImpl
     
     @Autowired
     private RoleCategoryRepository roleCategoryRepository;
-
-    @Value("${app.logged-in-role}")
-    private Long loggedInRole;
+    
+    @Autowired
+	private DnbRoleService dnbroleservice;
 
     @Override
     public Page<PaybillReportDto>
@@ -65,6 +66,8 @@ public class PaybillReportServiceImpl
         log.info(
                 "Fetching paybill report for YYMM : {}",
                 yymm);
+        
+        Long loggedInRole=dnbroleservice.getRoleId();
 
         Pageable pageable =
                 PageRequest.of(
@@ -257,6 +260,8 @@ public class PaybillReportServiceImpl
 
                 continue;
             }
+            
+            Long loggedInRole=dnbroleservice.getRoleId();
 
             boolean hasAccess =
             		roleCategoryRepository

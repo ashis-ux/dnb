@@ -106,5 +106,15 @@ public class DnbMastController {
                 dnbMastService.findEligibleForAttendance());
     }
     
+    @GetMapping("/search")
+
+    public ResponseEntity<DnbMastDto> searchDnb(
+            @RequestParam String value) {
+
+        return ResponseEntity.ok(
+        		dnbMastService.searchDnb(
+                        value));
+    }
+    
  
 }

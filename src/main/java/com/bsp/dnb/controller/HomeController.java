@@ -1,5 +1,5 @@
 package com.bsp.dnb.controller;
-
+ 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -50,6 +50,9 @@ public class HomeController {
     @GetMapping("/paybill-report")
     public String paybill_report() {
         return "paybill-report";
+        
     }
+    
+    
 
 }

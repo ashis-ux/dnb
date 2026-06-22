@@ -4,6 +4,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,6 +25,21 @@ public interface DnbMastRepository
 //	@Query("SELECT d FROM DnbMast d WHERE d.empStatus = 0 AND ( d.dos IS NULL OR d.dos > :previousMonthStart)")
 //		List<DnbMast> findEligibleForAttendance(
 //		        Date previousMonthStart);
+	
+	boolean existsByMobileNo(String mobileNo);
+
+	boolean existsByEmailIdIgnoreCase(String emailId);
+	
+	Optional<DnbMast> findByPanIgnoreCase(
+	        String pan);
+	
+	boolean existsByMobileNoAndIdNot(
+	        String mobileNo,
+	        Integer id);
+
+	boolean existsByEmailIdIgnoreCaseAndIdNot(
+	        String emailId,
+	        Integer id);
 	
 	@Query(value = """
 			SELECT DISTINCT dm.*

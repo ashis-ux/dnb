@@ -25,6 +25,7 @@ import com.bsp.dnb.entity.DnbMast;
 import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
 import com.bsp.dnb.repo.RoleCategoryRepository;
+import com.bsp.dnb.service.DnbRoleService;
 import com.bsp.dnb.service.ReportService;
 
 import jakarta.transaction.Transactional;
@@ -48,10 +49,10 @@ public class ReportServiceImpl
     
     private static final Logger log =
             LoggerFactory.getLogger(
-                    ReportServiceImpl.class);
+                    ReportServiceImpl.class); 
 
-    @Value("${app.logged-in-role}")
-    private Long loggedInRole;
+    @Autowired
+	private DnbRoleService dnbroleservice;
 
     @Override
     public Page<DnbMasterReportDto>
@@ -71,6 +72,8 @@ public class ReportServiceImpl
                         page,
                         size,
                         Sort.by("id"));
+        
+        Long loggedInRole=dnbroleservice.getRoleId();
 
         List<Integer> allowedCategories =
                 categoryRepository
@@ -135,6 +138,8 @@ public class ReportServiceImpl
         List<DnbMast> employees =
                 dnbMastRepository.findByYymm(
                         yymm);
+        
+        Long loggedInRole=dnbroleservice.getRoleId();
 
         List<DnbMast> authorizedEmployees =
                 employees.stream()

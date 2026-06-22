@@ -8,62 +8,84 @@ document.addEventListener(
         initializePanField();
     });
 
-function searchDnb() {
+	
+	document.getElementById(
+	    "mobileNo")
+	    .addEventListener(
+	        "input",
+	        function () {
 
-    clearMessages();
+	            this.value =
+	                this.value.replace(
+	                    /\D/g,
+	                    "");
 
-    const id =
-        document.getElementById(
-            "searchId")
-            .value
-            .trim();
+	            if (this.value.length > 10) {
 
-    if (!id) {
+	                this.value =
+	                    this.value.substring(
+	                        0,
+	                        10);
+	            }
+	        });
+			function searchDnb() {
 
-        showError(
-            "Please enter DNB ID");
+			    clearMessages();
 
-        return;
-    }
+			    const value =
+			        document.getElementById(
+			            "searchId")
+			            .value
+			            .trim();
 
-    fetch("/api/dnb/" + id)
+			    if (!value) {
 
-        .then(response => {
+			        showError(
+			            "Please enter DNB ID or PAN");
 
-            if (!response.ok) {
+			        return;
+			    }
 
-                return response.json()
-                    .then(error => {
+			    fetch(
+			        "/api/dnb/search?value="
+			        + encodeURIComponent(value))
 
-                        throw error;
-                    });
-            }
+			        .then(response => {
 
-            return response.json();
-        })
+			            if (!response.ok) {
 
-        .then(data => {
+			                return response.json()
+			                    .then(error => {
 
-            populateForm(data);
+			                        throw error;
+			                    });
+			            }
 
-            document.getElementById(
-                "editSection")
-                .style.display =
-                "block";
-        })
+			            return response.json();
+			        })
 
-        .catch(error => {
+			        .then(data => {
 
-            document.getElementById(
-                "editSection")
-                .style.display =
-                "none";
+			            populateForm(data);
 
-            showError(
-                error.message
-                || "DNB Record not found");
-        });
-}
+			            document.getElementById(
+			                "editSection")
+			                .style.display =
+			                "block";
+			        })
+
+			        .catch(error => {
+
+			            document.getElementById(
+			                "editSection")
+			                .style.display =
+			                "none";
+
+			            showError(
+			                error.message
+			                || "DNB Record not found");
+			        });
+			}
 
 function validateDOS(){
 	const doj =
@@ -92,6 +114,11 @@ function validateDOS(){
 }
 
 function populateForm(data) {
+	
+	document.getElementById(
+	    "dnbId")
+	    .value =
+	    data.id;
 
     document.getElementById(
         "name")
@@ -130,6 +157,16 @@ function populateForm(data) {
         "empStatus")
         .value =
         data.empStatus;
+		
+		document.getElementById(
+		    "mobileNo")
+		    .value =
+		    data.mobileNo || "";
+
+		document.getElementById(
+		    "emailId")
+		    .value =
+		    data.emailId || "";
 
     document.getElementById(
         "bankCd")
@@ -163,11 +200,10 @@ function updateDnb() {
 
     clearMessages();
 
-    const id =
-        document.getElementById(
-            "searchId")
-            .value
-            .trim();
+	const id =
+	    document.getElementById(
+	        "dnbId")
+	        .value;
 
     if (!validateForm()) {
 
@@ -200,6 +236,18 @@ function updateDnb() {
             parseInteger(
                 getValue(
                     "empStatus")),
+					
+					mobileNo:
+					    document.getElementById(
+					        "mobileNo")
+					        .value
+					        .trim(),
+
+					emailId:
+					    document.getElementById(
+					        "emailId")
+					        .value
+					        .trim(),
 
         bankCd:
             getValue("bankCd"),
@@ -332,9 +380,29 @@ function setEditableFields() {
     document.getElementById("dos").readOnly = false;
 
     document.getElementById("speciality").readOnly = false;
+	
+	document.getElementById("mobileNo").readOnly = false;
+
+	document.getElementById("emailId").readOnly = false;
 }
 
 function validateForm() {
+	
+	if (isBlank("mobileNo")) {
+
+	    showError(
+	        "Mobile Number is mandatory");
+
+	    return false;
+	}
+
+	if (isBlank("emailId")) {
+
+	    showError(
+	        "Email ID is mandatory");
+
+	    return false;
+	}
 
     if (isBlank("name")) {
 
@@ -355,6 +423,60 @@ function validateForm() {
     }
 
     if (!validateAccount()) {
+
+        return false;
+    }
+	
+	if (!validateMobile()) {
+
+	    return false;
+	}
+
+	if (!validateEmail()) {
+
+	    return false;
+	}
+
+    return true;
+}
+
+function validateMobile() {
+
+    const mobile =
+        document.getElementById(
+            "mobileNo")
+            .value
+            .trim();
+
+    const regex =
+        /^[6-9]\d{9}$/;
+
+    if (!regex.test(mobile)) {
+
+        showError(
+            "Mobile Number should contain exactly 10 digits");
+
+        return false;
+    }
+
+    return true;
+}
+
+function validateEmail() {
+
+    const email =
+        document.getElementById(
+            "emailId")
+            .value
+            .trim();
+
+    const regex =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regex.test(email)) {
+
+        showError(
+            "Invalid Email ID");
 
         return false;
     }

@@ -277,4 +277,156 @@ body {
     }
 }
 
+.offcanvas {
+
+    width: 280px;
+}
+
+.offcanvas-header {
+
+    background-color: #1E4588;
+
+    color: white;
+}
+
+.offcanvas-header small {
+
+    color: rgba(255,255,255,.8);
+}
+
+.offcanvas-body {
+
+    background-color: #F8F9FA;
+
+    padding: 10px;
+}
+
+/* HOME PAGE STYLE */
+
+#mobileMenu .accordion-item {
+
+    border: none;
+
+    margin-bottom: 8px;
+
+    background: transparent;
+}
+
+#mobileMenu .accordion-button {
+
+    background-color: #294F97 !important;
+
+    color: white !important;
+
+    border-radius: 8px !important;
+
+    font-weight: 600;
+
+    min-height: 52px;
+
+    box-shadow: none !important;
+}
+
+#mobileMenu .accordion-button:not(.collapsed) {
+
+    background-color: #294F97 !important;
+
+    color: white !important;
+}
+
+#mobileMenu .accordion-button:focus {
+
+    box-shadow: none !important;
+}
+
+#mobileMenu .accordion-button::after {
+
+    filter: brightness(0) invert(1);
+}
+
+#mobileMenu .accordion-body {
+
+    padding: 0 !important;
+
+    background: white;
+}
+
+#mobileMenu .menu-link {
+
+    display: block !important;
+
+    width: 100%;
+
+    padding: 12px 20px;
+
+    color: #1E4588;
+
+    text-decoration: none;
+
+    border-bottom: 1px solid #EEEEEE;
+}
+
+#mobileMenu .menu-link:hover {
+
+    background-color: #E8EEF8;
+
+    color: #1E4588;
+
+    padding-left: 28px;
+
+    transition: .3s;
+}
+
+.exit-btn {
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    min-height: 50px;
+}
+
+/* ==========================
+   Mobile Header Menu
+========================== */
+
+@media (max-width: 768px) {
+
+    .navbar-nav {
+
+        flex-direction: row !important;
+
+        align-items: center;
+
+        gap: 8px;
+    }
+
+    .navbar-nav .nav-link {
+
+        padding: 4px 6px;
+
+        font-size: 18px;
+    }
+
+    .navbar-nav .menu-text {
+
+        display: none;
+    }
+
+    .header-navbar {
+
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+
+/* Desktop */
+
+@media (min-width: 769px) {
+
+    .navbar-nav .menu-text {
+
+        display: inline;
+    }
+}
 

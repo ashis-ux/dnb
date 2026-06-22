@@ -25,6 +25,24 @@ public class DnbMastDto {
     private Integer stopPayInd;
     private Integer tuitionFeeInd;
     private String dnbType;
+    
+    private String mobileNo;
+
+    private String emailId;
+    
+    
+	public String getMobileNo() {
+		return mobileNo;
+	}
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
 	public Integer getId() {
 		return id;
 	}

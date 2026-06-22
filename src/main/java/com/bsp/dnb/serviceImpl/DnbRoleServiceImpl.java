@@ -17,6 +17,9 @@ import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbRoleRepository;
 import com.bsp.dnb.service.DnbRoleService;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -144,4 +147,86 @@ public class DnbRoleServiceImpl implements DnbRoleService {
         dto.setName(entity.getName());
         return dto;
     }
+ 
+    public String getRoleName() {
+        log.info(
+                "Fetching logged-in user role name");
+
+        Authentication authentication =
+                SecurityContextHolder
+                        .getContext()
+                        .getAuthentication();
+
+        if (authentication == null) {
+
+            log.error(
+                    "Authentication object is null");
+
+            throw new ResourceNotFoundException(
+                    "User authentication not found");
+        }
+
+        String roleName =
+                authentication.getAuthorities()
+                        .stream()
+                        .map(authority ->
+                                authority.getAuthority())
+//                        .filter(role ->
+//                                role.startsWith("ROLE_DNB"))
+                        .findFirst()
+                        .orElseThrow(() -> {
+                            log.error(
+                                    "No DNB role assigned to logged-in user");
+                            return new ResourceNotFoundException(
+                                    "No DNB role assigned to logged-in user");
+                        });
+
+        log.info(
+                "JWT Role : {}",
+                roleName);
+
+        if (roleName.startsWith("ROLE_")) {
+
+            roleName =
+                    roleName.substring(5);
+        }
+
+        log.info(
+                "Resolved role name : {}",
+                roleName);
+
+        return roleName;
+    }
+
+        @Override
+        public Long getRoleId() {
+
+            log.info(
+                    "Fetching role id for logged-in user");
+
+            String roleName =
+                    getRoleName();
+
+            DnbRole role =
+                    repository
+                            .findByName(roleName)
+                            .orElseThrow(() -> {
+
+                                log.error(
+                                        "Role not found in APP_ROLE table : {}",
+                                        roleName);
+
+                                return new ResourceNotFoundException(
+                                        "Role not found : "
+                                                + roleName);
+                            });
+
+            log.info(
+                    "Resolved role id : {} for role : {}",
+                    role.getId(),
+                    roleName);
+
+            return role.getId();
+        }
+    
 }

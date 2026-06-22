@@ -71,6 +71,28 @@ public class DnbMast {
 
     @Column(name = "DNB_TYPE", length = 5)
     private String dnbType;
+    
+    @Column(name = "MOBILE_NO", length = 15)
+    private String mobileNo;
+
+    @Column(name = "EMAIL_ID", length = 100)
+    private String emailId;
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
 
 	public Integer getId() {
 		return id;

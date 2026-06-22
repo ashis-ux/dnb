@@ -32,6 +32,7 @@ import com.bsp.dnb.repo.DnbAttRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
 import com.bsp.dnb.repo.RoleCategoryRepository;
 import com.bsp.dnb.service.AttendanceReportService;
+import com.bsp.dnb.service.DnbRoleService;
 
 import jakarta.transaction.Transactional;
 
@@ -56,10 +57,8 @@ public class AttendanceReportServiceImpl
     @Autowired
     private RoleCategoryRepository roleCategoryRepository;
     
-    
-
-    @Value("${app.logged-in-role}")
-    private Long loggedInRole;
+    @Autowired
+	private DnbRoleService dnbroleservice;
 
     @Override
     public Page<AttendanceReportDto>
@@ -71,6 +70,8 @@ public class AttendanceReportServiceImpl
         log.info(
                 "Fetching attendance report for YYMM : {}",
                 yymm);
+        
+        Long loggedInRole=dnbroleservice.getRoleId();
 
         List<Integer> allowedCategories =
                 categoryRepository
@@ -198,6 +199,8 @@ public class AttendanceReportServiceImpl
                 if (employee == null) {
                     continue;
                 }
+                
+                Long loggedInRole=dnbroleservice.getRoleId();
 
                 boolean hasAccess =
                 		roleCategoryRepository

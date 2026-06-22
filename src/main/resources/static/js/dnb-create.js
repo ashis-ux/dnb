@@ -10,6 +10,8 @@ document.addEventListener(
         showSessionMessage();
     });
 	
+	
+	
 	function storepaninuppercase() {
 		document.getElementById("pan")
 		            .addEventListener("input", function () {
@@ -143,6 +145,17 @@ function saveDnb() {
                 "pan")
                 .value
                 .trim(),
+				
+				mobileNo:
+				       document.getElementById("mobileNo")
+				           .value
+				           .trim(),
+
+				   // NEW
+				   emailId:
+				       document.getElementById("emailId")
+				           .value
+				           .trim(),
 
         catg:
             parseInteger(
@@ -254,6 +267,21 @@ function validateForm() {
         return false;
     }
 
+	if (isBlank("mobileNo")) {
+
+	    showError(
+	        "Mobile Number is mandatory");
+
+	    return false;
+	}
+
+	if (isBlank("emailId")) {
+
+	    showError(
+	        "Email ID is mandatory");
+
+	    return false;
+	}
     if (isBlank("bankCd")) {
 
         showError(
@@ -300,10 +328,64 @@ function validateForm() {
 
 		    return false;
 		}
+		
+		if (!validateMobile()) {
+
+		    return false;
+		}
+
+		if (!validateEmail()) {
+
+		    return false;
+		}
 
 	return true;
 
     
+}
+
+function validateMobile() {
+
+    const mobile =
+        document.getElementById(
+            "mobileNo")
+            .value
+            .trim();
+
+    const regex =
+        /^[6-9]\d{9}$/;
+
+    if (!regex.test(mobile)) {
+
+        showError(
+            "Mobile Number should contain 10 digits");
+
+        return false;
+    }
+
+    return true;
+}
+
+function validateEmail() {
+
+    const email =
+        document.getElementById(
+            "emailId")
+            .value
+            .trim();
+
+    const regex =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regex.test(email)) {
+
+        showError(
+            "Invalid Email ID");
+
+        return false;
+    }
+
+    return true;
 }
 
 function validateDOS(){

@@ -18,6 +18,7 @@ import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
 import com.bsp.dnb.repo.RoleCategoryRepository;
 import com.bsp.dnb.service.DnbMastService;
+import com.bsp.dnb.service.DnbRoleService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,8 +35,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DnbMastServiceImpl implements DnbMastService {
 	
-	@Value("${app.logged-in-role}")
-	private Long loggedInRole;
 	
 	@Autowired
     private CategoryRepository categoryRepository;
@@ -43,7 +42,8 @@ public class DnbMastServiceImpl implements DnbMastService {
 	@Autowired
 	private RoleCategoryRepository roleCategoryRepository;
 	
-	 
+	@Autowired
+	private DnbRoleService dnbroleservice;
 
 	@Autowired
     private  DnbMastRepository repository;
@@ -132,6 +132,8 @@ public class DnbMastServiceImpl implements DnbMastService {
     
     @Override
     public List<DnbMastDto> findEligibleForAttendance() {
+    	
+    	Long loggedInRole=dnbroleservice.getRoleId();
         log.info("Fetching attendance eligible DNBs for role {}",
                 loggedInRole);
         Calendar calendar = Calendar.getInstance();
@@ -178,6 +180,12 @@ public class DnbMastServiceImpl implements DnbMastService {
         dto.setStopPayInd(entity.getStopPayInd());
 //        dto.setTuitionFeeInd(entity.getTuitionFeeInd());
 //        dto.setDnbType(entity.getDnbType());
+        
+        dto.setMobileNo(
+                entity.getMobileNo());
+
+        dto.setEmailId(
+                entity.getEmailId());
 
         return dto;
     }
@@ -185,6 +193,8 @@ public class DnbMastServiceImpl implements DnbMastService {
 
     private void validateCategoryAccess(
             Integer catg) {
+    	
+    	Long loggedInRole=dnbroleservice.getRoleId();
 
         boolean allowed =
                 roleCategoryRepository
@@ -238,12 +248,69 @@ public class DnbMastServiceImpl implements DnbMastService {
         entity.setTrgDuration(dto.getTrgDuration());
 
         entity.setStopPayInd(dto.getStopPayInd());
+        
+        entity.setMobileNo(
+                dto.getMobileNo());
+
+        entity.setEmailId(
+                dto.getEmailId());
 
 //        entity.setTuitionFeeInd(dto.getTuitionFeeInd());
 //
 //        entity.setDnbType(toUpper(dto.getDnbType()));
 
         return entity;
+    }
+    
+    @Override
+    public DnbMastDto searchDnb(
+            String searchValue) {
+
+        log.info(
+                "Searching DNB with value : {}",
+                searchValue);
+
+        DnbMast entity;
+
+        if (searchValue.matches("\\d+")) {
+
+            Integer id =
+                    Integer.parseInt(
+                            searchValue);
+
+            entity =
+                    repository
+                            .findById(id)
+                            .orElseThrow(() -> {
+
+                                log.error(
+                                        "DNB not found with ID : {}",
+                                        id);
+
+                                return new ResourceNotFoundException(
+                                        "DNB not found with ID : "
+                                                + id);
+                            });
+
+        } else {
+
+            entity =
+                    repository
+                            .findByPanIgnoreCase(
+                                    searchValue)
+                            .orElseThrow(() -> {
+
+                                log.error(
+                                        "DNB not found with PAN : {}",
+                                        searchValue);
+
+                                return new ResourceNotFoundException(
+                                        "DNB not found with PAN : "
+                                                + searchValue);
+                            });
+        }
+
+        return entityToDto(entity);
     }
     
     private void validateRequest(DnbMastDto dto) {
@@ -275,7 +342,31 @@ public class DnbMastServiceImpl implements DnbMastService {
                 throw new DuplicateResourceException(
                         "PAN Number already exists : " + pan);
             }
+            
+            if (repository.existsByMobileNo(
+                    dto.getMobileNo())) {
 
+                log.error(
+                        "Mobile Number already exists : {}",
+                        dto.getMobileNo());
+
+                throw new DuplicateResourceException(
+                        "Mobile Number already exists : "
+                                + dto.getMobileNo());
+            }
+
+            if (repository.existsByEmailIdIgnoreCase(
+                    dto.getEmailId())) {
+
+                log.error(
+                        "Email ID already exists : {}",
+                        dto.getEmailId());
+
+                throw new DuplicateResourceException(
+                        "Email ID already exists : "
+                                + dto.getEmailId());
+            }
+            
         } else {
 
             if (repository.existsByPanIgnoreCaseAndIdNot(
@@ -286,6 +377,24 @@ public class DnbMastServiceImpl implements DnbMastService {
 
                 throw new DuplicateResourceException(
                         "PAN Number already exists : " + pan);
+            }
+            
+            if (repository.existsByMobileNoAndIdNot(
+                    dto.getMobileNo(),
+                    dto.getId())) {
+
+                throw new DuplicateResourceException(
+                        "Mobile Number already exists : "
+                                + dto.getMobileNo());
+            }
+
+            if (repository.existsByEmailIdIgnoreCaseAndIdNot(
+                    dto.getEmailId(),
+                    dto.getId())) {
+
+                throw new DuplicateResourceException(
+                        "Email ID already exists : "
+                                + dto.getEmailId());
             }
         }
 
@@ -302,6 +411,8 @@ public class DnbMastServiceImpl implements DnbMastService {
             throw new BadRequestException(
                     "Category is mandatory");
         }
+        
+        Long loggedInRole=dnbroleservice.getRoleId();
 
         boolean allowed =
                 roleCategoryRepository
@@ -321,6 +432,24 @@ public class DnbMastServiceImpl implements DnbMastService {
 
             throw new BadRequestException("Speciality is mandatory");
         }
+        
+        if (dto.getMobileNo() == null
+                || dto.getMobileNo().trim().isEmpty()) {
+
+            throw new BadRequestException(
+                    "Mobile Number is mandatory");
+        }
+        
+        if (dto.getEmailId() == null
+                || dto.getEmailId().trim().isEmpty()) {
+
+            throw new BadRequestException(
+                    "Email ID is mandatory");
+        }
+        
+        validateMob(dto.getMobileNo());
+        
+        validateEmail(dto.getEmailId());
 
         validatePan(dto.getPan());
 
@@ -363,6 +492,27 @@ public class DnbMastServiceImpl implements DnbMastService {
             throw new BadRequestException(
                     "Age should not exceed 100 years");
         }
+    }
+    
+    private void validateMob(String mob) {
+    	if (!mob
+    	        .matches("\\d{10}")) {
+
+    	    throw new BadRequestException(
+    	            "Mobile Number must contain exactly 10 digits");
+    	}
+    }
+    
+    private void validateEmail(String email) {
+    	String emailRegex =
+    	        "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+
+    	if (!email
+    	        .matches(emailRegex)) {
+
+    	    throw new BadRequestException(
+    	            "Invalid Email ID");
+    	}
     }
     
     

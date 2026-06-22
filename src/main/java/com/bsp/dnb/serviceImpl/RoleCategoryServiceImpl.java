@@ -22,10 +22,8 @@ public class RoleCategoryServiceImpl
         if (repository.existsByRoleIdAndCatg(
                 roleId,
                 catg)) {
-
             return;
         }
-
         RoleCategory entity =
                 new RoleCategory();
 

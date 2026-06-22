@@ -15,6 +15,7 @@ import com.bsp.dnb.exception.ResourceNotFoundException;
 import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbRoleRepository;
 import com.bsp.dnb.service.CategoryService;
+import com.bsp.dnb.service.DnbRoleService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,8 +36,8 @@ public class CategoryServiceImpl implements CategoryService {
 	@Autowired
 	private DnbRoleRepository dnbRoleRepository;
 	
-	@Value("${app.logged-in-role}")
-	private Long loggedInRole;
+	@Autowired
+	private DnbRoleService dnbroleservice;
 
 	@Override
 	public CategoryDto saveCategory(CategoryDto categoryDto) {
@@ -193,6 +194,8 @@ public class CategoryServiceImpl implements CategoryService {
     
     @Override
     public List<CategoryDto> getLoggedInUserCategories() {
+    	
+    	Long loggedInRole=dnbroleservice.getRoleId();
 
         log.info("Fetching categories for role : {}",
                 loggedInRole);
@@ -206,7 +209,7 @@ public class CategoryServiceImpl implements CategoryService {
     
     @Override
     public List<CategoryDto> getLoggedInUserAllCategories() {
-
+    	Long loggedInRole=dnbroleservice.getRoleId();
         return categoryRepository
                 .findByRole(loggedInRole)
                 .stream()

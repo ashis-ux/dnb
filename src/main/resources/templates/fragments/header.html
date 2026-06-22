@@ -32,10 +32,10 @@
 	    <div class="container-fluid p-0 d-flex flex-nowrap align-items-center">
 
 	        <!-- Left Side: Trigger + Logo + Brand Text -->
-	        <div class="d-flex align-items-center flex-nowrap">
+	        <div class="d-flex align-items-center flex-grow-1 overflow-hidden">
 	            
 	            <!-- Anchor tag menu trigger -->
-	            <a class="text-white border-0 fs-5 p-1 ms-2 d-flex align-items-center justify-content-center"
+	            <a class="text-white border-0 fs-5 p-1 ms-2 d-md-none d-flex align-items-center justify-content-center"
 	               role="button"
 	               data-bs-toggle="offcanvas"
 	               data-bs-target="#mobileMenu"
@@ -47,59 +47,72 @@
 	            <img src="/images/sail-logo.png" alt="SAIL Logo" class="logo ms-2">
 
 	            <!-- Title Group (Added text-nowrap to prevent text wrapping on mobile) -->
-	            <div class="ms-3 text-nowrap">
-	                <h5 class="mb-0 text-white">DNB Management System</h5>
-	                <small class="text-light">Centralized DNB Processing System</small>
-	            </div>
+				<div class="ms-2 overflow-hidden">
+
+				    <h5 class="mb-0 text-white system-title">
+				        DNB Management System
+				    </h5>
+
+				    <small class="text-light system-subtitle">
+				        Centralized DNB Processing System
+				    </small>
+
+				</div>
 
 	        </div>
 
 			<div class="ms-auto">
 
-			                <ul class="navbar-nav">
+			    <ul class="navbar-nav flex-row align-items-center mb-0">
 
-			                    <li class="nav-item">
+			        <li class="nav-item">
 
-			                        <a class="nav-link text-white"
-			                           href="/">
+			            <a class="nav-link text-white"
+			               href="/">
 
-			                            <i class="bi bi-house-fill"></i>
+			                <i class="bi bi-house-fill"></i>
 
-			                            Home
+			                <span class="menu-text ms-1">
+			                    Home
+			                </span>
 
-			                        </a>
+			            </a>
 
-			                    </li>
+			        </li>
 
-			                    <li class="nav-item">
+			        <li class="nav-item">
 
-			                        <a class="nav-link text-white"
-			                           href="#">
+			            <a class="nav-link text-white"
+			               href="#">
 
-			                            <i class="bi bi-person-circle"></i>
+			                <i class="bi bi-person-circle"></i>
 
-			                            User Profile
+			                <span class="menu-text ms-1">
+			                    User Profile
+			                </span>
 
-			                        </a>
+			            </a>
 
-			                    </li>
+			        </li>
 
-			                    <li class="nav-item">
+			        <li class="nav-item">
 
-			                        <a class="nav-link text-white"
-			                           href="#">
+			            <a class="nav-link text-white"
+			               href="#">
 
-			                            <i class="bi bi-box-arrow-right"></i>
+			                <i class="bi bi-box-arrow-right"></i>
 
-			                            Logout
+			                <span class="menu-text ms-1">
+			                    Logout
+			                </span>
 
-			                        </a>
+			            </a>
 
-			                    </li>
+			        </li>
 
-			                </ul>
+			    </ul>
 
-			            </div>
+			</div>
 
 	</nav>
 
@@ -117,17 +130,13 @@
 
             <div>
 
-                <h5 class="mb-0">
+				<h5 class="mb-0 text-white system-title">
+				    DNB Management System
+				</h5>
 
-                    DNB Management System
-
-                </h5>
-
-                <small>
-
-                    Centralized DNB Processing System
-
-                </small>
+				<small class="text-light system-subtitle">
+				    Centralized DNB Processing System
+				</small>
 
             </div>
 
@@ -154,7 +163,7 @@
                             class="accordion-button collapsed"
                             type="button"
                             data-bs-toggle="collapse"
-                            data-bs-target="#processingMenu">
+                            data-bs-target="#mobileProcessingMenu">
 
                             <i class="bi bi-gear-fill me-2"></i>
 
@@ -164,7 +173,7 @@
 
                     </h2>
 
-					<div id="processingMenu"
+					<div id="mobileProcessingMenu"
 					     class="accordion-collapse collapse"
 					     data-bs-parent="#mobileAccordion">
 
@@ -193,7 +202,7 @@
                             class="accordion-button collapsed"
                             type="button"
                             data-bs-toggle="collapse"
-                            data-bs-target="#masterMenu">
+                            data-bs-target="#mobileMasterMenu">
 
                             <i class="bi bi-folder-fill me-2"></i>
 
@@ -203,7 +212,7 @@
 
                     </h2>
 
-					<div id="masterMenu"
+					<div id="mobileMasterMenu"
 					     class="accordion-collapse collapse"
 					     data-bs-parent="#mobileAccordion">
 
@@ -253,7 +262,7 @@
                             class="accordion-button collapsed"
                             type="button"
                             data-bs-toggle="collapse"
-                            data-bs-target="#attAdjMenu">
+                            data-bs-target="#mobileAttAdjMenu">
 
                             <i class="bi bi-pencil-square me-2"></i>
 
@@ -263,7 +272,7 @@
 
                     </h2>
 
-					<div id="attAdjMenu"
+					<div id="mobileAttAdjMenu"
 					     class="accordion-collapse collapse"
 					     data-bs-parent="#mobileAccordion">
 
@@ -299,7 +308,7 @@
                             class="accordion-button collapsed"
                             type="button"
                             data-bs-toggle="collapse"
-                            data-bs-target="#reportMenu">
+                            data-bs-target="#mobileReportMenu">
 
                             <i class="bi bi-bar-chart-fill me-2"></i>
 
@@ -309,7 +318,7 @@
 
                     </h2>
 
-					<div id="reportMenu"
+					<div id="mobileReportMenu"
 					     class="accordion-collapse collapse"
 					     data-bs-parent="#mobileAccordion">
 

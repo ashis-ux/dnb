@@ -9,8 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.time.LocalDateTime;
@@ -21,6 +23,18 @@ public class GlobalExceptionHandler {
 	
 	private static final Logger log =
 	        LoggerFactory.getLogger(GlobalExceptionHandler.class);
+	
+	  @ExceptionHandler(AuthorizationDeniedException.class)
+	    public String handleAccessDenied(
+	            AuthorizationDeniedException ex,
+	            RedirectAttributes redirectAttributes) {
+
+	        redirectAttributes.addFlashAttribute(
+	                "errorMessage",
+	                "You don't have access to this page.");
+
+	        return "redirect:/";
+	    }
 	
 	
 	@ExceptionHandler(NoResourceFoundException.class)

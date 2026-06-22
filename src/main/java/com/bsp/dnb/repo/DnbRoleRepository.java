@@ -14,5 +14,8 @@ public interface DnbRoleRepository
     boolean existsByNameIgnoreCase(String name);
     
     boolean existsByNameIgnoreCaseAndIdNot(String name, Long id);
+    
+    Optional<DnbRole> findByName(
+            String name);
 
 }

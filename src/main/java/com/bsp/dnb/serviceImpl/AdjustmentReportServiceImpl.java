@@ -31,6 +31,7 @@ import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbAdjRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
 import com.bsp.dnb.service.AdjustmentReportService;
+import com.bsp.dnb.service.DnbRoleService;
 
 import jakarta.transaction.Transactional;
 
@@ -52,8 +53,8 @@ public class AdjustmentReportServiceImpl
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @Value("${app.logged-in-role}")
-    private Long loggedInRole;
+    @Autowired
+	private DnbRoleService dnbroleservice;
 
     @Override
     public Page<AdjustmentReportDto>
@@ -67,6 +68,8 @@ public class AdjustmentReportServiceImpl
                 yymm,
                 page,
                 size);
+        
+        Long loggedInRole=dnbroleservice.getRoleId();
 
         List<Integer> allowedCategories =
                 categoryRepository
@@ -137,6 +140,8 @@ public class AdjustmentReportServiceImpl
         log.info(
                 "Exporting adjustment report for YYMM : {}",
                 yymm);
+        
+        Long loggedInRole=dnbroleservice.getRoleId();
 
         List<Integer> allowedCategories =
                 categoryRepository

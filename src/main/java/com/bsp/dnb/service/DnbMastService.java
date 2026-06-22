@@ -20,6 +20,9 @@ public interface DnbMastService {
     
     List<DnbMastDto> findEligibleForAttendance();
     
+    public DnbMastDto searchDnb(
+            String searchValue);
+    
      
 
 //    void delete(Integer id);
