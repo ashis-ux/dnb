@@ -52,13 +52,14 @@ public interface DnbMastRepository
 			    dm.DOS IS NULL
 			    OR dm.DOS > :previousMonthStart
 			)
-			AND dm.DOJ < :previousMonthStart
+			AND dm.DOJ < :previousMonthEnd
 			ORDER BY dm.NAME
 			""",
 			nativeQuery = true)
 			List<DnbMast> findEligibleForAttendance(
 			        @Param("roleId") Long roleId,
-			        @Param("previousMonthStart") Date previousMonthStart);
+			        @Param("previousMonthStart") Date previousMonthStart,
+			        @Param("previousMonthEnd") Date previousMonthEnd);
 	boolean existsByPanIgnoreCase(String pan);
 	boolean existsByPanIgnoreCaseAndIdNot(String pan, Integer id);
 	

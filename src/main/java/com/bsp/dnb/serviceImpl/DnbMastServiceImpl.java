@@ -136,19 +136,47 @@ public class DnbMastServiceImpl implements DnbMastService {
     	Long loggedInRole=dnbroleservice.getRoleId();
         log.info("Fetching attendance eligible DNBs for role {}",
                 loggedInRole);
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, -1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
+        Calendar startCal = Calendar.getInstance();
+
+        startCal.add(Calendar.MONTH, -1);
+
+        startCal.set(Calendar.DAY_OF_MONTH, 1);
+
+        startCal.set(Calendar.HOUR_OF_DAY, 0);
+        startCal.set(Calendar.MINUTE, 0);
+        startCal.set(Calendar.SECOND, 0);
+        startCal.set(Calendar.MILLISECOND, 0);
         Date previousMonthStart =
-                calendar.getTime();
+                startCal.getTime();
+
+        Calendar endCal =
+                (Calendar) startCal.clone();
+        endCal.set(
+                Calendar.DAY_OF_MONTH,
+                endCal.getActualMaximum(
+                        Calendar.DAY_OF_MONTH));
+        endCal.set(
+                Calendar.HOUR_OF_DAY,
+                23);
+
+        endCal.set(
+                Calendar.MINUTE,
+                59);
+
+        endCal.set(
+                Calendar.SECOND,
+                59);
+
+        endCal.set(
+                Calendar.MILLISECOND,
+                999);
+
+        Date previousMonthEnd =
+                endCal.getTime();
         List<DnbMast> employees =
                 repository.findEligibleForAttendance(
                         loggedInRole,
-                        previousMonthStart);
+                        previousMonthStart,previousMonthEnd);
         log.info("Fetching attendance eligible DNBs for role {}"+previousMonthStart,
         		employees.size());
         return employees.stream()
