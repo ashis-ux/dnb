@@ -1,255 +1,248 @@
 body {
- 
-background-color: #f4f6f9;
-font-family: Arial, Helvetica, sans-serif;
- 
 
+    background-color: #f4f6f9;
+
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* ===========================
-HEADER
+   HEADER
 =========================== */
 
 .header-navbar {
 
- 
-background: linear-gradient(
+    background: linear-gradient(
         90deg,
         #003366,
         #00509e);
- 
 
+    position: relative !important;
+
+    z-index: 99999 !important;
 }
 
-.logo {
- 
-width: 50px;
-height: 50px;
-object-fit: contain;
- 
+.header-navbar,
+.header-navbar * {
+
+    pointer-events: auto !important;
+}
+
+.offcanvas {
+
+    z-index: 100000 !important;
 }
 
 /* ===========================
-CARD
+   CARD
 =========================== */
 
 .card {
- 
-border: none;
-border-radius: 8px;
- 
 
+    border: none;
+
+    border-radius: 8px;
+
+    position: relative;
+
+    z-index: 1;
 }
 
 .form-header {
- 
-background-color: #003366;
-color: white;
-font-weight: 600;
-font-size: 18px;
- 
 
+    background-color: #003366;
+
+    color: white;
+
+    font-weight: 600;
+
+    font-size: 18px;
 }
 
 .card-footer {
- 
-background-color: #f8f9fa;
-font-size: 13px;
-font-weight: 600;
- 
 
+    background-color: #f8f9fa;
+
+    font-size: 13px;
+
+    font-weight: 600;
 }
 
 /* ===========================
-FORM
+   FORM
 =========================== */
 
 .form-label {
- 
-font-weight: 600;
- 
 
+    font-weight: 600;
 }
 
 .required {
- 
-color: red;
- 
 
+    color: red;
 }
 
 input.form-control {
 
- 
-height: 38px;
- 
+    height: 38px;
 }
 
 /* ===========================
-BUTTONS
+   BUTTONS
 =========================== */
 
 .btn {
 
- 
-min-width: 140px;
-font-weight: 500;
- 
+    min-width: 140px;
+
+    font-weight: 500;
 }
 
 .btn i {
 
- 
-margin-right: 5px;
- 
-
+    margin-right: 5px;
 }
 
 /* ===========================
-SUCCESS / ERROR
+   SUCCESS / ERROR
 =========================== */
 
 #successPopup {
- 
-display: none;
-font-weight: 600;
- 
 
+    display: none;
+
+    font-weight: 600;
 }
 
 #errorPopup {
- 
-display: none;
-font-weight: 600;
- 
 
+    display: none;
+
+    font-weight: 600;
 }
 
 /* ===========================
-TABLE
+   TABLE
 =========================== */
 
 .table-responsive {
 
- 
-overflow-x: auto;
- 
+    overflow-x: auto;
 
+    position: relative;
+
+    z-index: 1;
 }
 
 #reportTable {
 
- 
-width: 100%;
-font-size: 13px;
-white-space: nowrap;
- 
+    width: 100%;
+
+    font-size: 13px;
+
+    white-space: nowrap;
 }
 
 #reportTable thead th {
 
- 
-text-align: center;
-vertical-align: middle;
- 
+    text-align: center;
 
+    vertical-align: middle;
 }
 
 #reportTable tbody td {
- 
-vertical-align: middle;
- 
 
+    vertical-align: middle;
 }
-
-/* Hover */
 
 #reportTable tbody tr:hover {
 
- 
-background-color: #eef6ff;
- 
+    background-color: #eef6ff;
 }
 
 /* ===========================
-DATATABLES
+   DATATABLES
 =========================== */
 
 .dataTables_wrapper {
 
- 
-margin-top: 10px;
- 
+    position: relative;
 
+    z-index: 1;
+
+    margin-top: 10px;
 }
 
 .dataTables_filter {
 
- 
-margin-bottom: 10px;
-
-
+    margin-bottom: 10px;
 }
 
 .dataTables_length {
 
- 
-margin-bottom: 10px;
- 
-
+    margin-bottom: 10px;
 }
 
 .dataTables_info {
-  
-padding-top: 10px;
- 
 
+    padding-top: 10px;
 }
 
 .dataTables_paginate {
 
- 
-padding-top: 10px;
- 
-
+    padding-top: 10px;
 }
 
 .dataTables_paginate .paginate_button {
 
- 
-padding: 2px 10px !important;
- 
-
+    padding: 2px 10px !important;
 }
 
 /* ===========================
-RESPONSIVE
+   PAGE CONTENT
+=========================== */
+
+.container-fluid {
+
+    position: relative;
+
+    z-index: 1;
+}
+
+.card,
+.card-body,
+#paginationContainer,
+.table-responsive {
+
+    position: relative;
+
+    z-index: 1;
+}
+
+/* ===========================
+   RESPONSIVE
 =========================== */
 
 @media (max-width: 768px) {
 
+    .btn {
 
-.logo {
+        width: 100%;
 
-    width: 40px;
-    height: 40px;
-}
+        margin-bottom: 8px;
+    }
 
-.btn {
+    #reportTable {
 
-    width: 100%;
-    margin-bottom: 8px;
-}
+        font-size: 11px;
+    }
 
-#reportTable {
+    .card-header h5 {
 
-    font-size: 11px;
-}
+        font-size: 16px;
+    }
 
-.card-header h5 {
+    .table-responsive {
 
-    font-size: 16px;
-}
- 
-
+        overflow-x: auto;
+    }
 }

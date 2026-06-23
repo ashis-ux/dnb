@@ -8,6 +8,7 @@ document.addEventListener(
 		storepaninuppercase();
 
         showSessionMessage();
+		initializeMobileField();s
     });
 	
 	
@@ -50,6 +51,22 @@ function showSessionMessage() {
 
         }, 3000);
     }
+}
+
+function initializeMobileField() {
+
+    document.getElementById("mobileNo")
+            .addEventListener("input", function () {
+
+                this.value =
+                    this.value.replace(/\D/g, "");
+
+                if (this.value.length > 10) {
+
+                    this.value =
+                        this.value.substring(0, 10);
+                }
+            });
 }
 
 function loadCategories() {

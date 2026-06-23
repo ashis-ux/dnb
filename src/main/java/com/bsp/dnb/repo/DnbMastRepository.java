@@ -52,6 +52,7 @@ public interface DnbMastRepository
 			    dm.DOS IS NULL
 			    OR dm.DOS > :previousMonthStart
 			)
+			AND dm.DOJ < :previousMonthStart
 			ORDER BY dm.NAME
 			""",
 			nativeQuery = true)

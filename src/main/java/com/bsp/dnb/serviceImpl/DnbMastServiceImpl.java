@@ -149,7 +149,7 @@ public class DnbMastServiceImpl implements DnbMastService {
                 repository.findEligibleForAttendance(
                         loggedInRole,
                         previousMonthStart);
-        log.info("Fetching attendance eligible DNBs for role {}",
+        log.info("Fetching attendance eligible DNBs for role {}"+previousMonthStart,
         		employees.size());
         return employees.stream()
                 .map(this::entityToDto)

@@ -1,3 +1,6 @@
+ 
+  const contextPath = "[[@{/}]]";
+ 
 const AdjustmentReport = {
 
     currentPage: 0,
@@ -37,8 +40,7 @@ const AdjustmentReport = {
 
         $.ajax({
 
-            url:
-                "/api/adjustment-report/yymm",
+            url: "api/adjustment-report/yymm",
 
             type:
                 "GET",

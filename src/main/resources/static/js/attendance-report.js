@@ -1,3 +1,4 @@
+
 const AttendanceReport = {
 currentPage: 0,
 

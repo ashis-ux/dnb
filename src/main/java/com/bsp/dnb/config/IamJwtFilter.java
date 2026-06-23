@@ -54,6 +54,8 @@ public class IamJwtFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain)
             throws ServletException, IOException {
+    	
+    	log.info("URI : {}", request.getRequestURI());
 
         String token = extractCookie(request, "BSP_JWT");
         try {
@@ -71,6 +73,21 @@ public class IamJwtFilter extends OncePerRequestFilter {
                     .build()
                     .parseSignedClaims(token)
                     .getPayload();
+
+            if (shouldRefresh(claims)) {
+
+                log.info(
+                        "JWT is near expiry. Refreshing token.");
+                
+                boolean refreshed =
+                        refreshJwt(request, response);
+
+                if (refreshed) {
+                    log.info(
+                            "JWT cookie updated successfully");
+                }
+
+            }
 
             String username =
                     claims.get("username", String.class);
@@ -114,11 +131,14 @@ public class IamJwtFilter extends OncePerRequestFilter {
             HttpServletResponse response) {
         try {
             HttpHeaders headers = new HttpHeaders();
-            String cookieHeader =
-                    Arrays.stream(request.getCookies())
-                          .map(c ->
-                              c.getName() + "=" + c.getValue())
-                          .collect(Collectors.joining("; "));
+            String cookieHeader = "";
+
+            if (request.getCookies() != null) {
+                cookieHeader =
+                        Arrays.stream(request.getCookies())
+                              .map(c -> c.getName() + "=" + c.getValue())
+                              .collect(Collectors.joining("; "));
+            }
             headers.add("Cookie", cookieHeader);
             HttpEntity<Void> entity =
                     new HttpEntity<>(headers);
@@ -164,5 +184,33 @@ public class IamJwtFilter extends OncePerRequestFilter {
                 .map(Cookie::getValue)
                 .findFirst()
                 .orElse(null);
+    }
+    
+    private boolean shouldRefresh(Claims claims) {
+
+        long remaining =
+                claims.getExpiration().getTime()
+                        - System.currentTimeMillis();
+
+        long tenMinutes =
+                10 * 60 * 1000;
+        
+        
+
+        return remaining > 0
+                && remaining <= tenMinutes;
+    }
+    
+    @Override
+    protected boolean shouldNotFilter(
+            HttpServletRequest request)
+            throws ServletException {
+
+        String uri = request.getRequestURI();
+
+        return uri.startsWith("/sso/")
+                || uri.startsWith("/css/")
+                || uri.startsWith("/js/")
+                || uri.startsWith("/images/");
     }
 }
