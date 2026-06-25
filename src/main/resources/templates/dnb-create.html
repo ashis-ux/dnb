@@ -1,398 +1,412 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>New DNB Entry</title>
+	<title>New DNB Entry</title>
 
-    <!-- Local Bootstrap -->
-    <link rel="stylesheet"
-          href="/bootstrap/bootstrap.min.css">
+	<!-- Local Bootstrap -->
+	<link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
 
 
-		  <!-- Custom CSS -->
-		  <link rel="stylesheet"
-		        href="/css/bootstrap-icons.min.css">
-		  	  
-    <!-- Custom CSS -->
-    <link rel="stylesheet"
-          href="/css/dnb-create.css">
-		  
-		  <link rel="stylesheet"
-		              href="/css/header.css">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="/css/bootstrap-icons.min.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="/css/dnb-create.css">
+
+	<link rel="stylesheet" href="/css/header.css">
 
 </head>
 
 <body>
 
-    <!-- Header -->
+	<!-- Header -->
 
 	<div th:replace="fragments/header :: header">
 	</div>
 
-    <!-- Main Container -->
+	<!-- Main Container -->
 
-    <div class="container mt-4">
+	<div class="container mt-4">
 
-        <!-- Success Popup -->
+		<!-- Success Popup -->
 
-        <div id="successPopup"
-             class="alert alert-success"
-             style="display:none;">
+		<div id="successPopup" class="alert alert-success" style="display:none;">
 
-        </div>
+		</div>
 
-        <!-- Error Popup -->
+		<!-- Error Popup -->
 
-        <div id="errorPopup"
-             class="alert alert-danger"
-             style="display:none;">
+		<div id="errorPopup" class="alert alert-danger" style="display:none;">
 
-        </div>
+		</div>
 
-        <div class="card shadow">
+		<div class="card shadow">
 
-            <div class="card-header form-header">
+			<div class="card-header form-header">
 
-                <h5 class="mb-0">
+				<h5 class="mb-0">
 
-                    New DNB Entry
+					New DNB Entry
 
-                </h5>
+				</h5>
 
-            </div>
+			</div>
 
-            <div class="card-body">
+			<div class="card-body">
 
-                <form id="dnbForm">
+				<form id="dnbForm">
 
-                    <div class="row mb-3">
-
-                        <label class="col-md-3 col-form-label">
-
-                            Name
-                            <span class="required">*</span>
-
-                        </label>
-
-                        <div class="col-md-9">
-
-                            <input type="text"
-                                   class="form-control"
-                                   id="name"
-                                   maxlength="50">
-
-                        </div>
-
-                    </div>
-
-                    <div class="row mb-3">
-
-                        <label class="col-md-3 col-form-label">
-
-                            DOB
-
-                        </label>
-
-                        <div class="col-md-3">
-
-                            <input type="date"
-                                   class="form-control"
-                                   id="dob">
-
-                        </div>
-
-                        <label class="col-md-3 col-form-label">
-
-                            PAN
-                            <span class="required">*</span>
-
-                        </label>
-
-                        <div class="col-md-3">
-
-                            <input type="text"
-                                   class="form-control"
-                                   id="pan"
-                                   maxlength="10">
-
-                        </div>
-
-                    </div>
-
-                    <div class="row mb-3">
-
-                        <label class="col-md-3 col-form-label">
-
-                            DOJ
-                            <span class="required">*</span>
-
-                        </label>
-
-                        <div class="col-md-3">
-
-                            <input type="date"
-                                   class="form-control"
-                                   id="doj">
-
-                        </div>
-
-                        <label class="col-md-3 col-form-label">
-
-                            DOS
-							<span class="required">*</span>
-                        </label>
-
-                        <div class="col-md-3">
-
-                            <input type="date"
-                                   class="form-control"
-                                   id="dos">
-
-                        </div>
-
-                    </div>
-
-                    <div class="row mb-3">
-
-                        <label class="col-md-3 col-form-label">
-
-                            Select Gender
-                            <span class="required">*</span>
-
-                        </label>
-
-                        <div class="col-md-3">
-
-                            <select class="form-select"
-                                    id="sexCode">
-
-                                <option value="">
-                                    Select
-                                </option>
-
-                                <option value="M">
-                                    Male
-                                </option>
-
-                                <option value="F">
-                                    Female
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                        <label class="col-md-3 col-form-label">
-
-                            Emp Status
-
-                        </label>
-
-                        <div class="col-md-3">
-
-                            <select class="form-select"
-                                    id="empStatus">
-
-                                <option value="0">
-                                    Active
-                                </option>
-
-                                <option value="1">
-                                    Inactive
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                    </div>
-					
 					<div class="row mb-3">
 
-					                       <label class="col-md-3 col-form-label">
+						<label class="col-md-3 col-form-label">
 
-					                           Mobile Number
+							Name
+							<span class="required">*</span>
 
-					                       </label>
+						</label>
 
-					                       <div class="col-md-3">
+						<div class="col-md-9">
 
-					                           <input type="text"
-					                                  class="form-control"
-													  maxlength="10"
-					                                  id="mobileNo">
+							<input type="text" class="form-control" id="name" maxlength="50">
 
-					                       </div>
+						</div>
 
-					                       <label class="col-md-3 col-form-label">
+					</div>
 
-					                           Email ID
-					                           <span class="required">*</span>
+					<div class="row mb-3">
 
-					                       </label>
+						<label class="col-md-3 col-form-label">
 
-					                       <div class="col-md-3">
+							DOB
 
-					                           <input type="text"
-					                                  class="form-control"
-					                                  id="emailId"
-					                                  maxlength="40">
-
-					                       </div>
-
-					                   </div>
-
-                    <div class="row mb-3">
-
-                        <label class="col-md-3 col-form-label">
-
-                            Select Bank Code
-                            <span class="required">*</span>
-
-                        </label>
+						</label>
 
 						<div class="col-md-3">
 
-							<select class="form-select" id="bankCd">
-							    <option value="">Select</option>
-							    <option value="SBI">SBI</option>
+							<input type="date" class="form-control" id="dob">
+
+						</div>
+
+						<label class="col-md-3 col-form-label">
+
+							PAN
+							<span class="required">*</span>
+
+						</label>
+
+						<div class="col-md-3">
+
+							<input type="text" class="form-control" id="pan" maxlength="10">
+
+						</div>
+
+					</div>
+
+					<div class="row mb-3">
+
+						<label class="col-md-3 col-form-label">
+
+							DOJ
+							<span class="required">*</span>
+
+						</label>
+
+						<div class="col-md-3">
+
+							<input type="date" class="form-control" id="doj">
+
+						</div>
+
+						<label class="col-md-3 col-form-label">
+
+							DOS
+							<span class="required">*</span>
+						</label>
+
+						<div class="col-md-3">
+
+							<input type="date" class="form-control" id="dos">
+
+						</div>
+
+					</div>
+
+					<div class="row mb-3">
+
+						<label class="col-md-3 col-form-label">
+
+							Select Gender
+							<span class="required">*</span>
+
+						</label>
+
+						<div class="col-md-3">
+
+							<select class="form-select" id="sexCode">
+
+								<option value="">
+									Select
+								</option>
+
+								<option value="M">
+									Male
+								</option>
+
+								<option value="F">
+									Female
+								</option>
+
 							</select>
 
 						</div>
 
-                        <label class="col-md-3 col-form-label">
+						<label class="col-md-3 col-form-label">
 
-                            Bank Account Number
-                            <span class="required">*</span>
+							Emp Status
 
-                        </label>
+						</label>
 
-                        <div class="col-md-3">
+						<div class="col-md-3">
 
-                            <input type="text"
-                                   class="form-control"
-                                   id="bankAcno"
-                                   maxlength="17">
+							<select class="form-select" id="empStatus">
 
-                        </div>
+								<option value="0">
+									Active
+								</option>
 
-                    </div>
+								<option value="1">
+									Inactive
+								</option>
 
-                    <div class="row mb-3">
+							</select>
 
-                        <label class="col-md-3 col-form-label">
+						</div>
 
-                            Select Category
-                            <span class="required">*</span>
+					</div>
 
-                        </label>
+					<div class="row mb-3">
 
-                        <div class="col-md-3">
+						<label class="col-md-3 col-form-label">
 
-                            <select class="form-select"
-                                    id="catg">
+							Mobile Number
 
-                                <option value="">
-                                    Select
-                                </option>
+						</label>
 
-                            </select>
+						<div class="col-md-3">
 
-                        </div>
+							<input type="text" class="form-control" maxlength="10" id="mobileNo">
 
-                        <label class="col-md-3 col-form-label">
+						</div>
 
-                            Speciality
-                            <span class="required">*</span>
+						<label class="col-md-3 col-form-label">
 
-                        </label>
+							Email ID
+							<span class="required">*</span>
 
-                        <div class="col-md-3">
+						</label>
 
-                            <input type="text"
-                                   class="form-control"
-                                   id="speciality"
-                                   maxlength="20">
+						<div class="col-md-3">
 
-                        </div>
+							<input type="text" class="form-control" id="emailId" maxlength="40">
 
-                    </div>
+						</div>
 
-                    <div class="row mb-4">
+					</div>
 
-                        <label class="col-md-3 col-form-label">
+					<!-- ================= Bank Details ================= -->
 
-                            Tuition Fee Indicator
+					<!-- ================= Bank Details ================= -->
 
-                        </label>
+					<div class="row mb-3">
 
-                        <div class="col-md-3">
+					    <!-- IFSC -->
 
-                            <select class="form-select"
-                                    id="tuitionFeeInd">
+					    <label class="col-md-3 col-form-label">
 
-                                <option value="0">
-                                    NO
-                                </option>
+					        IFSC Code
+					        <span class="required">*</span>
 
-                                <option value="1">
-                                    YES
-                                </option>
+					    </label>
 
-                            </select>
+					    <div class="col-md-3">
 
-                        </div>
+					        <input type="text"
+					               id="ifscCode"
+					               class="form-control"
+					               maxlength="11">
 
-                    </div>
+					    </div>
 
-                    <div class="text-center">
+					    <!-- Bank Name -->
 
-                        <button type="button"
-                                class="btn btn-primary"
-                                onclick="saveDnb()">
+					    <label id="bankNameLabel"
+					           class="col-md-3 col-form-label"
+					           style="display:none;">
 
-                            <i class="bi bi-floppy-fill"></i>
+					        Bank Name
+					        <span class="required">*</span>
 
-                            Save
+					    </label>
 
-                        </button>
+					    <div id="bankNameRow"
+					         class="col-md-3"
+					         style="display:none;">
 
-                        <button type="reset"
-                                class="btn btn-secondary ms-2">
+					        <select id="bankName"
+					                class="form-select">
 
-                            <i class="bi bi-arrow-clockwise"></i>
+					            <option value="">Select</option>
 
-                            Reset
+					        </select>
 
-                        </button>
+					    </div>
 
-                    </div>
+					</div>
 
-                </form>
+					<div class="row mb-3">
 
-            </div>
+					    <!-- Bank Code -->
 
-            <div class="card-footer text-center">
+					    <label class="col-md-3 col-form-label">
 
-                Developed & Maintained by C&IT, BSP
+					        Bank Code
 
-            </div>
+					    </label>
 
-        </div>
+					    <div class="col-md-3">
 
-    </div>
+					        <input type="text"
+					               id="bankCd"
+					               class="form-control"
+					               readonly>
 
-    <script src="/bootstrap/bootstrap.bundle.min.js"></script>
+					    </div>
 
-    <script src="/js/dnb-create.js"></script>
+					    <!-- Bank Account -->
+
+					    <label class="col-md-3 col-form-label">
+
+					        Bank Account Number
+					        <span class="required">*</span>
+
+					    </label>
+
+					    <div class="col-md-3">
+
+					        <input type="text"
+					               id="bankAcno"
+					               class="form-control"
+					               maxlength="17">
+
+					    </div>
+
+					</div>
+						<div class="row mb-3">
+
+							<label class="col-md-3 col-form-label">
+
+								Select Category
+								<span class="required">*</span>
+
+							</label>
+
+							<div class="col-md-3">
+
+								<select class="form-select" id="catg">
+
+									<option value="">
+										Select
+									</option>
+
+								</select>
+
+							</div>
+
+							<label class="col-md-3 col-form-label">
+
+								Speciality
+								<span class="required">*</span>
+
+							</label>
+
+							<div class="col-md-3">
+
+								<input type="text" class="form-control" id="speciality" maxlength="20">
+
+							</div>
+
+						</div>
+
+						<div class="row mb-4">
+
+							<label class="col-md-3 col-form-label">
+
+								Tuition Fee Indicator
+
+							</label>
+
+							<div class="col-md-3">
+
+								<select class="form-select" id="tuitionFeeInd">
+
+									<option value="0">
+										NO
+									</option>
+
+									<option value="1">
+										YES
+									</option>
+
+								</select>
+
+							</div>
+
+						</div>
+
+						<div class="text-center">
+
+							<button type="button" class="btn btn-primary" onclick="saveDnb()">
+
+								<i class="bi bi-floppy-fill"></i>
+
+								Save
+
+							</button>
+
+							<button type="reset" class="btn btn-secondary ms-2">
+
+								<i class="bi bi-arrow-clockwise"></i>
+
+								Reset
+
+							</button>
+
+						</div>
+
+				</form>
+
+			</div>
+
+			<div class="card-footer text-center">
+
+				Developed & Maintained by C&IT, BSP
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<script src="/bootstrap/bootstrap.bundle.min.js"></script>
+
+	<script src="/js/dnb-create.js"></script>
 
 </body>
 
 </html>
- 

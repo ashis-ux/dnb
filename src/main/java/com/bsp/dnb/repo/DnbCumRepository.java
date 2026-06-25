@@ -43,5 +43,8 @@ public interface DnbCumRepository
 		DnbCum findFirstByIdAndYymm(
 		        @Param("id") Integer id,
 		        @Param("yymm") Integer yymm);
-
+	
+	
+	
+	 
 }
