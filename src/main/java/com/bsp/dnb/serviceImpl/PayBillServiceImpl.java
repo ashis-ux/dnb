@@ -17,85 +17,59 @@ import com.bsp.dnb.service.PayBillService;
 
 import lombok.extern.slf4j.Slf4j;
 
- 
 @Service
 @Slf4j
-public class PayBillServiceImpl implements PayBillService{
-	
-	private static final Logger log =
-            LoggerFactory.getLogger(
-            		PayBillServiceImpl.class);
+public class PayBillServiceImpl implements PayBillService {
 
-    @Autowired
-    private DataSource dataSource;
-  
-    @Override
-    public PayBillDto process(
-            Integer userInput) {
-    	
-        log.info(
-                "Calling DEMO procedure for input : {}",
-                userInput);
+	private static final Logger log = LoggerFactory.getLogger(PayBillServiceImpl.class);
 
-        PayBillDto dto =
-                new PayBillDto();
+	@Autowired
+	private DataSource dataSource;
 
-        try (
-                Connection conn =
-                        dataSource.getConnection();
+	@Override
+	public PayBillDto process(Integer userInput) {
 
-                CallableStatement cs =
-                        conn.prepareCall(
-                                "{call DEMO(?,?,?,?)}")) {
+		log.info("Calling DEMO procedure for input : {}", userInput);
 
-            cs.setInt(
-                    1,
-                    userInput);
+		PayBillDto dto = new PayBillDto();
 
-            cs.registerOutParameter(
-                    2,
-                    Types.VARCHAR);
+		try (Connection conn = dataSource.getConnection();
 
-            cs.registerOutParameter(
-                    3,
-                    Types.NUMERIC);
+				CallableStatement cs = conn.prepareCall("{call DEMO(?,?,?,?)}")) {
 
-            cs.registerOutParameter(
-                    4,
-                    Types.VARCHAR);
+			cs.setInt(1, userInput);
 
-            cs.execute();
+			cs.registerOutParameter(2, Types.VARCHAR);
 
-            dto.setStatusMsg(
-                    cs.getString(2));
+			cs.registerOutParameter(3, Types.NUMERIC);
 
-            dto.setStatusCode(
-                    cs.getInt(3));
+			cs.registerOutParameter(4, Types.VARCHAR);
 
-            dto.setException(
-                    cs.getString(4));
+			cs.execute();
 
-            log.info(
-                    "Procedure completed. StatusCode : {}, StatusMessage : {}",
-                    dto.getStatusCode(),
-                    dto.getStatusMsg());
+			dto.setStatusMsg(cs.getString(2));
 
-        } catch (Exception ex) {
+			dto.setStatusCode(cs.getInt(3));
 
-            log.error(
-                    "Error while executing DEMO procedure",
-                    ex);
+			dto.setException(cs.getString(4));
 
-            dto.setStatusCode(0);
+			log.info("Procedure completed. StatusCode : {}, StatusMessage : {}", dto.getStatusCode(),
+					dto.getStatusMsg());
 
-            dto.setStatusMsg(
-                    "FAILED");
+		} catch (Exception ex) {
 
-            dto.setException(
-                    ex.getMessage());
-        }
+			log.error("Error while executing DEMO procedure", ex);
 
-        return dto;
-    }
+			dto.setStatusCode(0);
+
+			dto.setStatusMsg("FAILED");
+
+			dto.setException(ex.getMessage());
+		}
+
+		return dto;
+	}
+
+	 
 
 }

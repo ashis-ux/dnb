@@ -1,0 +1,378 @@
+/* =====================================
+   BODY
+===================================== */
+
+body {
+
+    background-color: #f4f6f9;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+/* =====================================
+   CARD
+===================================== */
+
+.card {
+
+    border: none;
+
+    border-radius: 8px;
+
+    position: relative;
+
+    z-index: 1;
+
+}
+
+.form-header {
+
+    background-color: #003366;
+
+    color: white;
+
+    font-weight: 600;
+
+    font-size: 18px;
+
+}
+
+.card-footer {
+
+    background-color: #f8f9fa;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================
+   FORM
+===================================== */
+
+.form-label {
+
+    font-weight: 600;
+
+}
+
+.form-control,
+.form-select {
+
+    height: 40px;
+
+    border-radius: 6px;
+
+}
+
+.form-control:focus,
+.form-select:focus {
+
+    border-color: #00509e;
+
+    box-shadow: 0 0 5px rgba(0,80,158,.3);
+
+}
+
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+.btn {
+
+    min-width: 120px;
+
+    font-weight: 500;
+
+}
+
+.btn i {
+
+    margin-right: 5px;
+
+}
+
+.btn-primary {
+
+    background-color: #003366;
+
+    border-color: #003366;
+
+}
+
+.btn-primary:hover {
+
+    background-color: #00509e;
+
+    border-color: #00509e;
+
+}
+
+.btn-success {
+
+    background-color: #198754;
+
+}
+
+.btn-secondary {
+
+    background-color: #6c757d;
+
+}
+
+
+/* =====================================
+   SUCCESS / ERROR
+===================================== */
+
+#successPopup {
+
+    display: none;
+
+    font-weight: 600;
+
+}
+
+#errorPopup {
+
+    display: none;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================
+   TABLE
+===================================== */
+
+.table-responsive {
+
+    overflow-x: auto;
+
+    position: relative;
+
+    z-index: 1;
+
+}
+
+#payslipTable {
+
+    width: 100%;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+}
+
+#payslipTable thead th {
+
+    text-align: center;
+
+    vertical-align: middle;
+
+}
+
+#payslipTable tbody td {
+
+    vertical-align: middle;
+
+}
+
+#payslipTable tbody tr:hover {
+
+    background-color: #eef6ff;
+
+}
+
+
+/* =====================================
+   ACTION BUTTONS
+===================================== */
+
+.action-btn {
+
+    min-width: 90px;
+
+    margin: 2px;
+
+}
+
+.action-btn i {
+
+    margin-right: 4px;
+
+}
+
+
+/* =====================================
+   PAGINATION
+===================================== */
+
+.pagination {
+
+    margin-top: 15px;
+
+}
+
+.pagination .page-item.active .page-link {
+
+    background-color: #003366;
+
+    border-color: #003366;
+
+}
+
+.pagination .page-link {
+
+    color: #003366;
+
+}
+
+.pagination .page-link:hover {
+
+    background-color: #eef6ff;
+
+}
+
+
+/* =====================================
+   SEARCH SECTION
+===================================== */
+
+.search-panel {
+
+    background: #fafafa;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* =====================================
+   TABLE BUTTONS
+===================================== */
+
+.btn-view {
+
+    background: #0d6efd;
+
+    color: white;
+
+    border: none;
+
+}
+
+.btn-view:hover {
+
+    background: #0b5ed7;
+
+    color: white;
+
+}
+
+.btn-download {
+
+    background: #198754;
+
+    color: white;
+
+    border: none;
+
+}
+
+.btn-download:hover {
+
+    background: #157347;
+
+    color: white;
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:768px) {
+
+    .btn {
+
+        width: 100%;
+
+        margin-bottom: 8px;
+
+    }
+
+    .table-responsive {
+
+        overflow-x: auto;
+
+    }
+
+    #payslipTable {
+
+        font-size: 11px;
+
+    }
+
+    .card-header h5 {
+
+        font-size: 16px;
+
+    }
+
+    .form-control,
+    .form-select {
+
+        margin-bottom: 10px;
+
+    }
+
+    .action-btn {
+
+        width: 100%;
+
+        margin-bottom: 5px;
+
+    }
+
+}
+
+
+/* =====================================
+   HEADER FIX
+===================================== */
+
+.header-navbar {
+
+    position: relative;
+
+    z-index: 99999;
+
+}
+
+.offcanvas {
+
+    z-index: 100000;
+
+}
+
+.header-navbar,
+.header-navbar * {
+
+    pointer-events: auto !important;
+
+}

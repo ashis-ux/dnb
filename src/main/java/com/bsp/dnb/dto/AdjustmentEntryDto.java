@@ -15,8 +15,10 @@ public class AdjustmentEntryDto {
     private Integer days;
 
     private Integer catg;
+    
+    private String catg_desc;
 
-    private Integer yr;
+	private Integer yr;
 
     private Integer amt;
 
@@ -136,4 +138,12 @@ public class AdjustmentEntryDto {
     public void setEditable(Integer editable) {
         this.editable = editable;
     }
+    
+    public String getCatg_desc() {
+		return catg_desc;
+	}
+
+	public void setCatg_desc(String catg_desc) {
+		this.catg_desc = catg_desc;
+	}
 }

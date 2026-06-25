@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DnbAttRepository
         extends JpaRepository<DnbAtt, DnbAttId> {
@@ -18,13 +19,21 @@ public interface DnbAttRepository
 
     List<DnbAtt> findByIdYymm(Integer yymm);
 
-    List<DnbAtt> findByIdIdAndIdYymm(
-            Integer id,
-            Integer yymm);
+    @Query("""
+    	       SELECT a
+    	       FROM DnbAtt a
+    	       WHERE a.id.id = :id
+    	       AND a.id.yymm = :yymm
+    	       """)
+    	Optional<DnbAtt> findAttendance(
+    	        @Param("id") Integer id,
+    	        @Param("yymm") Integer yymm);
     
     Page<DnbAtt> findByIdYymm(
             Integer yymm,
             Pageable pageable);
+    
+     
 
     List<DnbAtt> findDistinctByIdYymmIsNotNullOrderByIdYymmDesc();
     

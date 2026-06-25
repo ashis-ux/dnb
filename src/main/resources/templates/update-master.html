@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Update Master</title>
+
+<link rel="stylesheet"
+      href="/bootstrap/bootstrap.min.css">
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<link rel="stylesheet"
+      href="/css/update-master.css">
+
+<link rel="stylesheet"
+      href="/css/header.css">
+
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header">
+</div>
+
+<div class="container mt-4">
+
+    <div id="successPopup"
+         class="alert alert-success"
+         style="display:none;">
+    </div>
+
+    <div id="errorPopup"
+         class="alert alert-danger"
+         style="display:none;">
+    </div>
+
+    <div class="card shadow">
+
+        <div class="card-header form-header">
+
+            Update DNB Master
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+
+                        Previous Month YYMM
+
+                        <span class="text-danger">*</span>
+
+                    </label>
+
+                    <input type="text"
+                           id="yymm"
+                           class="form-control"
+                           readonly>
+
+                </div>
+
+            </div>
+
+            <div class="mt-4 text-center">
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="updateMaster()">
+
+                    <i class="bi bi-arrow-repeat"></i>
+
+                    Update Master
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card-footer text-center">
+
+            Developed & Maintained by C&IT, BSP
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/update-master.js"></script>
+
+</body>
+
+</html>

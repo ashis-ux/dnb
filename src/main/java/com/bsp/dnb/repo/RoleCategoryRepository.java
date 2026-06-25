@@ -18,8 +18,5 @@ public interface RoleCategoryRepository
 
         boolean existsByRoleId(Long roleId);
 
-    
-    
-
 
 }

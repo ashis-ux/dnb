@@ -1,6 +1,7 @@
 package com.bsp.dnb.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -12,82 +13,58 @@ import jakarta.persistence.Table;
 @Table(name = "DNB_CATG_MAST")
 public class Category {
 
-    @Id
-    @Column(name = "CATG", nullable = false)
-    private Integer catg;
+    @EmbeddedId
+    private CategoryId id;
 
-    @Column(name = "DESCRIPTION", length = 50)
+    @Column(name = "DESCRIPTION")
     private String description;
 
     @Column(name = "STIPEND")
     private Integer stipend;
 
-    @Column(name = "YEAR")
-    private Integer year;
-    
-
-	@Column(name = "TYPE", length = 5)
+    @Column(name = "TYPE")
     private String type;
 
+    public CategoryId getId() {
+        return id;
+    }
 
-	public Integer getCatg() {
-		return catg;
-	}
+    public void setId(CategoryId id) {
+        this.id = id;
+    }
 
+    public String getDescription() {
+        return description;
+    }
 
-	public void setCatg(Integer catg) {
-		this.catg = catg;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
+    public Integer getStipend() {
+        return stipend;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setStipend(Integer stipend) {
+        this.stipend = stipend;
+    }
 
+    public String getType() {
+        return type;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
+    // Convenience methods
 
-	public Integer getStipend() {
-		return stipend;
-	}
+    public Integer getCatg() {
+        return id.getCatg();
+    }
 
-
-	public void setStipend(Integer stipend) {
-		this.stipend = stipend;
-	}
-
-
-	public Integer getYear() {
-		return year;
-	}
-
-
-	public void setYear(Integer year) {
-		this.year = year;
-	}
-
-
-	public String getType() {
-		return type;
-	}
-
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Category [catg=" + catg + ", description=" + description + ", stipend=" + stipend + ", year=" + year
-				+ ", type=" + type + "]";
-	}
-	
-	
-    
-     
+    public Integer getYear() {
+        return id.getYear();
+    }
 
 }

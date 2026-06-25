@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.bsp.dnb.dto.DnbMastDto;
+import com.bsp.dnb.dto.PayBillDto;
+import com.bsp.dnb.dto.UpdateMasterDto;
+import com.bsp.dnb.entity.Category;
 import com.bsp.dnb.entity.DnbMast;
 import com.bsp.dnb.exception.BadRequestException;
 import com.bsp.dnb.exception.DuplicateResourceException;
@@ -22,6 +25,8 @@ import com.bsp.dnb.service.DnbRoleService;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -30,6 +35,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.sql.DataSource;
 
 @Service
 @Slf4j
@@ -47,6 +54,9 @@ public class DnbMastServiceImpl implements DnbMastService {
 
 	@Autowired
     private  DnbMastRepository repository;
+	
+	@Autowired
+	private DataSource dataSource;
 
 	private static final Logger log =
 	        LoggerFactory.getLogger(DnbMastServiceImpl.class);
@@ -69,6 +79,42 @@ public class DnbMastServiceImpl implements DnbMastService {
 	    Integer yymm = Integer.parseInt(
 	            doj.format(DateTimeFormatter.ofPattern("yyyyMM")));
 	    dto.setYymm(yymm);
+	    Category category =
+	            categoryRepository.findFirstYearCategory(
+	                    dto.getCatg());
+
+	    if (category == null) {
+
+	        throw new ResourceNotFoundException(
+	                "Category not found for CATG : "
+	                        + dto.getCatg());
+	    }
+
+	    dto.setCatgDesc(
+	            category.getDescription());
+
+	    dto.setStipendRate(
+	            category.getStipend());
+
+	    LocalDate currentDate =
+	            LocalDate.now();
+	    int daysInMonth =
+	            currentDate.lengthOfMonth();
+	    Integer dailyRate =
+	            Math.round(
+	                    (float) category.getStipend()
+	                            / daysInMonth);
+	    dto.setDailyRate(
+	            dailyRate);
+	    dto.setDnbType(
+	            category.getType());
+
+	    Integer trainingDuration =
+	            categoryRepository.findTrainingDuration(
+	                    dto.getCatg());
+
+	    dto.setTrgDuration(
+	            trainingDuration);
 	    DnbMast entity = dtoToEntity(dto);
 	    DnbMast savedEntity = repository.save(entity);
 	    log.info("DNB record saved successfully with ID : {}", nextId);
@@ -206,8 +252,8 @@ public class DnbMastServiceImpl implements DnbMastService {
         dto.setSpeciality(entity.getSpeciality());
         dto.setTrgDuration(entity.getTrgDuration());
         dto.setStopPayInd(entity.getStopPayInd());
-//        dto.setTuitionFeeInd(entity.getTuitionFeeInd());
-//        dto.setDnbType(entity.getDnbType());
+        dto.setTuitionFeeInd(entity.getTuitionFeeInd());
+        dto.setDnbType(entity.getDnbType());
         
         dto.setMobileNo(
                 entity.getMobileNo());
@@ -283,9 +329,8 @@ public class DnbMastServiceImpl implements DnbMastService {
         entity.setEmailId(
                 dto.getEmailId());
 
-//        entity.setTuitionFeeInd(dto.getTuitionFeeInd());
-//
-//        entity.setDnbType(toUpper(dto.getDnbType()));
+        entity.setTuitionFeeInd(dto.getTuitionFeeInd());
+        entity.setDnbType(toUpper(dto.getDnbType()));
 
         return entity;
     }
@@ -550,4 +595,25 @@ public class DnbMastServiceImpl implements DnbMastService {
                 ? null
                 : value.trim().toUpperCase();
     }
+    
+    @Override
+	public UpdateMasterDto runMonthlyUpdate(String yymm) {
+		log.info("Calling PROC_DNB_MASTER_UPDATE for month : {}", yymm);
+		UpdateMasterDto dto = new UpdateMasterDto();
+		try (Connection conn = dataSource.getConnection();
+				CallableStatement cs = conn.prepareCall("{call PROC_DNB_MASTER_UPDATE(?)}")) {
+			cs.setString(1, yymm);
+			cs.execute();
+			dto.setStatusCode(1);
+			dto.setStatusMsg("SUCCESS");
+			dto.setException(null);
+			log.info("PROC_DNB_MASTER_UPDATE executed successfully for {}", yymm);
+		} catch (Exception ex) {
+			log.error("Error while executing PROC_DNB_MASTER_UPDATE", ex);
+			dto.setStatusCode(0);
+			dto.setStatusMsg("FAILED");
+			dto.setException(ex.getMessage());
+		}
+		return dto;
+	}
 }

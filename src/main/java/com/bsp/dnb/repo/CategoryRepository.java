@@ -55,6 +55,12 @@ public interface CategoryRepository
 		            @Param("year")
 		            Integer year);
 	 
+	 @Query(
+			    value = "SELECT * FROM dnb_catg_mast WHERE catg = :catg ORDER BY year",
+			    nativeQuery = true
+			)
+			List<Category> findByCatg(@Param("catg") Integer catg);
+	 
 	 @Query(value = """
 		       SELECT DISTINCT CATG
 		       FROM DNB_ROLE_CATEGORY
@@ -64,5 +70,26 @@ public interface CategoryRepository
 		       nativeQuery = true)
 		List<Integer> findAllowedCategories(
 		        @Param("roleId") Long roleId);
+	 
+	 
+	 @Query(value = """
+		        SELECT *
+		        FROM DNB_CATG_MAST
+		        WHERE CATG = :catg
+		        AND YEAR = 1
+		        FETCH FIRST 1 ROWS ONLY
+		        """,
+		        nativeQuery = true)
+		Category findFirstYearCategory(
+		        @Param("catg") Integer catg);
+	 
+	 @Query(value = """
+		        SELECT MAX(YEAR)
+		        FROM DNB_CATG_MAST
+		        WHERE CATG = :catg
+		        """,
+		        nativeQuery = true)
+		Integer findTrainingDuration(
+		        @Param("catg") Integer catg);
 
 }

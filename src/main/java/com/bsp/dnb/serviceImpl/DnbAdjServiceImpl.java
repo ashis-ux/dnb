@@ -1,7 +1,15 @@
 package com.bsp.dnb.serviceImpl;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
 import java.time.YearMonth;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,12 +24,15 @@ import org.springframework.stereotype.Service;
 import com.bsp.dnb.dto.AdjustmentEntryDto;
 import com.bsp.dnb.dto.DnbAdjDto;
 import com.bsp.dnb.dto.DnbMastDto;
+import com.bsp.dnb.entity.Category;
 import com.bsp.dnb.entity.DnbAdj;
 import com.bsp.dnb.entity.DnbAdjId;
+import com.bsp.dnb.entity.DnbMast;
 import com.bsp.dnb.exception.BadRequestException;
 import com.bsp.dnb.exception.ResourceNotFoundException;
 import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbAdjRepository;
+import com.bsp.dnb.repo.DnbMastRepository;
 import com.bsp.dnb.repo.DnbPbillRepository;
 import com.bsp.dnb.service.DnbAdjService;
 import com.bsp.dnb.service.DnbMastService;
@@ -39,6 +50,9 @@ public class DnbAdjServiceImpl implements DnbAdjService {
 
 	@Autowired
 	private DnbMastService dnbMastService;
+	
+	@Autowired
+	private DnbMastRepository dnbMastRepository;
 
 	@Autowired
 	private DnbPbillRepository pbillRepository;
@@ -72,76 +86,88 @@ public class DnbAdjServiceImpl implements DnbAdjService {
 	    List<DnbAdj> adjustments =
 	            repository.findByIdYymm(
 	                    yymm);
-	    Map<Integer, DnbAdj> adjustmentMap =
+	    Map<Integer, List<DnbAdj>> adjustmentMap =
 	            adjustments.stream()
 	                    .collect(
-	                            Collectors.toMap(
-	                                    a -> a.getId().getId(),
-	                                    Function.identity(),
-	                                    (a, b) -> a));
+	                            Collectors.groupingBy(
+	                                    a -> a.getId().getId()));
 	    List<AdjustmentEntryDto> response =
 	            new ArrayList<>();
 	    for (DnbMastDto emp : employees) {
-	        AdjustmentEntryDto dto =
-	                new AdjustmentEntryDto();
-	        dto.setYymm(yymm);
-	        dto.setId(emp.getId());
-	        dto.setName(emp.getName());
-	       
-	        dto.setDoj(
-	        		emp.getDoj());
 
-	        dto.setEditable(
-	                paybillGenerated
-	                        ? 0
-	                        : 1);
+	        List<DnbAdj> empAdjustments =
+	                adjustmentMap.get(emp.getId());
 
-	        DnbAdj adj =
-	                adjustmentMap.get(
-	                        emp.getId());
+	        if (empAdjustments != null &&
+	            !empAdjustments.isEmpty()) {
 
-	        if (adj != null) {
+	            for (DnbAdj adj : empAdjustments) {
 
-	            dto.setOriginalForym(
-	                    adj.getId()
-	                            .getForym());
+	                AdjustmentEntryDto dto =
+	                        new AdjustmentEntryDto();
 
-	            dto.setForym(
-	                    adj.getId()
-	                            .getForym());
+	                dto.setYymm(yymm);
+	                dto.setId(emp.getId());
+	                dto.setName(emp.getName());
+	                dto.setDoj(emp.getDoj());
 
-	            dto.setDays(
-	                    adj.getDays());
+	                dto.setEditable(
+	                        paybillGenerated ? 0 : 1);
 
-	            dto.setCatg(
-	                    adj.getCatg());
+	                dto.setOriginalForym(
+	                        adj.getId().getForym());
 
-	            dto.setYr(
-	                    adj.getYr());
+	                dto.setForym(
+	                        adj.getId().getForym());
 
-	            dto.setAmt(
-	                    adj.getAmt());
+	                dto.setDays(
+	                        adj.getDays());
 
-	            dto.setStopAdjInd(
-	                    adj.getStopAdjInd());
+	                dto.setCatg(
+	                        adj.getCatg());
 
-	            dto.setPaidInd(
-	                    adj.getPaidInd());
+	                dto.setCatg_desc(
+	                        emp.getCatgDesc());
+
+	                dto.setYr(
+	                        adj.getYr());
+
+	                dto.setAmt(
+	                        adj.getAmt());
+
+	                dto.setStopAdjInd(
+	                        adj.getStopAdjInd());
+
+	                dto.setPaidInd(
+	                        adj.getPaidInd());
+
+	                response.add(dto);
+	            }
+
 	        } else {
-	        	
-	        	dto.setCatg(
-	        			emp.getCatg());
+
+	            AdjustmentEntryDto dto =
+	                    new AdjustmentEntryDto();
+
+	            dto.setYymm(yymm);
+	            dto.setId(emp.getId());
+	            dto.setName(emp.getName());
+	            dto.setDoj(emp.getDoj());
+
+	            dto.setEditable(
+	                    paybillGenerated ? 0 : 1);
+
+	            dto.setCatg(emp.getCatg());
+	            dto.setCatg_desc(emp.getCatgDesc());
 
 	            dto.setDays(0);
-
 	            dto.setAmt(0);
-
 	            dto.setStopAdjInd(0);
-
 	            dto.setPaidInd(0);
-	        }
 
-	        response.add(dto);
+	            response.add(dto);
+	        }
+	        
 	    }
 
 	    return response;
@@ -239,8 +265,7 @@ public class DnbAdjServiceImpl implements DnbAdjService {
 	                dto.getYr());
 
 	        entity.setAmt(
-	                calculateAmount(
-	                        dto));
+	        		 dto.getAmt());
 
 	        entity.setStopAdjInd(
 	                dto.getStopAdjInd());
@@ -437,6 +462,211 @@ public class DnbAdjServiceImpl implements DnbAdjService {
 	            entity.getYr());
 
 	    return dto;
+	}
+	
+	
+	@Override
+	public Integer calculateAmount(
+	        Integer id,
+	        Integer forym,
+	        Integer days) {
+
+	    log.info(
+	            "Calculating adjustment amount. Employee={}, FORYM={}, Days={}",
+	            id,
+	            forym,
+	            days);
+
+	    if (days == null || days <= 0) {
+
+	        log.warn("Invalid adjustment days : {}", days);
+
+	        return 0;
+	    }
+
+	    DnbMast employee =
+	            dnbMastRepository.findById(id)
+	                    .orElseThrow(() -> {
+
+	                        log.error(
+	                                "Employee not found : {}",
+	                                id);
+
+	                        return new RuntimeException(
+	                                "Employee not found");
+	                    });
+
+	    Date dojDate = employee.getDoj();
+
+	    LocalDate doj =
+	            Instant.ofEpochMilli(dojDate.getTime())
+	                   .atZone(ZoneId.systemDefault())
+	                   .toLocalDate();
+	    LocalDate monthStart =
+	            YearMonth.of(
+	                    forym / 100,
+	                    forym % 100)
+	                    .atDay(1);
+
+	    int totalDaysInMonth =
+	            monthStart.lengthOfMonth();
+
+	    log.info(
+	            "Employee DOJ={}, Category={}, Month={}, DaysInMonth={}",
+	            doj,
+	            employee.getCatg(),
+	            monthStart,
+	            totalDaysInMonth);
+
+	    List<Category> slabs =
+	    		catgRepository
+	                    .findByCatg(
+	                            employee.getCatg());
+	    
+	    log.info(
+	            "Loaded {} stipend slabs : {}",slabs);
+
+	    if (slabs.isEmpty()) {
+
+	        log.error(
+	                "No stipend slab configured for category {}",
+	                employee.getCatg());
+
+	        throw new RuntimeException(
+	                "No stipend configured for category");
+	    }
+
+	    Map<Integer, Integer> stipendMap =
+	            slabs.stream()
+	                    .collect(Collectors.toMap(
+	                            Category::getYear,
+	                            Category::getStipend));
+
+	    log.info(
+	            "Loaded {} stipend slabs : {}",
+	            stipendMap.size(),
+	            stipendMap);
+
+	    Integer amount =
+	            calculateAdjustmentAmount(
+	                    doj,
+	                    monthStart,
+	                    days,
+	                    stipendMap);
+
+	    log.info(
+	            "Final calculated amount = {}",
+	            amount);
+
+	    return amount;
+	}
+	
+	private Integer calculateAdjustmentAmount(
+	        LocalDate doj,
+	        LocalDate monthStart,
+	        Integer adjustmentDays,
+	        Map<Integer, Integer> stipendMap) {
+
+	    log.info("Starting adjustment calculation");
+
+	    int totalDaysInMonth = monthStart.lengthOfMonth();
+
+	    /*
+	     * Adjustment always starts from the first day
+	     * of FORYM.
+	     */
+	    LocalDate currentDate = monthStart;
+
+	    int remainingDays = adjustmentDays;
+
+	    double totalAmount = 0.0;
+
+	    while (remainingDays > 0) {
+
+	        /*
+	         * Determine Training Year
+	         */
+	        int trainingYear = 1;
+
+	        LocalDate anniversary = doj;
+
+	        while (!currentDate.isBefore(anniversary.plusYears(1))) {
+	            trainingYear++;
+	            anniversary = anniversary.plusYears(1);
+	        }
+
+	        if (trainingYear <= 0) {
+	            trainingYear = 1;
+	        }
+
+	        /*
+	         * If stipend is not available
+	         * use last available year.
+	         */
+	        if (!stipendMap.containsKey(trainingYear)) {
+
+	            trainingYear =
+	                    stipendMap.keySet()
+	                            .stream()
+	                            .max(Integer::compareTo)
+	                            .orElse(1);
+	        }
+
+	        Integer stipend = stipendMap.get(trainingYear);
+
+	        /*
+	         * Anniversary of NEXT year
+	         */
+	        LocalDate nextAnniversary = anniversary.plusYears(1);
+
+	        /*
+	         * Days remaining before anniversary
+	         */
+	        int daysTillAnniversary =
+	                (int) ChronoUnit.DAYS.between(
+	                        currentDate,
+	                        nextAnniversary);
+
+	        /*
+	         * If anniversary not in current month
+	         */
+	        if (daysTillAnniversary <= 0 ||
+	                nextAnniversary.getMonthValue() != currentDate.getMonthValue()) {
+
+	            daysTillAnniversary = remainingDays;
+	        }
+
+	        int applicableDays =
+	                Math.min(remainingDays, daysTillAnniversary);
+
+	        double dailyRate =
+	                ((double) stipend) / totalDaysInMonth;
+
+	        double amount =
+	                dailyRate * applicableDays;
+
+	        // ❗ FIXED: you were resetting totalAmount every loop
+	        totalAmount = totalAmount + amount;
+
+	        log.info(
+	                "TrainingYear={}, Stipend={}, Days={}, DailyRate={}, Amount={}",
+	                trainingYear,
+	                stipend,
+	                applicableDays,
+	                dailyRate,
+	                amount);
+
+	        remainingDays -= applicableDays;
+
+	        currentDate = currentDate.plusDays(applicableDays);
+	    }
+
+	    Integer finalAmount =
+	            (int) Math.round(totalAmount);
+
+	    log.info("Final Adjustment Amount={}", finalAmount);
+
+	    return finalAmount;
 	}
 
 }

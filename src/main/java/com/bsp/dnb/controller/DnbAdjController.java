@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bsp.dnb.dto.AdjustmentEntryDto;
@@ -66,6 +67,33 @@ public class DnbAdjController {
 	    return ResponseEntity.ok(
 	            dnbAdjService.getAdjustmentEntry(
 	                    yymm));
+	}
+	
+	@GetMapping("/calculate")
+	public ResponseEntity<Integer> calculateAmount(
+	        @RequestParam Integer id,
+	        @RequestParam Integer forym,
+	        @RequestParam Integer days) {
+
+	    log.info(
+	            "Calculate adjustment amount request received. id={}, forym={}, days={}",
+	            id,
+	            forym,
+	            days);
+
+	    Integer amount =
+	    		dnbAdjService.calculateAmount(
+	                    id,
+	                    forym,
+	                    days);
+
+	    log.info(
+	            "Calculated adjustment amount={} for id={}, forym={}",
+	            amount,
+	            id,
+	            forym);
+
+	    return ResponseEntity.ok(amount);
 	}
 	
 }

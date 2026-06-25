@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "DNBADJ")
-public class DnbAdj {
+public class DnbAdj extends AuditEntity{
 
     @EmbeddedId
     private DnbAdjId id;
@@ -30,10 +30,6 @@ public class DnbAdj {
     @Column(name = "YR")
     private Integer yr;
     
-    
-    
-    
-
     public DnbAdj() {
     }
 

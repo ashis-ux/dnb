@@ -23,4 +23,9 @@ public interface DnbAdjService {
 
     List<AdjustmentEntryDto> getAdjustmentEntry(
             Integer yymm);
+    
+    Integer calculateAmount(
+            Integer id,
+            Integer forym,
+            Integer days);
 }

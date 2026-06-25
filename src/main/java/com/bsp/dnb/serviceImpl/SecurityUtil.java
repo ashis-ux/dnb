@@ -1,34 +1,27 @@
 package com.bsp.dnb.serviceImpl;
 
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+
+@Component
 public class SecurityUtil {
 
-    public static String getUsername() {
-
-        Authentication auth =
-                SecurityContextHolder.getContext()
-                                     .getAuthentication();
-
-        return auth.getName();
+    public SecurityUtil() {
     }
 
-    public static List<String> getRoles() {
+    public static String getLoggedInUser() {
 
-        Authentication auth =
-                SecurityContextHolder.getContext()
-                                     .getAuthentication();
+        Authentication authentication =
+                SecurityContextHolder
+                        .getContext()
+                        .getAuthentication();
 
-        return auth.getAuthorities()
-                   .stream()
-                   .map(a -> a.getAuthority())
-                   .collect(Collectors.toList());
+        if (authentication == null) {
+            return "SYSTEM";
+        }
+
+        return authentication.getName();
     }
 }

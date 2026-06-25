@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "DNBATT")
-public class DnbAtt {
+public class DnbAtt extends AuditEntity{
 
     @EmbeddedId
     private DnbAttId id;
@@ -85,4 +85,12 @@ public class DnbAtt {
     public void setMl(Integer ml) {
         this.ml = ml;
     }
+
+	@Override
+	public String toString() {
+		return "DnbAtt [id=" + id + ", duty=" + duty + ", al=" + al + ", cl=" + cl + ", abs=" + abs + ", pl=" + pl
+				+ ", ml=" + ml + "]";
+	}
+    
+    
 }

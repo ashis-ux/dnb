@@ -10,6 +10,23 @@ document.addEventListener(
 
         loadCategories();
     });
+	document.addEventListener("click",function(e){
+
+	    if(e.target.closest(".addRow")){
+
+	        addAdjustmentRow(
+	            e.target.closest(".addRow"));
+
+	    }
+
+	    if(e.target.closest(".removeRow")){
+
+	        removeAdjustmentRow(
+	            e.target.closest(".removeRow"));
+
+	    }
+
+	});
 
 function bindButtons() {
 
@@ -94,8 +111,7 @@ function loadAdjustments() {
 
     clearMessages();
 
-    const yymm =202606
-    const yymm1=    document.getElementById(
+    const yymm = document.getElementById(
             "yymm")
             .value;
 
@@ -184,19 +200,11 @@ function populateGrid(data) {
 				    </select>
 				</td>
 
-                <td>
-
-                    <select class="categorySelect"
-                            ${disabled}>
-
-							${buildCategoryOptions(
-							        emp.catg,
-							        emp.catg,
-							        emp.yr)}
-
-                    </select>
-
-                </td>
+				<td class="category"
+				    data-catg="${emp.catg}"
+				    data-year="${emp.yr}">
+				    ${emp.catg_desc}
+				</td>
 
                 <td>
 
@@ -230,28 +238,27 @@ function populateGrid(data) {
 
                 </td>
 
-                <td>
+				<td class="text-center">
 
-                    <select class="paid"
-                            ${disabled}>
+				    <button
+				        type="button"
+				        class="btn btn-success btn-sm addRow"
+				        ${disabled}>
 
-                        <option value="0"
-                            ${emp.paidInd === 0 ? "selected" : ""}>
+				        <i class="bi bi-plus-lg"></i>
 
-                            No
+				    </button>
 
-                        </option>
+				    <button
+				        type="button"
+				        class="btn btn-danger btn-sm removeRow"
+				        ${disabled}>
 
-                        <option value="1"
-                            ${emp.paidInd === 1 ? "selected" : ""}>
+				        <i class="bi bi-dash-lg"></i>
 
-                            Yes
+				    </button>
 
-                        </option>
-
-                    </select>
-
-                </td>
+				</td>
 
             </tr>`;
 
@@ -438,16 +445,7 @@ function initializeRows(data) {
                         row);
                 });
 
-            row.querySelector(
-                ".categorySelect")
-
-                .addEventListener(
-                    "change",
-                    function () {
-
-                        calculateAmount(
-                            row);
-                    });
+             
         });
 }
 
@@ -509,204 +507,180 @@ function populateDaysDropdown(
 
 function calculateAmount(row) {
 
+    const id =
+        parseInt(
+            row.querySelector(".emp-id").innerText);
+
     const forym =
-        row.querySelector(
-            ".forym")
-            .value;
+        row.querySelector(".forym").value;
 
     const days =
         parseInt(
-            row.querySelector(
-                ".days")
-                .value || 0);
+            row.querySelector(".days").value || 0);
 
-    const category =
-        row.querySelector(
-            ".categorySelect");
+    if (!forym || days <= 0) {
 
-    if (!forym ||
-        !days ||
-        !category.value) {
-
+        row.querySelector(".amt").value = 0;
         return;
     }
 
-    const option =
-        category.options[
-            category.selectedIndex];
+    fetch(
+        `/api/dnb-adj/calculate?id=${id}&forym=${forym}&days=${days}`)
+        .then(response => response.json())
+        .then(data => {
 
-    const stipend =
-        parseInt(
-            option.dataset.stipend);
+            row.querySelector(".amt").value =data;
 
-    const year =
-        parseInt(
-            forym.substring(
-                0,
-                4));
+        })
+        .catch(() => {
 
-    const month =
-        parseInt(
-            forym.substring(
-                4,
-                6));
+            row.querySelector(".amt").value = 0;
 
-    const daysInMonth =
-        new Date(
-            year,
-            month,
-            0)
-            .getDate();
-
-    const amount =
-        Math.round(
-            (stipend / daysInMonth)
-            * days);
-
-    row.querySelector(
-        ".amt")
-        .value =
-        amount;
+        });
 }
-
 /* ---------------------------
    Save
 ---------------------------- */
 
 function saveAdjustments() {
 
-    const yymm =202606
-    const yymm1=    parseInt(
-            document.getElementById(
-                "yymm")
-                .value);
+    clearMessages();
+
+    const yymm =
+        parseInt(
+            document.getElementById("yymm").value);
 
     const dtoList = [];
 
-    document.querySelectorAll(
-        "#adjustmentBody tr")
-
+    document.querySelectorAll("#adjustmentBody tr")
         .forEach(row => {
 
             const category =
-                row.querySelector(
-                    ".categorySelect");
+                row.querySelector(".category");
 
-            if (!category.value) {
+            const forym =
+                parseInt(
+                    row.querySelector(".forym").value);
+
+            const days =
+                parseInt(
+                    row.querySelector(".days").value || 0);
+
+            const amount =
+                parseInt(
+                    row.querySelector(".amt").value || 0);
+
+            /*
+             * Skip blank rows
+             */
+            if (!forym || days <= 0 || amount <= 0) {
 
                 return;
             }
 
-            const option =
-                category.options[
-                    category.selectedIndex];
+            dtoList.push({
 
-					const forym =
-					    parseInt(
-					        row.querySelector(
-					            ".forym")
-					            .value);
+                yymm: yymm,
 
-					const days =
-					    parseInt(
-					        row.querySelector(
-					            ".days")
-					            .value || 0);
+                id: parseInt(
+                    row.querySelector(".emp-id").innerText),
 
-					const amount =
-					    parseInt(
-					        row.querySelector(
-					            ".amt")
-					            .value || 0);
+                originalForym:
+                    row.dataset.originalForym
+                        ? parseInt(row.dataset.originalForym)
+                        : forym,
 
-					/*
-					 * Skip empty rows
-					 */
-					if (!forym ||
-					    days <= 0 ||
-					    amount <= 0) {
+                forym: forym,
 
-					    return;
-					}
+                days: days,
 
-					dtoList.push({
+                catg: parseInt(
+                    category.dataset.catg),
 
-					    yymm: yymm,
+                /*
+                 * Backend will calculate year.
+                 */
+                yr: 0,
 
-					    id: parseInt(
-					        row.querySelector(
-					            ".emp-id")
-					            .innerText),
+                amt: amount,
 
-					    originalForym:
-					        row.dataset.originalForym
-					            ? parseInt(
-					                row.dataset.originalForym)
-					            : forym,
+                stopAdjInd:
+                    parseInt(
+                        row.querySelector(".stopAdj").value)
 
-					    forym: forym,
+            });
 
-					    days: days,
-                        
-					    catg: parseInt(
-					        option.dataset.catg),
-
-					    yr: parseInt(
-					        option.dataset.year),
-
-					    amt: amount,
-
-					    stopAdjInd: parseInt(
-					        row.querySelector(
-					            ".stopAdj")
-					            .value),
-
-					    paidInd: parseInt(
-					        row.querySelector(
-					            ".paid")
-					            .value)
-					});
         });
 
-		fetch(
-		    "/api/dnb-adj/bulk",
-		    {
-		        method: "POST",
-		        headers: {
-		            "Content-Type":
-		                "application/json"
-		        },
-		        body: JSON.stringify(dtoList)
-		    })
+    if (dtoList.length === 0) {
 
-		.then(async response => {
+        showError(
+            "No adjustment records to save.");
 
-		    const result =
-		        await response.json();
+        return;
+    }
 
-		    if (!response.ok) {
+	fetch("/api/dnb-adj/bulk", {
 
-		        throw new Error(
-		            result.message ||
-		            "Something went wrong");
-		    }
+	    method: "POST",
 
-		    return result;
-		})
+	    headers: {
+	        "Content-Type": "application/json"
+	    },
 
-		.then(() => {
+	    body: JSON.stringify(dtoList)
 
-		    showSuccess(
-		        "Adjustment saved successfully");
+	})
+	.then(async response => {
 
-		    loadAdjustments();
-		})
+	    let result = "";
 
-		.catch(error => {
+	    try {
 
-		    showError(
-		        error.message);
-		});
+	        result = await response.text();
+
+	    } catch (e) {
+
+	        result = "";
+	    }
+
+	    if (!response.ok) {
+
+	        throw new Error(
+	            result || "Unable to save adjustment.");
+
+	    }
+
+	    return result;
+
+	})
+	.then(message => {
+
+	    showSuccess(
+	         "Adjustment saved successfully.");
+
+	    setTimeout(function () {
+
+	        loadAdjustments();
+
+	    }, 2000);
+
+	})
+	.catch(error => {
+
+	    console.error(error);
+
+	    showError(
+	        error.message ||
+	        "Unable to save adjustment.");
+			setTimeout(function () {
+
+				        loadAdjustments();
+
+				    }, 2000);
+
+	});
+
 }
 
 /* ---------------------------
@@ -774,3 +748,104 @@ function clearMessages() {
         .style.display =
         "none";
 }
+
+function addAdjustmentRow(button) {
+
+    const currentRow = button.closest("tr");
+
+    const clone = currentRow.cloneNode(true);
+
+    clone.dataset.originalForym = "";
+
+    clone.querySelector(".forym").value = "";
+
+    clone.querySelector(".days").innerHTML =
+        '<option value="0">0</option>';
+
+    clone.querySelector(".amt").value = 0;
+
+    clone.querySelector(".stopAdj").value = 0;
+
+    currentRow.after(clone);
+
+    initializeSingleRow(clone);
+
+    refreshForymDropdowns();
+}
+
+function removeAdjustmentRow(button) {
+
+    const tbody =
+        document.getElementById("adjustmentBody");
+
+    if (tbody.rows.length == 1) {
+
+        showError("At least one row is required.");
+
+        return;
+    }
+
+    button.closest("tr").remove();
+
+    refreshForymDropdowns();
+}
+
+function refreshForymDropdowns() {
+
+    const selectedMonths = [];
+
+    document.querySelectorAll(".forym").forEach(function(select){
+
+        if(select.value){
+
+            selectedMonths.push(select.value);
+
+        }
+
+    });
+
+    document.querySelectorAll(".forym").forEach(function(select){
+
+        const current = select.value;
+
+        Array.from(select.options).forEach(function(option){
+
+            if(option.value=="")
+
+                return;
+
+            option.hidden =
+                option.value != current &&
+                selectedMonths.includes(option.value);
+
+        });
+
+    });
+	}
+	function initializeSingleRow(row){
+
+	    const forym = row.querySelector(".forym");
+
+	    const days = row.querySelector(".days");
+
+	    forym.addEventListener("change",function(){
+
+	        populateDaysDropdown(
+	            days,
+	            this.value,
+	            0);
+
+	        calculateAmount(row);
+
+	        refreshForymDropdowns();
+
+	    });
+
+	    days.addEventListener("change",function(){
+
+	        calculateAmount(row);
+
+	    });
+
+	}
+

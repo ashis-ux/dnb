@@ -42,24 +42,26 @@ public interface DnbMastRepository
 	        Integer id);
 	
 	@Query(value = """
-			SELECT DISTINCT dm.*
-			FROM DNBMAST dm
-			JOIN DNB_ROLE_CATEGORY rc
-			     ON dm.CATG = rc.CATG
-			WHERE rc.ROLE_ID = :roleId
-			AND dm.EMP_STATUS = 0
-			AND (
-			    dm.DOS IS NULL
-			    OR dm.DOS > :previousMonthStart
-			)
-			AND dm.DOJ < :previousMonthEnd
-			ORDER BY dm.NAME
-			""",
-			nativeQuery = true)
-			List<DnbMast> findEligibleForAttendance(
-			        @Param("roleId") Long roleId,
-			        @Param("previousMonthStart") Date previousMonthStart,
-			        @Param("previousMonthEnd") Date previousMonthEnd);
+	        SELECT DISTINCT dm.*
+	        FROM DNBMAST dm
+	        JOIN DNB_ROLE_CATEGORY rc
+	             ON dm.CATG = rc.CATG
+	        WHERE rc.ROLE_ID = :roleId
+	        AND dm.EMP_STATUS = 0
+	        AND (
+	            dm.DOS IS NULL
+	            OR dm.DOS > :previousMonthStart
+	        )
+	        AND dm.DOJ < :previousMonthEnd
+	        ORDER BY dm.NAME, dm.ID
+	        """,
+	        nativeQuery = true)
+	List<DnbMast> findEligibleForAttendance(
+	        @Param("roleId") Long roleId,
+	        @Param("previousMonthStart") Date previousMonthStart,
+	        @Param("previousMonthEnd") Date previousMonthEnd);
+	
+	
 	boolean existsByPanIgnoreCase(String pan);
 	boolean existsByPanIgnoreCaseAndIdNot(String pan, Integer id);
 	
@@ -77,6 +79,8 @@ public interface DnbMastRepository
 	        Integer yymm,
 	        List<Integer> catgs,
 	        Pageable pageable);
+	
+	Optional<DnbMast> findById(Integer id);
 	
 	@Query("""
 		       SELECT DISTINCT d.yymm

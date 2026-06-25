@@ -1,0 +1,41 @@
+body {
+
+    background-color: #f4f6f9;
+}
+
+.card {
+
+    border: none;
+
+    border-radius: 8px;
+}
+
+.form-header {
+
+    background-color: #003366;
+
+    color: white;
+
+    font-weight: 600;
+
+    font-size: 18px;
+}
+
+.form-label {
+
+    font-weight: 600;
+}
+
+.btn {
+
+    min-width: 180px;
+}
+
+.card-footer {
+
+    background-color: #f8f9fa;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}

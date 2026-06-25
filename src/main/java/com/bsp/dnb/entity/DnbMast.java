@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "DNBMAST")
-public class DnbMast {
+public class DnbMast extends AuditEntity{
 
     @Id
     @Column(name = "ID", nullable = false)

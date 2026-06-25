@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import com.bsp.dnb.dto.DnbMastDto;
+import com.bsp.dnb.dto.UpdateMasterDto;
 
 public interface DnbMastService {
 
@@ -22,6 +23,8 @@ public interface DnbMastService {
     
     public DnbMastDto searchDnb(
             String searchValue);
+    
+    public UpdateMasterDto runMonthlyUpdate(String yymm);
     
      
 

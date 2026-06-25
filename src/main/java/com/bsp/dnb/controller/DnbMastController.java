@@ -1,6 +1,8 @@
 package com.bsp.dnb.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.bsp.dnb.dto.DnbMastDto;
+import com.bsp.dnb.dto.UpdateMasterDto;
 import com.bsp.dnb.service.DnbMastService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/dnb")
 @Slf4j
 @CrossOrigin(origins = "*")
-@PreAuthorize("hasRole('SUPER_ADMIN')")
 public class DnbMastController {
 	
 	private static final Logger log =
@@ -114,6 +116,23 @@ public class DnbMastController {
         return ResponseEntity.ok(
         		dnbMastService.searchDnb(
                         value));
+    }
+    
+    @PostMapping("/runMonthlyUpdate/{yymm}")
+    public ResponseEntity<?> updateMaster(
+            @PathVariable String yymm) {
+
+        UpdateMasterDto dto =
+                dnbMastService.runMonthlyUpdate(yymm);
+
+        if (dto.getStatusCode() == 0) {
+
+            return ResponseEntity
+                    .badRequest()
+                    .body(dto);
+        }
+
+        return ResponseEntity.ok(dto);
     }
     
  

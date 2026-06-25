@@ -1,6 +1,7 @@
 package com.bsp.dnb.repo;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,8 @@ public interface DnbAdjRepository
     Page<DnbAdj> findByIdYymm(
             Integer yymm,
             Pageable pageable);
+    
+   
     
     @Query("""
             SELECT a

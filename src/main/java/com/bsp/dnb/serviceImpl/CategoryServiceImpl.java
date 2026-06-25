@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.bsp.dnb.dto.CategoryDto;
 import com.bsp.dnb.entity.Category;
+import com.bsp.dnb.entity.CategoryId;
 import com.bsp.dnb.entity.DnbRole;
 import com.bsp.dnb.exception.BadRequestException;
 import com.bsp.dnb.exception.ResourceNotFoundException;
@@ -165,31 +166,29 @@ public class CategoryServiceImpl implements CategoryService {
     private Category dtoToEntity(
             CategoryDto dto) {
 
-        Category category =
-                new Category();
+    	Category category = new Category();
 
-        category.setCatg(
-                dto.getCatg());
+    	CategoryId id = new CategoryId();
+    	id.setCatg(dto.getCatg());
+    	id.setYear(dto.getYear());
 
-        category.setDescription(
-                dto.getDescription()
-                        .trim()
-                        .toUpperCase());
+    	category.setId(id);
 
-        category.setStipend(
-                dto.getStipend());
+    	category.setDescription(
+    	        dto.getDescription()
+    	                .trim()
+    	                .toUpperCase());
 
-        category.setYear(
-                dto.getYear());
+    	category.setStipend(dto.getStipend());
 
-        category.setType(
-                dto.getType() == null
-                        ? null
-                        : dto.getType()
-                                .trim()
-                                .toUpperCase());
+    	category.setType(
+    	        dto.getType() == null
+    	                ? null
+    	                : dto.getType()
+    	                        .trim()
+    	                        .toUpperCase());
 
-        return category;
+    	return category;
     }
     
     @Override
