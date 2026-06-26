@@ -13,7 +13,7 @@ import com.bsp.dnb.service.PayBillService;
 
 @RestController
 @RequestMapping("/api/paybill")
-@PreAuthorize("hasRole('SUPER_ADMIN')")
+@PreAuthorize("hasAuthority('APP_DNB')")
 public class PayBillController {
 	
 	@Autowired

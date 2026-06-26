@@ -32,8 +32,6 @@ function storepaninuppercase() {
                 });
 }
 
- 
-
 function showSessionMessage() {
 
     let successMessage =

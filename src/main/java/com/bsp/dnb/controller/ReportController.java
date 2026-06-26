@@ -22,7 +22,7 @@ import com.bsp.dnb.service.ReportService;
 
 @RestController
 @RequestMapping("/api/reports")
-@PreAuthorize("hasRole('SUPER_ADMIN')")
+@PreAuthorize("hasAuthority('APP_DNB')")
 public class ReportController {
 
     @Autowired

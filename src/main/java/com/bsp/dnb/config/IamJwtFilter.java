@@ -94,12 +94,22 @@ public class IamJwtFilter extends OncePerRequestFilter {
 
             List<String> roles =
                     claims.get("roles", List.class);
-            log.info("Authorities: {}", roles);
+            
+            List<String> appAccess = claims.get("appAccess", List.class);
+
             List<SimpleGrantedAuthority> authorities =
                     roles.stream()
-                         .map(role ->
-                             new SimpleGrantedAuthority("ROLE_" + role))
-                         .toList();
+                            .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                            .collect(Collectors.toList());
+
+            
+            if (appAccess != null) {
+                authorities.addAll(
+                        appAccess.stream()
+                                .map(app -> new SimpleGrantedAuthority("APP_" + app))
+                                .toList()
+                );
+            }
             log.info("Authenticated user: {}", username);
             log.info("Authorities: {}", authorities);
             UsernamePasswordAuthenticationToken auth =

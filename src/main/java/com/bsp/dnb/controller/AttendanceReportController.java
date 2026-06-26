@@ -26,7 +26,7 @@ import com.bsp.dnb.service.AttendanceReportService;
 @RestController
 @RequestMapping("/api/attendance-report")
 @CrossOrigin(origins = "*")
-@PreAuthorize("hasRole('SUPER_ADMIN')")
+@PreAuthorize("hasAuthority('APP_DNB')")
 public class AttendanceReportController {
 
     private static final Logger log =

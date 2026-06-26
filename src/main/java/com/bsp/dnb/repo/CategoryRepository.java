@@ -8,10 +8,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.bsp.dnb.entity.Category;
+import com.bsp.dnb.entity.CategoryId;
 
 @Repository
 public interface CategoryRepository
-        extends JpaRepository<Category, Integer> {
+        extends JpaRepository<Category, CategoryId> {
 	
 	@Query(value = """
 		       SELECT c.*

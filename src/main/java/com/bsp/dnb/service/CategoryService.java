@@ -9,9 +9,7 @@ public interface CategoryService {
 
     CategoryDto saveCategory(CategoryDto categoryDto);
 
-    CategoryDto updateCategory(CategoryDto categoryDto);
-
-    CategoryDto getCategoryById(Integer catg);
+ 
 
     List<CategoryDto> getAllCategories();
     

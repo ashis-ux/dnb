@@ -1,7 +1,7 @@
- 
+
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
+    function() {
 
         console.log(
             "DNB Home Screen Loaded");
@@ -9,7 +9,116 @@ document.addEventListener(
         initializeMenu();
 
         initializeExit();
+
+        loadStipendMenu();
+		
+		loadResetMenu();
     });
+
+
+
+function loadStipendMenu() {
+
+    fetch("/api/stipend/access")
+
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error("Unable to load access.");
+            }
+
+            return response.json();
+        })
+
+        .then(data => {
+
+            const desktopMenu =
+                document.getElementById("desktopStipendMenu");
+
+            const mobileMenu =
+                document.getElementById("mobileStipendMenu");
+
+            if (data.authorized) {
+
+                if (desktopMenu) {
+                    desktopMenu.style.display = "block";
+                }
+
+                if (mobileMenu) {
+                    mobileMenu.style.display = "block";
+                }
+
+            } else {
+
+                if (desktopMenu) {
+                    desktopMenu.style.display = "none";
+                }
+
+                if (mobileMenu) {
+                    mobileMenu.style.display = "none";
+                }
+            }
+        })
+
+        .catch(error => {
+
+            console.error(error);
+        });
+}
+
+
+function loadResetMenu() {
+
+    fetch("/api/reset-pay/status")
+
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error("Unable to load access.");
+            }
+
+            return response.json();
+        })
+
+        .then(data => {
+
+            const desktopMenu =
+                document.getElementById("desktopResetMenu");
+
+            const mobileMenu =
+                document.getElementById("mobileStipendMenu");
+
+            if (data.authorized) {
+
+                if (desktopMenu) {
+                    desktopMenu.style.display = "block";
+                }
+
+                if (mobileMenu) {
+                    mobileMenu.style.display = "block";
+                }
+
+            } else {
+
+                if (desktopMenu) {
+                    desktopMenu.style.display = "none";
+                }
+
+                if (mobileMenu) {
+                    mobileMenu.style.display = "none";
+                }
+            }
+        })
+
+        .catch(error => {
+
+            console.error(error);
+        });
+}
+
+
 
 function initializeMenu() {
 
@@ -21,7 +130,7 @@ function initializeMenu() {
 
         link.addEventListener(
             "click",
-            function () {
+            function() {
 
                 console.log(
                     this.innerText.trim()
@@ -40,7 +149,7 @@ function initializeExit() {
 
         exitButton.addEventListener(
             "click",
-            function (event) {
+            function(event) {
 
                 event.preventDefault();
 
@@ -57,4 +166,4 @@ function initializeExit() {
             });
     }
 }
- 
+

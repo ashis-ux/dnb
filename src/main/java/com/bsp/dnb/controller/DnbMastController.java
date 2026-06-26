@@ -24,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/dnb")
 @Slf4j
 @CrossOrigin(origins = "*")
+@PreAuthorize("hasAuthority('APP_DNB')")
 public class DnbMastController {
 	
 	private static final Logger log =

@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/dnb-att")
 @CrossOrigin(origins = "*")
 @Slf4j
-@PreAuthorize("hasRole('SUPER_ADMIN')")
+@PreAuthorize("hasAuthority('APP_DNB')")
 public class DnbAttController {
 	
 	private static final Logger log =

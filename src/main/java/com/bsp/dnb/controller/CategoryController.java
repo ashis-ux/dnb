@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api/categories")
 @Slf4j
-@PreAuthorize("hasRole('SUPER_ADMIN')")
+@PreAuthorize("hasAuthority('APP_DNB')")
 public class CategoryController {
 	
 	private static final Logger log =
@@ -38,35 +38,6 @@ public class CategoryController {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(response);
-    }
-
-    @PutMapping("/{catg}")
-    public ResponseEntity<CategoryDto> updateCategory(
-            @PathVariable Integer catg,
-            @RequestBody CategoryDto dto) {
-
-        log.info("Received request to update category : {}",
-                catg);
-
-        dto.setCatg(catg);
-
-        CategoryDto response =
-                categoryService.updateCategory(dto);
-
-        return ResponseEntity.ok(response);
-    }
-
-    @GetMapping("/{catg}")
-    public ResponseEntity<CategoryDto> getCategoryById(
-            @PathVariable Integer catg) {
-
-        log.info("Received request to fetch category : {}",
-                catg);
-
-        CategoryDto response =
-                categoryService.getCategoryById(catg);
-
-        return ResponseEntity.ok(response);
     }
 
     @GetMapping

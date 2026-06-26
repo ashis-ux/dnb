@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bsp.dnb.dto.PayslipSearchDto;
 import com.bsp.dnb.entity.DnbAtt;
@@ -26,6 +28,16 @@ public interface DnbPbillRepository
 	  Page<DnbPbill> findByIdYymm(
 	            Integer yymm,
 	            Pageable pageable);
+	  
+	  @Modifying
+	  @Transactional
+	  @Query(
+	          value =
+	          "DELETE FROM DNBPBILL WHERE YYMM=:yymm",
+	          nativeQuery = true)
+	  void deleteByYymm(
+	          @Param("yymm")
+	          Integer yymm);
 	  
 	   
 	  Optional<DnbPbill> findByIdYymmAndIdId(
@@ -97,6 +109,12 @@ public interface DnbPbillRepository
 			          List<Integer> categories,
 
 			          Pageable pageable);
+	  
+	  @Query("""
+	            SELECT MAX(p.id.yymm)
+	            FROM DnbPbill p
+	            """)
+	    Integer findMaxYymm();
 
 	    
 

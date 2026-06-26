@@ -142,9 +142,27 @@
 								<div class="accordion-body">
 
 
-									<a href="#" class="menu-link">
+									<a href="/stipend-process" class="menu-link" id="desktopStipendMenu"
+										style="display:none;">
 
 										Stipend Processing
+
+									</a>
+
+								</div>
+
+							</div>
+
+							<div id="mobileProcessingMenu" class="accordion-collapse collapse"
+								data-bs-parent="#sidebarAccordion">
+
+								<div class="accordion-body">
+
+
+									<a href="/reset-pay-data" class="menu-link" id="desktopResetMenu"
+										style="display:block;">
+
+										Reset Pay Data
 
 									</a>
 
@@ -431,7 +449,7 @@
 					<h2 class="accordion-header">
 
 						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-							data-bs-target="#processingMenu">
+							data-bs-target="#mobileProcessingMenu">
 
 							<i class="bi bi-gear-fill me-2"></i>
 
@@ -441,13 +459,46 @@
 
 					</h2>
 
-					<div id="processingMenu" class="accordion-collapse collapse" data-bs-parent="#mobileAccordion">
+					<div id="mobileProcessingMenu" class="accordion-collapse collapse"
+						data-bs-parent="#sidebarAccordion">
 
 						<div class="accordion-body">
 
-							<a href="#" class="menu-link">
+
+							<a href="/stipend-process" class="menu-link" id="mobileStipendMenu" style="display:none;">
 
 								Stipend Processing
+
+							</a>
+						</div>
+
+					</div>
+
+					<div id="mobileProcessingMenu" class="accordion-collapse collapse"
+						data-bs-parent="#sidebarAccordion">
+
+						<div class="accordion-body">
+
+
+							<a href="/update-master" class="menu-link">
+
+								Update Master
+
+							</a>
+
+						</div>
+
+					</div>
+
+					<div id="mobileProcessingMenu" class="accordion-collapse collapse"
+						data-bs-parent="#sidebarAccordion">
+
+						<div class="accordion-body">
+
+
+							<a href="/payslip-report" class="menu-link">
+
+								Print Payslip
 
 							</a>
 

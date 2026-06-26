@@ -52,40 +52,9 @@ public class CategoryServiceImpl implements CategoryService {
 	    return entityToDto(savedCategory);
 	}
 
-	@Override
-	public CategoryDto updateCategory(CategoryDto categoryDto) {
-	    log.info("Updating category with CATG : {}",
-	            categoryDto.getCatg());
-	    if (categoryDto.getCatg() == null) {
-	        throw new BadRequestException(
-	                "Category is mandatory");
-	    }
+	 
 
-	    categoryRepository.findById(categoryDto.getCatg())
-	            .orElseThrow(() ->
-	                    new ResourceNotFoundException(
-	                            "Category not found with CATG : "
-	                                    + categoryDto.getCatg()));
-	    validateRequest(categoryDto);
-	    Category updatedCategory =
-	            categoryRepository.save(
-	                    dtoToEntity(categoryDto));
-	    log.info("Category updated successfully");
-	    return entityToDto(updatedCategory);
-	}
-
-	@Override
-	public CategoryDto getCategoryById(Integer catg) {
-	    log.info("Fetching category with CATG : {}",
-	            catg);
-	    Category category =
-	            categoryRepository.findById(catg)
-	                    .orElseThrow(() ->
-	                            new ResourceNotFoundException(
-	                                    "Category not found with CATG : "
-	                                            + catg));
-	    return entityToDto(category);
-	}
+	 
 	
 	@Override
 	public List<CategoryDto> getAllCategories() {

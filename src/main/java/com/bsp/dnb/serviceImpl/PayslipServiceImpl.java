@@ -12,6 +12,7 @@ import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.*;
+import com.lowagie.text.pdf.draw.LineSeparator;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -182,235 +183,240 @@ public class PayslipServiceImpl implements PayslipService {
 
 	private byte[] buildPdf(PayslipDto dto) throws Exception {
 
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		Document document = new Document(PageSize.A4, 40, 40, 40, 40);
-		PdfWriter writer = PdfWriter.getInstance(document, baos);
-		document.open();
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	    Document document = new Document(PageSize.A4, 40, 40, 40, 40);
+	    PdfWriter writer = PdfWriter.getInstance(document, baos);
+	    document.open();
 
-		// ── 1. Header ────────────────────────────────────────────────────
-		addHeader(document);
+	    // ── 1. Header ────────────────────────────────────────────────────
+	    addHeader(document);
 
-		// ── 2. Horizontal rule ───────────────────────────────────────────
-		addHRule(document);
+	    // ── 2. Employee info block (boxed) ───────────────────────────────
+	    addEmployeeInfo(document, dto);
 
-		// ── 3. Employee info block ───────────────────────────────────────
-		addEmployeeInfo(document, dto);
+	    // ── 3. Blank spacer ──────────────────────────────────────────────
+	    document.add(new Paragraph(" "));
 
-		// ── 4. Blank spacer ──────────────────────────────────────────────
-		document.add(new Paragraph(" "));
+	    // ── 4. Earnings / Deductions table (boxed) ───────────────────────
+	    addEarningsSection(document, dto);
 
-		// ── 5. Earnings / Deductions table header ────────────────────────
-		addEarningsSection(document, dto);
+	    // ── 5. Totals section (boxed) ────────────────────────────────────
+	    document.add(new Paragraph(" "));
+	    addTotalsSection(document, dto);
 
-		// ── 6. Horizontal rule ───────────────────────────────────────────
-		document.add(new Paragraph(" "));
-		addHRule(document);
-		document.add(new Paragraph(" "));
+	    // ── 6. Cumulative section ────────────────────────────────────────
+	    document.add(new Paragraph(" "));
+	    addCumulativeSection(document, dto);
 
-		// ── 7. Cumulative section ────────────────────────────────────────
-		addCumulativeSection(document, dto);
-		
-		addTuitionMessage(document);
+	    addTuitionMessage(document);
+	    
+	    onEndPage(writer,document);
 
-//		// ── 8. Optional tuition message ──────────────────────────────────
-//		if (dto.isShowTuitionMessage()) {
-//			addTuitionMessage(document);
-//		}
-
-		document.close();
-		return baos.toByteArray();
+	    document.close();
+	    return baos.toByteArray();
 	}
 
 	/* ── Section helpers ─────────────────────────────────────────────── */
 
 	/**
-	 * Centred three-line header with SAIL logo placeholder. Screenshot shows: JLN
-	 * Hospital... / SAIL-Bhilai Steel Plant / Stipend Statement
+	 * Centred header with SAIL logo and title inside a bordered box.
 	 */
 	private void addHeader(Document document) throws Exception {
 
-		// Logo + text side by side
-		PdfPTable headerTable = new PdfPTable(new float[] { 1, 5 });
-		headerTable.setWidthPercentage(85);
-		headerTable.setSpacingAfter(4);
+	    // Outer table with border
+	    PdfPTable outerTable = new PdfPTable(1);
+	    outerTable.setWidthPercentage(100);
+	    outerTable.setSpacingAfter(10);
 
-		// Logo cell (placeholder box)
-		Image logo = Image.getInstance(
-		        getClass().getResource("/static/images/sail-logo.png"));
+	    // Inner content table (logo + text)
+	    PdfPTable headerTable = new PdfPTable(new float[]{1, 5});
+	    headerTable.setWidthPercentage(100);
 
-		logo.scaleToFit(50, 50);
+	    // Logo cell
+	    Image logo = Image.getInstance(
+	            getClass().getResource("/static/images/sail-logo.png"));
+	    logo.scaleToFit(50, 50);
 
-		PdfPCell logoCell = new PdfPCell(logo, false);
-		logoCell.setBorder(Rectangle.NO_BORDER);
-		logoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		logoCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+	    PdfPCell logoCell = new PdfPCell(logo, false);
+	    logoCell.setBorder(Rectangle.NO_BORDER);
+	    logoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	    logoCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+	    logoCell.setPadding(5);
+	    headerTable.addCell(logoCell);
 
-		headerTable.addCell(logoCell);
+	    // Title cell
+	    PdfPCell titleCell = new PdfPCell();
+	    titleCell.setBorder(Rectangle.NO_BORDER);
+	    titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	    titleCell.setPadding(5);
 
-		// Title cell
-		PdfPCell titleCell = new PdfPCell();
-		titleCell.setBorder(Rectangle.NO_BORDER);
-		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	    Paragraph h1 = new Paragraph("JLN Hospital and Research Center, Bhilai", FONT_HEADER_BOLD);
+	    h1.setAlignment(Element.ALIGN_CENTER);
+	    h1.setIndentationLeft(-50f);
+	    titleCell.addElement(h1);
 
-		Paragraph h1 = new Paragraph("JLN Hospital and Research Center, Bhilai", FONT_HEADER_BOLD);
-		h1.setAlignment(Element.ALIGN_CENTER);
-		titleCell.addElement(h1);
+	    Paragraph h2 = new Paragraph("SAIL-Bhilai Steel Plant", FONT_TITLE);
+	    h2.setAlignment(Element.ALIGN_CENTER);
+	    h2.setIndentationLeft(-50f);
+	    titleCell.addElement(h2);
 
-		Paragraph h2 = new Paragraph("SAIL-Bhilai Steel Plant", FONT_TITLE);
-		h2.setAlignment(Element.ALIGN_CENTER);
-		titleCell.addElement(h2);
+	    Paragraph h3 = new Paragraph("Stipend Statement", FONT_TITLE);
+	    h3.setAlignment(Element.ALIGN_CENTER);
+	    h3.setIndentationLeft(-50f);
+	    titleCell.addElement(h3);
 
-		Paragraph h3 = new Paragraph("Stipend Statement", FONT_TITLE);
-		h3.setAlignment(Element.ALIGN_CENTER);
-		titleCell.addElement(h3);
+	    headerTable.addCell(titleCell);
 
-		headerTable.addCell(titleCell);
-		document.add(headerTable);
+	    // Wrap in bordered cell
+	    PdfPCell wrapperCell = new PdfPCell(headerTable);
+	    wrapperCell.setBorder(Rectangle.BOX);
+	    wrapperCell.setBorderWidth(1f);
+	    wrapperCell.setPadding(10);
+	    outerTable.addCell(wrapperCell);
+
+	    document.add(outerTable);
 	}
 
 	/**
-	 * Full-width horizontal rule (mimics the ___ line in the SQL output).
+	 * Employee information block with all fields in bordered boxes.
 	 */
-	private void addHRule(Document document) throws Exception {
-		PdfPTable rule = new PdfPTable(1);
-		rule.setWidthPercentage(100);
-		PdfPCell cell = new PdfPCell(new Phrase(""));
-		cell.setBorderWidthTop(0.5f);
-		cell.setBorderWidthBottom(0);
-		cell.setBorderWidthLeft(0);
-		cell.setBorderWidthRight(0);
-		cell.setPaddingBottom(2);
-		rule.addCell(cell);
-		document.add(rule);
+	private void addEmployeeInfo(Document document, PayslipDto dto) throws Exception {
+
+	    PdfPTable t = new PdfPTable(new float[]{2f, 4f, 2f, 4f});
+	    t.setWidthPercentage(100);
+	    t.setSpacingAfter(5);
+
+	    // Row 1
+	    addBoxedPair(t, "Name", dto.getName(), "UID", String.valueOf(dto.getId()));
+
+	    // Row 2
+	    addBoxedPair(t, "Post", dto.getCatgDesc(), "Mnth / Yr", dto.getMthYr());
+
+	    // Row 3
+	    addBoxedPair(t, "DOJ", dto.getDoj(), "DOS", dto.getDos());
+
+	    // Row 4
+	    addBoxedPair(t, "Pan", dto.getPan(), "Bank Cd/Ac No", dto.getBankCd() + " / " + dto.getBankAcno());
+
+	    // Row 5
+	    addBoxedPair(t, "Stipend Rate", fmt(dto.getStipendRate()), "Daily Rate", fmt(dto.getDailyRate()));
+
+	    // Row 6
+	    addBoxedPair(t, "Attendance", String.valueOf(dto.getDuty()), "", "");
+
+	    document.add(t);
+	}
+
+	private void addBoxedPair(PdfPTable t, String l1, String v1, String l2, String v2) {
+	    t.addCell(cellBoxedLabel(l1));
+	    t.addCell(cellBoxedValue(v1));
+	    t.addCell(cellBoxedLabel(l2));
+	    t.addCell(cellBoxedValue(v2));
+	}
+
+	private PdfPCell cellBoxedLabel(String text) {
+	    PdfPCell c = new PdfPCell(new Phrase(text, FONT_HEADER_BOLD));
+	    c.setBorder(Rectangle.BOX);
+	    c.setBorderWidth(0.5f);
+	    c.setPadding(5);
+//	    c.setBackgroundColor(new BaseColor(240, 240, 240)); // Light gray background
+	    c.setVerticalAlignment(Element.ALIGN_MIDDLE);
+	    return c;
+	}
+
+	private PdfPCell cellBoxedValue(String text) {
+	    PdfPCell c = new PdfPCell(new Phrase(text != null ? text : "", FONT_NORMAL));
+	    c.setBorder(Rectangle.BOX);
+	    c.setBorderWidth(0.5f);
+	    c.setPadding(5);
+	    c.setVerticalAlignment(Element.ALIGN_MIDDLE);
+	    return c;
 	}
 
 	/**
-	 * Employee information block. Matches lines 10, 10a, 10b, 10c from the SQL.
-	 *
-	 * line10 : Name | UID | Mth/Yr line10a : Post | DOJ | DOS line10b : PAN | Bank
-	 * Cd/Acno line10c : Stipend Rate | Daily Rate | Attendance
+	 * Earnings section with bordered table.
 	 */
-		private void addEmployeeInfo(Document document, PayslipDto dto) throws Exception {
+	private void addEarningsSection(Document document, PayslipDto dto) throws Exception {
 
-		    PdfPTable t = new PdfPTable(new float[]{2f, 4f, 2f, 4f});
-		    t.setWidthPercentage(100);
+	    PdfPTable t = new PdfPTable(3);
+	    t.setWidthPercentage(100);
+	    t.setWidths(new float[]{1, 1, 1});
 
-		    // Row 1
-		    addPair(t,
-		            "Name :", dto.getName(),
-		            "UID :", String.valueOf(dto.getId()));
+	    // Header row
+	    addBoxedHeaderCell(t, "Stipend");
+	    addBoxedHeaderCell(t, "Adjustment");
+	    addBoxedHeaderCell(t, "TDS");
 
-		    // Row 2
-		    addPair(t,
-		            "Post :", dto.getCatgDesc(),
-		            "Mnth / Yr :", dto.getMthYr());
+	    // Values row
+	    addBoxedDataCell(t, fmt(dto.getStipend()));
+	    addBoxedDataCell(t, fmt(dto.getAdj()));
+	    addBoxedDataCell(t, fmt(dto.getTds()));
 
-		    // Row 3
-		    addPair(t,
-		            "DOJ :", dto.getDoj(),
-		            "DOS :", dto.getDos());
+	    document.add(t);
+	}
 
-		    // Row 4
-		    addPair(t,
-		            "Pan :", dto.getPan(),
-		            "Bank Cd/Ac No :", dto.getBankCd() + " / " + dto.getBankAcno());
+	private void addBoxedHeaderCell(PdfPTable t, String text) {
+	    PdfPCell c = new PdfPCell(new Phrase(text, FONT_LABEL));
+	    c.setBorder(Rectangle.BOX);
+	    c.setBorderWidth(0.5f);
+	    c.setPadding(8);
+	    c.setHorizontalAlignment(Element.ALIGN_CENTER);
+//	    c.setBackgroundColor(new BaseColor(220, 220, 220)); // Darker gray for headers
+	    t.addCell(c);
+	}
 
-		    // Row 5
-		    addPair(t,
-		            "Stipend Rate :", fmt(dto.getStipendRate()),
-		            "Daily Rate :", fmt(dto.getDailyRate()));
-
-		    // Row 6 (last single values → span properly)
-		    t.addCell(cellLabel("Attendance :"));
-		    t.addCell(cellValue(String.valueOf(dto.getDuty())));
-		    t.addCell(cellEmpty());
-		    t.addCell(cellEmpty());
-
-		    document.add(t);
-		}
-		
-		private void addPair(PdfPTable t, String l1, String v1, String l2, String v2) {
-
-		    t.addCell(cellLabel(l1));
-		    t.addCell(cellValue(v1));
-
-		    t.addCell(cellLabel(l2));
-		    t.addCell(cellValue(v2));
-		}
-		
-		private PdfPCell cellLabel(String text) {
-		    PdfPCell c = new PdfPCell(new Phrase(text, FONT_HEADER_BOLD));
-		    c.setBorder(Rectangle.NO_BORDER);
-		    c.setNoWrap(true);
-		    return c;
-		}
-
-		private PdfPCell cellValue(String text) {
-		    PdfPCell c = new PdfPCell(new Phrase(text, FONT_NORMAL));
-		    c.setBorder(Rectangle.NO_BORDER);
-		    return c;
-		}
-
-		private PdfPCell cellEmpty() {
-		    PdfPCell c = new PdfPCell(new Phrase(""));
-		    c.setBorder(Rectangle.NO_BORDER);
-		    return c;
-		}
+	private void addBoxedDataCell(PdfPTable t, String text) {
+	    PdfPCell c = new PdfPCell(new Phrase(text != null ? text : "0", FONT_NORMAL));
+	    c.setBorder(Rectangle.BOX);
+	    c.setBorderWidth(0.5f);
+	    c.setPadding(8);
+	    c.setHorizontalAlignment(Element.ALIGN_CENTER);
+	    t.addCell(c);
+	}
 
 	/**
-	 * Earnings section. Matches lines 13-20 from the SQL:
-	 *
-	 * Stipend | Adjustment | TDS Gross Pay value | value | value value Net Pay
-	 * value
+	 * Totals section (Gross Pay / Net Pay) with bordered boxes.
 	 */
-		private void addEarningsSection(Document document, PayslipDto dto) throws Exception {
+	private void addTotalsSection(Document document, PayslipDto dto) throws Exception {
 
-			PdfPTable t = new PdfPTable(new float[] { 2, 4, 2, 4 });
-		    t.setWidthPercentage(100);
+	    PdfPTable t = new PdfPTable(new float[]{3, 1});
+	    t.setWidthPercentage(100);
 
-		    // Header
-		    addCellNoRule(t, "Stipend", FONT_LABEL, Element.ALIGN_LEFT);
-		    addCellNoRule(t, "Adjustment", FONT_LABEL, Element.ALIGN_LEFT);
-		    addCellNoRule(t, "TDS", FONT_LABEL, Element.ALIGN_LEFT);
-		    addCellNoRule(t, "", FONT_LABEL, Element.ALIGN_RIGHT);
+	    // Gross Pay row
+	    PdfPCell gpLabel = new PdfPCell(new Phrase("Gross Pay", FONT_LABEL));
+	    gpLabel.setBorder(Rectangle.BOX);
+	    gpLabel.setBorderWidth(0.5f);
+	    gpLabel.setPadding(8);
+	    gpLabel.setHorizontalAlignment(Element.ALIGN_RIGHT);
+//	    gpLabel.setBackgroundColor(new BaseColor(240, 240, 240));
+	    t.addCell(gpLabel);
 
-		    // Values
-		    addCellNoRule(t, fmt(dto.getStipend()), FONT_NORMAL, Element.ALIGN_LEFT);
-		    addCellNoRule(t, fmt(dto.getAdj()), FONT_NORMAL, Element.ALIGN_LEFT);
-		    addCellNoRule(t, fmt(dto.getTds()), FONT_NORMAL, Element.ALIGN_LEFT);
-		    addCellNoRule(t, "", FONT_VALUE, Element.ALIGN_RIGHT);
+	    PdfPCell gpValue = new PdfPCell(new Phrase(fmt(dto.getGrossPay()), FONT_NORMAL));
+	    gpValue.setBorder(Rectangle.BOX);
+	    gpValue.setBorderWidth(0.5f);
+	    gpValue.setPadding(8);
+	    gpValue.setHorizontalAlignment(Element.ALIGN_CENTER);
+	    t.addCell(gpValue);
 
-		    // GAP (IMPORTANT: use spacing instead of fake rows)
-		    t.setSpacingAfter(10f);
+	    // Net Pay row
+	    PdfPCell npLabel = new PdfPCell(new Phrase("Net Pay", FONT_HEADER_BOLD));
+	    npLabel.setBorder(Rectangle.BOX);
+	    npLabel.setBorderWidth(0.5f);
+	    npLabel.setPadding(8);
+	    npLabel.setHorizontalAlignment(Element.ALIGN_RIGHT);
+//	    npLabel.setBackgroundColor(new BaseColor(200, 230, 200)); // Light green for emphasis
+	    t.addCell(npLabel);
 
-		    // Gross Pay row (clean alignment)
-		    PdfPCell gpLabel = new PdfPCell(new Phrase("Gross Pay", FONT_LABEL));
-		    gpLabel.setBorder(Rectangle.NO_BORDER);
-		    gpLabel.setHorizontalAlignment(Element.ALIGN_RIGHT);
-		    gpLabel.setColspan(3);
+	    PdfPCell npValue = new PdfPCell(new Phrase(fmt(dto.getNetPay()), FONT_HEADER_BOLD));
+	    npValue.setBorder(Rectangle.BOX);
+	    npValue.setBorderWidth(0.5f);
+	    npValue.setPadding(8);
+	    npValue.setHorizontalAlignment(Element.ALIGN_CENTER);
+//	    npValue.setBackgroundColor(new BaseColor(200, 230, 200)); // Light green for emphasis
+	    t.addCell(npValue);
 
-		    PdfPCell gpValue = new PdfPCell(new Phrase(fmt(dto.getGrossPay()), FONT_NORMAL));
-		    gpValue.setBorder(Rectangle.NO_BORDER);
-		    gpValue.setHorizontalAlignment(Element.ALIGN_LEFT);
-
-		    t.addCell(gpLabel);
-		    t.addCell(gpValue);
-
-		    // Net Pay row
-		    PdfPCell npLabel = new PdfPCell(new Phrase("Net Pay", FONT_LABEL));
-		    npLabel.setBorder(Rectangle.NO_BORDER);
-		    npLabel.setHorizontalAlignment(Element.ALIGN_RIGHT);
-		    npLabel.setColspan(3);
-
-		    PdfPCell npValue = new PdfPCell(new Phrase(fmt(dto.getNetPay()), FONT_NORMAL));
-		    npValue.setBorder(Rectangle.NO_BORDER);
-		    npValue.setHorizontalAlignment(Element.ALIGN_LEFT);
-
-		    t.addCell(npLabel);
-		    t.addCell(npValue);
-
-		    document.add(t);
-		}
+	    document.add(t);
+	}
 
 	/**
 	 * Cumulative section. Matches lines 27-28 from the SQL:
@@ -419,19 +425,31 @@ public class PayslipServiceImpl implements PayslipService {
 	 */
 	private void addCumulativeSection(Document document, PayslipDto dto) throws Exception {
 
-		PdfPTable t = noRuleTable(3);
+	    log.info("Adding cumulative section for employee id={}, CumGross={}, CumTax={}, CumSavings={}",
+	            dto.getId(),
+	            dto.getCumGross(),
+	            dto.getCumTax(),
+	            dto.getCumSavings());
 
-		// Headers (line27)
-		addCellNoRule(t, "Cum.Gross", FONT_LABEL, Element.ALIGN_LEFT);
-		addCellNoRule(t, "Cum.Tax", FONT_LABEL, Element.ALIGN_LEFT);
-		addCellNoRule(t, "Savings", FONT_LABEL, Element.ALIGN_LEFT);
+	    // Horizontal line above cumulative section
+	    LineSeparator line = new LineSeparator();
+	    line.setLineWidth(1f);
+	    document.add(new Chunk(line));
+	    document.add(new Paragraph(" "));
 
-		// Values (line28)
-		addCellNoRule(t, fmt(dto.getCumGross()), FONT_NORMAL, Element.ALIGN_LEFT);
-		addCellNoRule(t, fmt(dto.getCumTax()), FONT_NORMAL, Element.ALIGN_LEFT);
-		addCellNoRule(t, fmt(dto.getCumSavings()), FONT_NORMAL, Element.ALIGN_LEFT);
+	    PdfPTable t = noRuleTable(3);
 
-		document.add(t);
+	    // Headers
+	    addCellNoRule(t, "Cum.Gross", FONT_LABEL, Element.ALIGN_LEFT);
+	    addCellNoRule(t, "Cum.Tax", FONT_LABEL, Element.ALIGN_LEFT);
+	    addCellNoRule(t, "Savings", FONT_LABEL, Element.ALIGN_LEFT);
+
+	    // Values
+	    addCellNoRule(t, fmt(dto.getCumGross()), FONT_NORMAL, Element.ALIGN_LEFT);
+	    addCellNoRule(t, fmt(dto.getCumTax()), FONT_NORMAL, Element.ALIGN_LEFT);
+	    addCellNoRule(t, fmt(dto.getCumSavings()), FONT_NORMAL, Element.ALIGN_LEFT);
+
+	    document.add(t);
 	}
 
 	/**
@@ -477,6 +495,41 @@ public class PayslipServiceImpl implements PayslipService {
 		cell.setPaddingBottom(3);
 		t.addCell(cell);
 	}
+	
+	 
+
+	   
+	    public void onEndPage(PdfWriter writer, Document document) {
+
+	        PdfPTable footer = new PdfPTable(1);
+	        try {
+	            footer.setTotalWidth(520);
+	            footer.setLockedWidth(true);
+
+	            PdfPCell cell = new PdfPCell(
+	                    new Phrase(
+	                            "This is a computer-generated payslip and does not require a signature.",
+	                            FontFactory.getFont(FontFactory.HELVETICA, 8, Font.ITALIC)));
+
+	            cell.setBorder(Rectangle.TOP);
+	            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	            cell.setPaddingTop(5f);
+	            cell.setBorderWidthTop(0.5f);
+
+	            footer.addCell(cell);
+
+	            footer.writeSelectedRows(
+	                    0,
+	                    -1,
+	                    document.leftMargin(),
+	                    document.bottomMargin() - 10,
+	                    writer.getDirectContent());
+
+	        } catch (Exception e) {
+	            throw new ExceptionConverter(e);
+	        }
+	    }
+	
 
 	/*
 	 * ═══════════════════════════════════════════════════════════════════ UTILITY

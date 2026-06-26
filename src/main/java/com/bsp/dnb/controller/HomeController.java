@@ -63,5 +63,17 @@ public class HomeController {
 
 		return "payslip-report";
 	}
+	
+	@GetMapping("/stipend-process")
+	public String stipend_process() {
+
+		return "stipend-process";
+	}
+	
+	@GetMapping("/reset-pay-data")
+	public String reset_pay_data() {
+
+		return "reset-pay-data";
+	}
 
 }

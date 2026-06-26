@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Reset Pay Data</title>
+
+    <link rel="stylesheet"
+          href="/bootstrap/bootstrap.min.css">
+
+    <link rel="stylesheet"
+          href="/css/bootstrap-icons.min.css">
+
+    <link rel="stylesheet"
+          href="/css/header.css">
+
+    <link rel="stylesheet"
+          href="/css/reset-pay-data.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: header}">
+</div>
+
+<div id="successPopup"
+     class="alert alert-success"
+     style="display:none;">
+</div>
+
+<div id="errorPopup"
+     class="alert alert-danger"
+     style="display:none;">
+</div>
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header form-header">
+
+            <h5 class="mb-0">
+
+                Reset Pay Data
+
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row mb-4">
+
+                <label class="col-md-3 col-form-label">
+
+                    Previous Month YYMM
+
+                    <span class="required">*</span>
+
+                </label>
+
+                <div class="col-md-4">
+
+                    <input type="text"
+                           id="yymm"
+                           class="form-control"
+                           readonly>
+
+                </div>
+
+            </div>
+
+            <div class="text-center">
+
+                <button id="btnReset"
+                        class="btn btn-danger">
+
+                    <i class="bi bi-arrow-clockwise"></i>
+
+                    Reset
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card-footer text-center">
+
+            Developed & Maintained by C&IT, BSP
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Reset Confirmation Modal -->
+<div class="modal fade"
+     id="resetConfirmModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header bg-danger text-white">
+
+                <h5 class="modal-title">
+
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+
+                    Confirm Reset
+
+                </h5>
+
+                <button type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p class="mb-0">
+
+                    Are you sure you want to reset pay data?
+
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button type="button"
+                        class="btn btn-danger"
+                        id="confirmResetBtn">
+
+                    <i class="bi bi-arrow-clockwise"></i>
+
+                    Reset
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/bootstrap/bootstrap.bundle.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="/js/reset-pay-data.js"></script>
+
+</body>
+
+</html>

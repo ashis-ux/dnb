@@ -4,25 +4,26 @@
 
 <head>
 
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Paybill Report</title>
+	<title>Paybill Report</title>
 
-<!-- Bootstrap -->
-<link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
 
-	  <!-- Custom CSS -->
-	  	  <link rel="stylesheet"
-	  	        href="/css/bootstrap-icons.min.css">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="/css/bootstrap-icons.min.css">
 
-<link rel="stylesheet"
-      href="/css/paybill-report.css">
-	  
-	  <link rel="stylesheet"
-	              href="/css/header.css">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="/css/bootstrap-icons.min.css">
+
+	<link rel="stylesheet" href="/css/paybill-report.css">
+
+	<link rel="stylesheet" href="/css/header.css">
+	
+	<script src="/js/header.js"></script>
 
 </head>
 
@@ -31,213 +32,196 @@
 	<div th:replace="fragments/header :: header">
 	</div>
 
-<div class="container-fluid mt-4">
+	<div class="container-fluid mt-4">
 
-    <div id="successPopup"
-         class="alert alert-success"
-         style="display:none;">
-    </div>
+		<div id="successPopup" class="alert alert-success" style="display:none;">
+		</div>
 
-    <div id="errorPopup"
-         class="alert alert-danger"
-         style="display:none;">
-    </div>
+		<div id="errorPopup" class="alert alert-danger" style="display:none;">
+		</div>
 
-    <div class="card shadow">
+		<div class="card shadow">
 
-        <div class="card-header form-header">
+			<div class="card-header form-header">
 
-            <h5 class="mb-0">
+				<h5 class="mb-0">
 
-                Paybill Report
+					Paybill Report
 
-            </h5>
+				</h5>
 
-        </div>
+			</div>
 
-        <div class="card-body">
+			<div class="card-body">
 
-            <div class="row mb-4">
+				<div class="row mb-4">
 
-                <div class="col-md-2">
+					<div class="col-md-2">
 
-                    <label class="form-label">
+						<label class="form-label">
 
-                        Year
+							Year
 
-                        <span class="text-danger">
+							<span class="text-danger">
 
-                            *
+								*
 
-                        </span>
+							</span>
 
-                    </label>
+						</label>
 
-                    <select id="year"
-                            class="form-select">
+						<select id="year" class="form-select">
 
-                        <option value="">
+							<option value="">
 
-                            Select Year
+								Select Year
 
-                        </option>
+							</option>
 
-                    </select>
+						</select>
 
-                </div>
+					</div>
 
-                <div class="col-md-2">
+					<div class="col-md-2">
 
-                    <label class="form-label">
+						<label class="form-label">
 
-                        Month
+							Month
 
-                        <span class="text-danger">
+							<span class="text-danger">
 
-                            *
+								*
 
-                        </span>
+							</span>
 
-                    </label>
+						</label>
 
-                    <select id="month"
-                            class="form-select">
+						<select id="month" class="form-select">
 
-                        <option value="">
+							<option value="">
 
-                            Select Month
+								Select Month
 
-                        </option>
+							</option>
 
-                        <option value="01">January</option>
-                        <option value="02">February</option>
-                        <option value="03">March</option>
-                        <option value="04">April</option>
-                        <option value="05">May</option>
-                        <option value="06">June</option>
-                        <option value="07">July</option>
-                        <option value="08">August</option>
-                        <option value="09">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
+							<option value="01">January</option>
+							<option value="02">February</option>
+							<option value="03">March</option>
+							<option value="04">April</option>
+							<option value="05">May</option>
+							<option value="06">June</option>
+							<option value="07">July</option>
+							<option value="08">August</option>
+							<option value="09">September</option>
+							<option value="10">October</option>
+							<option value="11">November</option>
+							<option value="12">December</option>
 
-                    </select>
+						</select>
 
-                </div>
+					</div>
 
-            </div>
+				</div>
 
-            <div class="row mb-4">
+				<div class="row mb-4">
 
-                <div class="col-md-12 text-center">
+					<div class="col-md-12 text-center">
 
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        id="btnSearch">
+						<button type="button" class="btn btn-primary" id="btnSearch">
 
-                        <i class="bi bi-search"></i>
+							<i class="bi bi-search"></i>
 
-                        View Report
+							View Report
 
-                    </button>
+						</button>
 
-                    <button
-                        type="button"
-                        class="btn btn-success ms-2"
-                        id="btnExport">
+						<button type="button" class="btn btn-success ms-2" id="btnExport">
 
-                        <i class="bi bi-file-earmark-excel"></i>
+							<i class="bi bi-file-earmark-excel"></i>
 
-                        Export Excel
+							Export Excel
 
-                    </button>
+						</button>
 
-                    <button
-                        type="button"
-                        class="btn btn-secondary ms-2"
-                        id="btnClear">
+						<button type="button" class="btn btn-secondary ms-2" id="btnClear">
 
-                        <i class="bi bi-arrow-clockwise"></i>
+							<i class="bi bi-arrow-clockwise"></i>
 
-                        Clear
+							Clear
 
-                    </button>
+						</button>
 
-                </div>
+					</div>
 
-            </div>
+				</div>
 
-            <div class="table-responsive">
+				<div class="table-responsive">
 
-                <table id="reportTable"
-                       class="table table-bordered table-striped table-hover">
+					<table id="reportTable" class="table table-bordered table-striped table-hover">
 
-                    <thead class="table-dark">
+						<thead class="table-dark">
 
-                    <tr>
+							<tr>
 
-                        <th>ID</th>
+								<th>ID</th>
 
-                        <th>Name</th>
+								<th>Name</th>
 
-                        <th>Category</th>
+								<th>Category</th>
 
-                        <th>Category Desc</th>
+								<th>Category Desc</th>
 
-                        <th>YYMM</th>
+								<th>YYMM</th>
 
-                        <th>Stipend</th>
+								<th>Stipend</th>
 
-                        <th>Adjustment</th>
+								<th>Adjustment</th>
 
-                        <th>ITAX</th>
+								<th>ITAX</th>
 
-                        <th>CESS</th>
+								<th>CESS</th>
 
-                        <th>CESS ADDL</th>
+								<th>CESS ADDL</th>
 
-                        <th>Gross Pay</th>
+								<th>Gross Pay</th>
 
-                        <th>Net Pay</th>
+								<th>Net Pay</th>
 
-                        <th>Higher Tax</th>
+								<th>Higher Tax</th>
 
-                    </tr>
+							</tr>
 
-                    </thead>
+						</thead>
 
-                    <tbody id="reportBody">
+						<tbody id="reportBody">
 
-                    </tbody>
+						</tbody>
 
-                </table>
+					</table>
 
-            </div>
+				</div>
 
-            <div id="paginationContainer"
-                 class="mt-3">
+				<div id="paginationContainer" class="mt-3">
 
-            </div>
+				</div>
 
-        </div>
+			</div>
 
-        <div class="card-footer text-center">
+			<div class="card-footer text-center">
 
-            Developed & Maintained by C&IT, BSP
+				Developed & Maintained by C&IT, BSP
 
-        </div>
+			</div>
 
-    </div>
+		</div>
 
-</div>
+	</div>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/bootstrap/bootstrap.bundle.min.js"></script>
 
-<script src="/js/paybill-report.js"></script>
+	<script src="/js/paybill-report.js"></script>
 
 </body>
 

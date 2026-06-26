@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/dnb-pbill")
 @CrossOrigin(origins = "*")
 @Slf4j
-@PreAuthorize("hasRole('SUPER_ADMIN')")
+@PreAuthorize("hasAuthority('APP_DNB')")
 public class DnbPbillController {
 
     private static final Logger log =
