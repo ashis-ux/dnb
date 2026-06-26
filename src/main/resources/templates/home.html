@@ -1,674 +1,287 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNB Management System</title>
 
-	<title>DNB Management System</title>
+    <!-- Context Path for JS -->
+    <script th:inline="javascript">
+        window.contextPath = /*[[@{/}]]*/ '';
+    </script>
 
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
-
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="/css/bootstrap-icons.min.css">
-
-
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="/css/home.css">
-
+	<link rel="stylesheet" th:href="@{/bootstrap/bootstrap.min.css}">
+	   <link rel="stylesheet" th:href="@{/css/header.css}">
+	   <link rel="stylesheet" th:href="@{/css/bootstrap-icons.min.css}">
+	   <link rel="stylesheet" th:href="@{/css/payslip-report.css}">
 </head>
 
 <body>
 
-	<!-- Header -->
+<!-- Header -->
+<nav class="navbar navbar-expand-lg navbar-dark header-navbar d-flex flex-nowrap">
 
-	<nav class="navbar navbar-expand-lg navbar-dark header-navbar d-flex flex-nowrap">
+    <div class="container-fluid p-0 d-flex flex-nowrap align-items-center">
 
-		<div class="container-fluid p-0 d-flex flex-nowrap align-items-center">
+        <!-- Left Side -->
+        <div class="d-flex align-items-center flex-nowrap">
 
-			<!-- Left Side: Trigger + Logo + Brand Text -->
-			<div class="d-flex align-items-center flex-nowrap">
+            <a class="text-white border-0 fs-5 p-1 ms-2 d-md-none"
+               role="button"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#mobileMenu">
 
-				<!-- Anchor tag menu trigger -->
-				<a class="text-white border-0 fs-5 p-1 ms-2 d-md-none" role="button" data-bs-toggle="offcanvas"
-					data-bs-target="#mobileMenu">
+                <i class="bi bi-list"></i>
 
-					<i class="bi bi-list"></i>
+            </a>
 
-				</a>
+            <img th:src="@{/images/sail-logo.png}" alt="SAIL Logo" class="logo ms-2">
 
-				<!-- Logo -->
-				<img src="/images/sail-logo.png" alt="SAIL Logo" class="logo ms-2">
+            <div class="ms-3 text-nowrap">
+                <h5 class="mb-0 text-white">DNB Management System</h5>
+                <small class="text-light">Centralized DNB Processing System</small>
+            </div>
 
-				<!-- Title Group (Added text-nowrap to prevent text wrapping on mobile) -->
-				<div class="ms-3 text-nowrap">
-					<h5 class="mb-0 text-white">DNB Management System</h5>
-					<small class="text-light">Centralized DNB Processing System</small>
-				</div>
+        </div>
 
-			</div>
+        <div class="ms-auto">
 
-			<div class="ms-auto">
+            <ul class="navbar-nav flex-row align-items-center">
 
-				<ul class="navbar-nav flex-row align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/}">
+                        <i class="bi bi-house-fill"></i>
+                        <span class="menu-text ms-1">Home</span>
+                    </a>
+                </li>
 
-					<li class="nav-item">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <i class="bi bi-person-circle"></i>
+                        <span class="menu-text ms-1">User Profile</span>
+                    </a>
+                </li>
 
-						<a class="nav-link text-white" href="/">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span class="menu-text ms-1">Logout</span>
+                    </a>
+                </li>
 
-							<i class="bi bi-house-fill"></i>
+            </ul>
 
-							<span class="menu-text ms-1">
-								Home
-							</span>
+        </div>
 
-						</a>
+    </div>
 
-					</li>
+</nav>
 
-					<li class="nav-item">
+<!-- Body -->
+<div class="container-fluid">
 
-						<a class="nav-link text-white" href="#">
+    <div class="row">
 
-							<i class="bi bi-person-circle"></i>
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 px-0 d-none d-md-block">
 
-							<span class="menu-text ms-1">
-								User Profile
-							</span>
+            <div class="sidebar">
 
-						</a>
+                <div class="accordion" id="sidebarAccordion">
 
-					</li>
+                    <!-- PROCESSING -->
+                    <div class="accordion-item">
 
-					<li class="nav-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#processingMenu">
+                                <i class="bi bi-gear-fill me-2"></i>
+                                PROCESSING
+                            </button>
+                        </h2>
 
-						<a class="nav-link text-white" href="#">
+                        <div id="processingMenu"
+                             class="accordion-collapse collapse"
+                             data-bs-parent="#sidebarAccordion">
 
-							<i class="bi bi-box-arrow-right"></i>
+                            <div class="accordion-body">
+                                <a th:href="@{/stipend-process}" class="menu-link">Stipend Processing</a>
+                                <a th:href="@{/reset-pay-data}" class="menu-link">Reset Pay Data</a>
+                                <a th:href="@{/update-master}" class="menu-link">Update Master</a>
+                                <a th:href="@{/payslip-report}" class="menu-link">Print Payslip</a>
+                            </div>
 
-							<span class="menu-text ms-1">
-								Logout
-							</span>
+                        </div>
 
-						</a>
+                    </div>
 
-					</li>
+                    <!-- MASTER -->
+                    <div class="accordion-item">
+
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#masterMenu">
+                                <i class="bi bi-folder-fill me-2"></i>
+                                MASTER
+                            </button>
+                        </h2>
 
-				</ul>
+                        <div id="masterMenu"
+                             class="accordion-collapse collapse"
+                             data-bs-parent="#sidebarAccordion">
 
-			</div>
+                            <div class="accordion-body">
+                                <a th:href="@{/dnb/create}" class="menu-link">New Entry For DNB</a>
+                                <a th:href="@{/dnb/edit}" class="menu-link">Edit DNB</a>
+                                <a href="#" class="menu-link">Category Master</a>
+                                <a href="#" class="menu-link">Role Master</a>
+                            </div>
 
-	</nav>
+                        </div>
 
-	<!-- Body -->
+                    </div>
 
-	<div class="container-fluid">
+                    <!-- ATT/ADJ -->
+                    <div class="accordion-item">
 
-		<div class="row">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#attAdjMenu">
+                                <i class="bi bi-pencil-square me-2"></i>
+                                ATT/ADJ
+                            </button>
+                        </h2>
 
-			<!-- Sidebar -->
+                        <div id="attAdjMenu"
+                             class="accordion-collapse collapse"
+                             data-bs-parent="#sidebarAccordion">
 
-			<div class="col-md-3 col-lg-2 px-0 d-none d-md-block">
+                            <div class="accordion-body">
+                                <a th:href="@{/attendance}" class="menu-link">Attendance Entry</a>
+                                <a th:href="@{/dnb-adjustment}" class="menu-link">Attendance Adjustment</a>
+                            </div>
 
-				<div class="sidebar">
+                        </div>
 
-					<div class="accordion" id="sidebarAccordion">
+                    </div>
 
-						<!-- PROCESSING -->
+                    <!-- REPORTS -->
+                    <div class="accordion-item">
 
-						<div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#reportMenu">
+                                <i class="bi bi-bar-chart-fill me-2"></i>
+                                REPORTS
+                            </button>
+                        </h2>
 
-							<h2 class="accordion-header">
+                        <div id="reportMenu"
+                             class="accordion-collapse collapse"
+                             data-bs-parent="#sidebarAccordion">
 
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-									data-bs-target="#mobileProcessingMenu">
+                            <div class="accordion-body">
+                                <a th:href="@{/dnb-master-report}" class="menu-link">DNB Masters Report</a>
+                                <a th:href="@{/attendance-report}" class="menu-link">Attendance Report</a>
+                                <a th:href="@{/adjustment-report}" class="menu-link">Adjustment Report</a>
+                                <a th:href="@{/paybill-report}" class="menu-link">Paybill Report</a>
+                            </div>
 
-									<i class="bi bi-gear-fill me-2"></i>
+                        </div>
 
-									PROCESSING
+                    </div>
 
-								</button>
+                    <!-- EXIT -->
+                    <div class="accordion-item">
+                        <button class="btn btn-danger w-100 exit-btn">
+                            <i class="bi bi-box-arrow-right me-2"></i>
+                            EXIT
+                        </button>
+                    </div>
 
-							</h2>
+                </div>
 
-							<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-								data-bs-parent="#sidebarAccordion">
+            </div>
 
-								<div class="accordion-body">
+        </div>
 
+        <!-- Main Content -->
+        <div class="col-md-9 col-lg-10">
 
-									<a href="/stipend-process" class="menu-link" id="desktopStipendMenu"
-										style="display:none;">
+            <div class="content-area">
 
-										Stipend Processing
+                <div class="card shadow">
 
-									</a>
+                    <div class="card-header welcome-header">
+                        Welcome
+                    </div>
 
-								</div>
+                    <div class="card-body text-center">
 
-							</div>
+                        <h3>Welcome to DNB Management System</h3>
 
-							<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-								data-bs-parent="#sidebarAccordion">
+                        <p class="mt-3">
+                            Please select an option from the left menu to continue.
+                        </p>
 
-								<div class="accordion-body">
+                        <hr>
 
+                        <h6>Steel Authority of India Limited</h6>
 
-									<a href="/reset-pay-data" class="menu-link" id="desktopResetMenu"
-										style="display:block;">
+                    </div>
 
-										Reset Pay Data
+                </div>
 
-									</a>
+            </div>
 
-								</div>
+        </div>
 
-							</div>
+    </div>
 
-							<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-								data-bs-parent="#sidebarAccordion">
+</div>
 
-								<div class="accordion-body">
+<!-- Mobile Menu -->
+<div class="offcanvas offcanvas-start"
+     tabindex="-1"
+     id="mobileMenu">
 
+    <div class="offcanvas-header">
 
-									<a href="/update-master" class="menu-link">
+        <img th:src="@{/images/sail-logo.png}" class="logo me-2">
 
-										Update Master
+        <div>
+            <h5 class="mb-0">DNB Management System</h5>
+            <small>Centralized DNB Processing System</small>
+        </div>
 
-									</a>
+        <button type="button"
+                class="btn-close btn-close-white ms-auto"
+                data-bs-dismiss="offcanvas">
+        </button>
 
-								</div>
+    </div>
 
-							</div>
+    <div class="offcanvas-body">
+        <!-- Same structure can be reused if needed -->
+    </div>
 
-							<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-								data-bs-parent="#sidebarAccordion">
+</div>
 
-								<div class="accordion-body">
-
-
-									<a href="/payslip-report" class="menu-link">
-
-										Print Payslip
-
-									</a>
-
-								</div>
-
-							</div>
-
-						</div>
-
-						<!-- MASTER -->
-
-						<div class="accordion-item">
-
-							<h2 class="accordion-header">
-
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-									data-bs-target="#mobileMasterMenu">
-
-									<i class="bi bi-folder-fill me-2"></i>
-
-									MASTER
-
-								</button>
-
-							</h2>
-
-							<div id="mobileMasterMenu" class="accordion-collapse collapse"
-								data-bs-parent="#sidebarAccordion">
-
-								<div class="accordion-body">
-
-									<a href="/dnb/create" class="menu-link">
-										<i class="bi bi-house-fill"></i>
-										New Entry For DNB
-									</a>
-
-									<a href="/dnb/edit" class="menu-link">
-										Edit DNB
-									</a>
-
-
-									<a href="#" class="menu-link">
-
-										Category Master
-
-									</a>
-
-									<a href="#" class="menu-link">
-
-										Role Master
-
-									</a>
-
-								</div>
-
-							</div>
-
-						</div>
-
-						<!-- ATT. ADJ -->
-
-						<div class="accordion-item">
-
-							<h2 class="accordion-header">
-
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-									data-bs-target="#mobileAttAdjMenu">
-
-									<i class="bi bi-pencil-square me-2"></i>
-
-									ATT/ADJ
-
-								</button>
-
-							</h2>
-
-							<div id="mobileAttAdjMenu" class="accordion-collapse collapse"
-								data-bs-parent="#sidebarAccordion">
-
-								<div class="accordion-body">
-
-									<a href="/attendance" class="menu-link">
-
-										Attendance Entry
-
-									</a>
-
-									<a href="/dnb-adjustment" class="menu-link">
-
-										Attendance Adjustment
-
-									</a>
-
-
-
-								</div>
-
-							</div>
-
-						</div>
-
-						<!-- REPORTS -->
-
-						<div class="accordion-item">
-
-							<h2 class="accordion-header">
-
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-									data-bs-target="#mobileReportMenu">
-
-									<i class="bi bi-bar-chart-fill me-2"></i>
-
-									REPORTS
-
-								</button>
-
-							</h2>
-
-							<div id="mobileReportMenu" class="accordion-collapse collapse"
-								data-bs-parent="#sidebarAccordion">
-
-								<div class="accordion-body">
-
-									<a href="/dnb-master-report" class="menu-link">
-										DNB Masters Report
-									</a>
-									<a href="/attendance-report" class="menu-link">
-										Attendance Report
-									</a>
-
-									<a href="/adjustment-report" class="menu-link">
-										Adjustment Report
-									</a>
-									<a href="/paybill-report" class="menu-link">
-										Paybill Report
-									</a>
-
-								</div>
-
-							</div>
-
-						</div>
-
-
-
-						<!-- EXIT -->
-
-						<div class="accordion-item">
-
-							<button class="btn btn-danger w-100 exit-btn">
-
-								<i class="bi bi-box-arrow-right me-2"></i>
-
-								EXIT
-
-							</button>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<!-- Main Content -->
-
-			<div class="col-md-9 col-lg-10">
-
-				<div class="content-area">
-
-					<div class="card shadow">
-
-						<div class="card-header welcome-header">
-
-							Welcome
-
-						</div>
-
-						<div class="card-body text-center">
-
-							<h3>
-
-								Welcome to DNB Management System
-
-							</h3>
-
-							<p class="mt-3">
-
-								Please select an option from the
-								left menu to continue.
-
-							</p>
-
-							<hr>
-
-							<h6>
-
-								Steel Authority of India Limited
-
-							</h6>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-
-	<!-- Mobile Menu -->
-
-	<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
-
-		<div class="offcanvas-header">
-
-			<img src="/images/sail-logo.png" alt="SAIL Logo" class="logo me-2">
-
-			<div>
-
-				<h5 class="mb-0">
-
-					DNB Management System
-
-				</h5>
-
-				<small>
-
-					Centralized DNB Processing System
-
-				</small>
-
-			</div>
-
-			<button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas">
-			</button>
-
-		</div>
-
-		<div class="offcanvas-body">
-
-			<div class="accordion" id="mobileAccordion">
-
-				<!-- PROCESSING -->
-
-				<div class="accordion-item">
-
-					<h2 class="accordion-header">
-
-						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-							data-bs-target="#mobileProcessingMenu">
-
-							<i class="bi bi-gear-fill me-2"></i>
-
-							PROCESSING
-
-						</button>
-
-					</h2>
-
-					<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-						data-bs-parent="#sidebarAccordion">
-
-						<div class="accordion-body">
-
-
-							<a href="/stipend-process" class="menu-link" id="mobileStipendMenu" style="display:none;">
-
-								Stipend Processing
-
-							</a>
-						</div>
-
-					</div>
-
-					<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-						data-bs-parent="#sidebarAccordion">
-
-						<div class="accordion-body">
-
-
-							<a href="/update-master" class="menu-link">
-
-								Update Master
-
-							</a>
-
-						</div>
-
-					</div>
-
-					<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-						data-bs-parent="#sidebarAccordion">
-
-						<div class="accordion-body">
-
-
-							<a href="/payslip-report" class="menu-link">
-
-								Print Payslip
-
-							</a>
-
-						</div>
-
-					</div>
-
-				</div>
-
-				<!-- MASTER -->
-
-				<div class="accordion-item">
-
-					<h2 class="accordion-header">
-
-						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-							data-bs-target="#masterMenu">
-
-							<i class="bi bi-folder-fill me-2"></i>
-
-							MASTER
-
-						</button>
-
-					</h2>
-
-					<div id="masterMenu" class="accordion-collapse collapse" data-bs-parent="#mobileAccordion">
-
-						<div class="accordion-body">
-
-							<a href="/dnb/create" class="menu-link">
-
-								New Entry For DNB
-
-							</a>
-
-							<a href="/dnb/edit" class="menu-link">
-
-								Edit DNB
-
-							</a>
-
-							<a href="#" class="menu-link">
-
-								Category Master
-
-							</a>
-
-							<a href="#" class="menu-link">
-
-								Role Master
-
-							</a>
-
-						</div>
-
-					</div>
-
-				</div>
-
-				<!-- ATT/ADJ -->
-
-				<div class="accordion-item">
-
-					<h2 class="accordion-header">
-
-						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-							data-bs-target="#attAdjMenu">
-
-							<i class="bi bi-pencil-square me-2"></i>
-
-							ATT/ADJ
-
-						</button>
-
-					</h2>
-
-					<div id="attAdjMenu" class="accordion-collapse collapse" data-bs-parent="#mobileAccordion">
-
-						<div class="accordion-body">
-
-							<a href="/attendance" class="menu-link">
-
-								Attendance Entry
-
-							</a>
-
-							<a href="/dnb-adjustment" class="menu-link">
-
-								Attendance Adjustment
-
-							</a>
-
-						</div>
-
-					</div>
-
-				</div>
-
-				<!-- REPORTS -->
-
-				<div class="accordion-item">
-
-					<h2 class="accordion-header">
-
-						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-							data-bs-target="#reportMenu">
-
-							<i class="bi bi-bar-chart-fill me-2"></i>
-
-							REPORTS
-
-						</button>
-
-					</h2>
-
-					<div id="reportMenu" class="accordion-collapse collapse" data-bs-parent="#mobileAccordion">
-
-						<div class="accordion-body">
-
-							<a href="/dnb-master-report" class="menu-link">
-
-								DNB Master Report
-
-							</a>
-
-							<a href="/attendance-report" class="menu-link">
-
-								Attendance Report
-
-							</a>
-
-							<a href="/adjustment-report" class="menu-link">
-
-								Adjustment Report
-
-							</a>
-
-							<a href="/paybill-report" class="menu-link">
-
-								Paybill Report
-
-							</a>
-
-						</div>
-
-					</div>
-
-				</div>
-
-				<button class="btn btn-danger w-100 exit-btn mt-2">
-
-					<i class="bi bi-box-arrow-right me-2"></i>
-
-					EXIT
-
-				</button>
-
-			</div>
-
-		</div>
-
-	</div>
-
-	</div>
-
-	<script src="/bootstrap/bootstrap.bundle.min.js"></script>
-
-	<script src="/js/home.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+   <script th:src="@{/bootstrap/bootstrap.bundle.min.js}"></script>
+   <script th:src="@{/js/header.js}"></script>
+   <script th:src="@{/js/payslip-report.js}"></script>
 
 </body>
-
 </html>

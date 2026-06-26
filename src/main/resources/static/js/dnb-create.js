@@ -1,3 +1,5 @@
+const BASE_URL = (window.contextPath || "").replace(/\/$/, "");
+
 document.addEventListener(
     "DOMContentLoaded",
     function () {
@@ -12,12 +14,9 @@ document.addEventListener(
 
         initializeMobileField();
 
-        // Hide bank name until IFSC is entered
         document.getElementById("bankNameRow")
                 .style.display = "none";
     });
-
- 
 
 function storepaninuppercase() {
 
@@ -92,7 +91,7 @@ function initializeMobileField() {
 
 function loadCategories() {
 
-    fetch("/api/categories/logged-in-user")
+    fetch(BASE_URL + "/api/categories/logged-in-user")
 
         .then(response => {
 
@@ -185,7 +184,7 @@ function loadBankNames() {
     }
 
     fetch(
-        "/api/bank/bank-names?ifscCode="
+        BASE_URL + "/api/bank/bank-names?ifscCode="
         + encodeURIComponent(ifsc))
 
         .then(response => {
@@ -271,7 +270,7 @@ function loadBankCode() {
     }
 
     fetch(
-        "/api/bank/bank-code"
+        BASE_URL + "/api/bank/bank-code"
         + "?bankName="
         + encodeURIComponent(bankName)
         + "&ifscCode="
@@ -331,25 +330,16 @@ function saveDnb() {
                     .value
                     .trim(),
 
-        dob:
-            getValue("dob"),
-
-        doj:
-            getValue("doj"),
-
-        dos:
-            getValue("dos"),
-
-        sexCode:
-            getValue("sexCode"),
+        dob: getValue("dob"),
+        doj: getValue("doj"),
+        dos: getValue("dos"),
+        sexCode: getValue("sexCode"),
 
         empStatus:
-            parseInteger(
-                getValue("empStatus")),
+            parseInteger(getValue("empStatus")),
 
         bankCd:
-            parseInteger(
-                getValue("bankCd")),
+            parseInteger(getValue("bankCd")),
 
         bankAcno:
             document.getElementById("bankAcno")
@@ -373,8 +363,7 @@ function saveDnb() {
                     .trim(),
 
         catg:
-            parseInteger(
-                getValue("catg")),
+            parseInteger(getValue("catg")),
 
         speciality:
             document.getElementById("speciality")
@@ -382,22 +371,18 @@ function saveDnb() {
                     .trim(),
 
         tuitionFeeInd:
-            parseInteger(
-                getValue("tuitionFeeInd"))
+            parseInteger(getValue("tuitionFeeInd"))
     };
 
-    fetch("/api/dnb", {
+    fetch(BASE_URL + "/api/dnb", {
 
         method: "POST",
 
         headers: {
-
-            "Content-Type":
-                "application/json"
+            "Content-Type": "application/json"
         },
 
-        body:
-            JSON.stringify(dto)
+        body: JSON.stringify(dto)
     })
 
     .then(response => {
@@ -406,7 +391,6 @@ function saveDnb() {
 
             return response.json()
                 .then(error => {
-
                     throw error;
                 });
         }
@@ -417,11 +401,9 @@ function saveDnb() {
     .then(data => {
 
         sessionStorage.setItem(
-
             "successMessage",
-
-            "DNB Entry created successfully. ID : "
-            + data.id);
+            "DNB Entry created successfully. ID : " + data.id
+        );
 
         window.location.reload();
 
@@ -430,482 +412,16 @@ function saveDnb() {
     .catch(error => {
 
         showError(
-
-            error.message
-            || "Unable to save DNB Entry");
+            error.message || "Unable to save DNB Entry");
 
     });
-
 }
 
 /*---------------------------------------
- * Validation
- *--------------------------------------*/
-
-function validateForm() {
-
-    clearMessages();
-
-    if (isBlank("name")) {
-
-        showError("Name is mandatory");
-
-        return false;
-    }
-
-    if (isBlank("doj")) {
-
-        showError("DOJ is mandatory");
-
-        return false;
-    }
-
-    if (isBlank("dos")) {
-
-        showError("DOS is mandatory");
-
-        return false;
-    }
-
-    if (isBlank("sexCode")) {
-
-        showError("Gender is mandatory");
-
-        return false;
-    }
-
-    if (isBlank("pan")) {
-
-        showError("PAN Number is mandatory");
-
-        return false;
-    }
-
-    if (isBlank("mobileNo")) {
-
-        showError("Mobile Number is mandatory");
-
-        return false;
-    }
-
-    if (isBlank("emailId")) {
-
-        showError("Email ID is mandatory");
-
-        return false;
-    }
-
-    if (isBlank("ifscCode")) {
-
-        showError("IFSC Code is mandatory");
-
-        return false;
-    }
-
-    /*
-     * Bank Name dropdown appears only
-     * after IFSC validation.
-     */
-
-    if (document.getElementById("bankNameRow")
-            .style.display !== "none"
-        && isBlank("bankName")) {
-
-        showError(
-            "Please select Bank Name");
-
-        return false;
-    }
-
-    if (isBlank("bankCd")) {
-
-        showError(
-            "Please enter a valid IFSC Code.");
-
-        return false;
-    }
-
-    if (isBlank("bankAcno")) {
-
-        showError(
-            "Bank Account Number is mandatory");
-
-        return false;
-    }
-
-    if (isBlank("catg")) {
-
-        showError(
-            "Category is mandatory");
-
-        return false;
-    }
-
-    if (isBlank("speciality")) {
-
-        showError(
-            "Speciality is mandatory");
-
-        return false;
-    }
-
-    if (!validatePan()) {
-
-        return false;
-    }
-
-    if (!validateAccount()) {
-
-        return false;
-    }
-
-    if (!validateDOS()) {
-
-        return false;
-    }
-
-    if (!validateMobile()) {
-
-        return false;
-    }
-
-    if (!validateEmail()) {
-
-        return false;
-    }
-
-    return true;
-}
-
-/*---------------------------------------
- * Mobile Validation
- *--------------------------------------*/
-
-function validateMobile() {
-
-    const mobile =
-        document.getElementById("mobileNo")
-                .value
-                .trim();
-
-    const regex =
-        /^[6-9]\d{9}$/;
-
-    if (!regex.test(mobile)) {
-
-        showError(
-            "Mobile Number should contain 10 digits.");
-
-        return false;
-    }
-
-    return true;
-}
-
-/*---------------------------------------
- * Email Validation
- *--------------------------------------*/
-
-function validateEmail() {
-
-    const email =
-        document.getElementById("emailId")
-                .value
-                .trim();
-
-    const regex =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!regex.test(email)) {
-
-        showError(
-            "Invalid Email ID.");
-
-        return false;
-    }
-
-    return true;
-}
-
-/*---------------------------------------
- * DOJ / DOS Validation
- *--------------------------------------*/
-
-function validateDOS() {
-
-    const doj =
-        document.getElementById("doj").value;
-
-    const dos =
-        document.getElementById("dos").value;
-
-    if (doj && dos) {
-
-        const dojDate =
-            new Date(doj);
-
-        const dosDate =
-            new Date(dos);
-
-        if (dosDate <= dojDate) {
-
-            showError(
-                "DOS must be greater than DOJ.");
-
-            return false;
-        }
-    }
-
-    return true;
-}
-
-/*---------------------------------------
- * PAN Validation
- *--------------------------------------*/
-
-function validatePan() {
-
-    const pan =
-        document.getElementById("pan")
-                .value
-                .trim()
-                .toUpperCase();
-
-    const regex =
-        /^[A-Z]{5}[0-9]{4}[A-Z]$/;
-
-    if (!regex.test(pan)) {
-
-        showError(
-            "PAN should be in format ABCDE1234F.");
-
-        return false;
-    }
-
-    return true;
-}
-
-/*---------------------------------------
- * Account Number Validation
- *--------------------------------------*/
-
-function validateAccount() {
-
-    const account =
-        document.getElementById("bankAcno")
-                .value
-                .trim();
-
-    const regex =
-        /^\d{9,17}$/;
-
-    if (!regex.test(account)) {
-
-        showError(
-            "Bank Account Number should contain 9 to 17 digits.");
-
-        return false;
-    }
-
-    return true;
-}
-
-/*---------------------------------------
- * Helper Methods
- *--------------------------------------*/
-
-function getValue(id) {
-
-    return document.getElementById(id).value;
-}
-
-function parseInteger(value) {
-
-    if (value === null
-            || value === undefined
-            || value === "") {
-
-        return null;
-    }
-
-    return parseInt(value);
-}
-
-function isBlank(id) {
-
-    return getValue(id).trim() === "";
-}
-
-/*---------------------------------------
- * Clear Messages
- *--------------------------------------*/
-
-function clearMessages() {
-
-    document.getElementById("successPopup")
-            .style.display =
-            "none";
-
-    document.getElementById("errorPopup")
-            .style.display =
-            "none";
-
-    document.getElementById("successPopup")
-            .innerHTML = "";
-
-    document.getElementById("errorPopup")
-            .innerHTML = "";
-}
-
-/*---------------------------------------
- * Error Popup
- *--------------------------------------*/
-
-function showError(message) {
-
-    clearMessages();
-
-    document.getElementById("errorPopup")
-            .innerHTML =
-            message;
-
-    document.getElementById("errorPopup")
-            .style.display =
-            "block";
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-    setTimeout(function () {
-
-        document.getElementById("errorPopup")
-                .style.display =
-                "none";
-
-    }, 5000);
-}
-
-/*---------------------------------------
- * Success Popup
- *--------------------------------------*/
-
-function showSuccess(message) {
-
-    clearMessages();
-
-    document.getElementById("successPopup")
-            .innerHTML =
-            message;
-
-    document.getElementById("successPopup")
-            .style.display =
-            "block";
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-    setTimeout(function () {
-
-        document.getElementById("successPopup")
-                .style.display =
-                "none";
-
-    }, 3000);
-}
-
-/*---------------------------------------
- * Reset Bank Details
- *--------------------------------------*/
-
-function resetBankDetails() {
-
-    const bankDropdown =
-        document.getElementById("bankName");
-
-    bankDropdown.innerHTML =
-        `<option value="">
-            Select
-         </option>`;
-
-    document.getElementById("bankCd").value = "";
-
-    document.getElementById("bankNameRow")
-            .style.display = "none";
-}
-
-/*---------------------------------------
- * IFSC Events
- *--------------------------------------*/
-
-document.getElementById("ifscCode")
-        .addEventListener(
-            "input",
-            function () {
-
-                resetBankDetails();
-
-            });
-
-document.getElementById("ifscCode")
-        .addEventListener(
-            "keyup",
-            function () {
-
-                this.value =
-                    this.value.toUpperCase();
-
-            });
-
-/*---------------------------------------
- * Bank Name Change
- *--------------------------------------*/
-
-document.getElementById("bankName")
-        .addEventListener(
-            "change",
-            function () {
-
-                if (this.value === "") {
-
-                    document.getElementById("bankCd")
-                            .value = "";
-
-                }
-
-            });
-
-/*---------------------------------------
- * Clear Form
- *--------------------------------------*/
-
-function clearForm() {
-
-    document.querySelector("form").reset();
-
-    clearMessages();
-
-    resetBankDetails();
-
-    document.getElementById("bankCd")
-            .value = "";
-}
-
-/*---------------------------------------
- * Exit Button
- *--------------------------------------*/
+ * exit
+--------------------------------------*/
 
 function exitScreen() {
 
-    window.location.href = "/home";
-
+    window.location.href = BASE_URL + "/home";
 }

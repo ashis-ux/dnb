@@ -1,3 +1,5 @@
+const BASE_URL = "";
+
 const PaybillReport = {
 
     currentPage: 0,
@@ -86,7 +88,7 @@ const PaybillReport = {
         $.ajax({
 
             url:
-                "/api/paybill-report/"
+                BASE_URL + "/api/paybill-report/"
                 + yymm
                 + "?page="
                 + this.currentPage
@@ -271,11 +273,9 @@ const PaybillReport = {
             .html(html);
     },
 
-    goToPage: function (
-        page) {
+    goToPage: function (page) {
 
-        this.currentPage =
-            page;
+        this.currentPage = page;
 
         this.loadReport();
     },
@@ -296,28 +296,26 @@ const PaybillReport = {
             < this.totalPages - 1) {
 
             this.currentPage++;
-
-            this.loadReport();
         }
     },
 
     exportExcel: function () {
 
-		let yymm =
-		    PaybillReport.getYymm();
+        let yymm =
+            PaybillReport.getYymm();
 
         if (!yymm) {
 
-			$("#errorPopup")
-				            .text(
-				                "Please select Year And Month before exporting.")
-				            .show();
+            $("#errorPopup")
+                .text(
+                    "Please select Year And Month before exporting.")
+                .show();
 
             return;
         }
 
         window.location.href =
-            "/api/paybill-report/export/"
+            BASE_URL + "/api/paybill-report/export/"
             + yymm;
     },
 
@@ -335,8 +333,7 @@ const PaybillReport = {
         this.hideMessages();
     },
 
-    showError: function (
-        message) {
+    showError: function (message) {
 
         $("#errorPopup")
             .text(message)
@@ -345,11 +342,9 @@ const PaybillReport = {
 
     hideMessages: function () {
 
-        $("#errorPopup")
-            .hide();
+        $("#errorPopup").hide();
 
-        $("#successPopup")
-            .hide();
+        $("#successPopup").hide();
     }
 };
 

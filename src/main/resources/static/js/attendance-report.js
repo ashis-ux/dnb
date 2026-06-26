@@ -1,5 +1,7 @@
+const BASE_URL = (window.contextPath || "").replace(/\/$/, "");
 
 const AttendanceReport = {
+
 currentPage: 0,
 
 pageSize: 10,
@@ -38,7 +40,7 @@ loadYymmDropdown: function () {
     $.ajax({
 
         url:
-            "/api/attendance-report/yymm",
+            BASE_URL + "/api/attendance-report/yymm",
 
         type:
             "GET",
@@ -99,7 +101,7 @@ loadReport: function () {
     $.ajax({
 
         url:
-            "/api/attendance-report/"
+            BASE_URL + "/api/attendance-report/"
             + yymm
             + "?page="
             + AttendanceReport.currentPage
@@ -311,7 +313,6 @@ nextPage: function () {
         this.totalPages - 1) {
 
         this.currentPage++;
-
         this.loadReport();
     }
 },
@@ -332,7 +333,7 @@ exportExcel: function () {
 	    }
 
     window.location.href =
-        "/api/attendance-report/export/"
+        BASE_URL + "/api/attendance-report/export/"
         + yymm;
 },
 
@@ -383,8 +384,6 @@ hideMessages: function () {
     $("#errorPopup")
         .hide();
 }
- 
-
 };
 
 $(document).ready(
@@ -392,4 +391,3 @@ function () {
  
     AttendanceReport.init();
 });
- 

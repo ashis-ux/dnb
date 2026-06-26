@@ -1,3 +1,5 @@
+const BASE_URL = (window.contextPath || "").replace(/\/$/, "");
+
 const PayslipReport = {
 
     currentPage: 0,
@@ -24,27 +26,27 @@ const PayslipReport = {
             this.value = this.value.toUpperCase();
         });
     },
-	
-	viewPayslip: function (yymm, id) {
 
-	    window.open(
-	        "/api/payslip/view/" + yymm + "/" + id,
-	        "_blank"
-	    );
+    viewPayslip: function (yymm, id) {
 
-	},
-	
-	downloadPayslip: function (yymm, id) {
+        window.open(
+            BASE_URL + "/api/payslip/view/" + yymm + "/" + id,
+            "_blank"
+        );
 
-	    window.location.href =
-	        "/api/payslip/download/" + yymm + "/" + id;
+    },
 
-	},
+    downloadPayslip: function (yymm, id) {
+
+        window.location.href =
+            BASE_URL + "/api/payslip/download/" + yymm + "/" + id;
+
+    },
 
     loadYymmDropdown: function () {
 
         $.ajax({
-            url: "/api/reports/yymm",
+            url: BASE_URL + "/api/reports/yymm",
             type: "GET",
 
             success: function (response) {
@@ -75,7 +77,6 @@ const PayslipReport = {
         let pan = $("#pan").val().trim();
         let yymm = $("#yymm").val();
 
-        // Validation
         if (id === "" && pan === "" && yymm === "") {
             this.showError("Please enter DNB ID/PAN or select YYMM.");
             return;
@@ -96,7 +97,7 @@ const PayslipReport = {
         if (yymm !== "") request.yymm = yymm;
 
         $.ajax({
-            url: "/api/payslip/search",
+            url: BASE_URL + "/api/payslip/search",
             type: "GET",
             data: request,
 
@@ -131,34 +132,34 @@ const PayslipReport = {
 
         $.each(data, function (i, item) {
 
-			tbody.append(`
-			<tr>
-			    <td>${item.id}</td>
-			    <td>${item.name}</td>
-			    <td>${item.category}</td>
-			    <td>${item.yymm}</td>
-			    <td>${item.month}</td>
+            tbody.append(`
+            <tr>
+                <td>${item.id}</td>
+                <td>${item.name}</td>
+                <td>${item.category}</td>
+                <td>${item.yymm}</td>
+                <td>${item.month}</td>
 
-			    <td class="text-center">
+                <td class="text-center">
 
-			        <button class="btn btn-primary btn-sm me-2"
-			            onclick="PayslipReport.viewPayslip('${item.yymm}',${item.id})">
+                    <button class="btn btn-primary btn-sm me-2"
+                        onclick="PayslipReport.viewPayslip('${item.yymm}',${item.id})">
 
-			            <i class="bi bi-eye"></i>
+                        <i class="bi bi-eye"></i>
 
-			        </button>
+                    </button>
 
-			        <button class="btn btn-success btn-sm"
-			            onclick="PayslipReport.downloadPayslip('${item.yymm}',${item.id})">
+                    <button class="btn btn-success btn-sm"
+                        onclick="PayslipReport.downloadPayslip('${item.yymm}',${item.id})">
 
-			            <i class="bi bi-download"></i>
+                        <i class="bi bi-download"></i>
 
-			        </button>
+                    </button>
 
-			    </td>
+                </td>
 
-			</tr>
-			`);
+            </tr>
+            `);
         });
     },
 
@@ -172,7 +173,6 @@ const PayslipReport = {
 
         let html = `<nav><ul class="pagination justify-content-center">`;
 
-        // Previous
         html += `
             <li class="page-item ${this.currentPage === 0 ? 'disabled' : ''}">
                 <a class="page-link" href="#" onclick="PayslipReport.previousPage(); return false;">
@@ -181,7 +181,6 @@ const PayslipReport = {
             </li>
         `;
 
-        // Pages
         for (let i = 0; i < totalPages; i++) {
             html += `
                 <li class="page-item ${i === this.currentPage ? 'active' : ''}">
@@ -192,7 +191,6 @@ const PayslipReport = {
             `;
         }
 
-        // Next
         html += `
             <li class="page-item ${this.currentPage === totalPages - 1 ? 'disabled' : ''}">
                 <a class="page-link" href="#" onclick="PayslipReport.nextPage(); return false;">

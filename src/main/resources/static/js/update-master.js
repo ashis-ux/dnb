@@ -1,117 +1,94 @@
+const API_BASE = "/api";
+
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
         loadPreviousMonth();
-    });
+    }
+);
+
+/* ---------------------------
+   Load Previous Month
+---------------------------- */
 
 function loadPreviousMonth() {
 
-    const today =
-        new Date();
+    const today = new Date();
 
-    today.setMonth(
-        today.getMonth() - 1);
+    today.setMonth(today.getMonth() - 1);
 
-    const year =
-        today.getFullYear();
+    const year = today.getFullYear();
 
-    const month =
-        String(
-            today.getMonth() + 1)
-            .padStart(2, "0");
+    const month = String(today.getMonth() + 1).padStart(2, "0");
 
-    document.getElementById(
-        "yymm")
-        .value =
-        year + month;
+    document.getElementById("yymm").value = year + month;
 }
+
+/* ---------------------------
+   Update Master
+---------------------------- */
 
 function updateMaster() {
 
     clearMessages();
 
     let yymm =
-        document.getElementById(
-            "yymm")
-            .value;
+        document.getElementById("yymm").value;
 
-			fetch(
-			    "/api/dnb/runMonthlyUpdate/" + yymm,
-			    {
-			        method: "POST"
-			    })
-			.then(async response => {
+    fetch(`${API_BASE}/dnb/runMonthlyUpdate/${yymm}`, {
+        method: "POST"
+    })
 
-			    const data =
-			        await response.json();
+        .then(async response => {
 
-			    if (!response.ok) {
+            const data = await response.json();
 
-			        throw new Error(
-			            data.exception ||
-			            data.statusMsg);
-			    }
+            if (!response.ok) {
 
-			    return data;
-			})
-			.then(data => {
+                throw new Error(
+                    data.exception ||
+                    data.statusMsg ||
+                    "Update failed"
+                );
+            }
 
-			    showSuccess(
-			        "DNB Master updated successfully");
-			})
-			.catch(error => {
+            return data;
+        })
 
-			    showError(
-			        error.message);
-			});
+        .then(() => {
+
+            showSuccess("DNB Master updated successfully");
+        })
+
+        .catch(error => {
+
+            showError(error.message);
+        });
 }
+
+/* ---------------------------
+   Messages
+---------------------------- */
 
 function showSuccess(message) {
 
-    document.getElementById(
-        "successPopup")
-        .innerHTML =
-        message;
+    document.getElementById("successPopup").innerHTML = message;
+    document.getElementById("successPopup").style.display = "block";
 
-    document.getElementById(
-        "successPopup")
-        .style.display =
-        "block";
-
-    document.getElementById(
-        "errorPopup")
-        .style.display =
-        "none";
+    document.getElementById("errorPopup").style.display = "none";
 }
 
 function showError(message) {
 
-    document.getElementById(
-        "errorPopup")
-        .innerHTML =
-        message;
+    document.getElementById("errorPopup").innerHTML = message;
+    document.getElementById("errorPopup").style.display = "block";
 
-    document.getElementById(
-        "errorPopup")
-        .style.display =
-        "block";
-
-    document.getElementById(
-        "successPopup")
-        .style.display =
-        "none";
+    document.getElementById("successPopup").style.display = "none";
 }
 
 function clearMessages() {
 
-    document.getElementById(
-        "successPopup")
-        .style.display =
-        "none";
-
-    document.getElementById(
-        "errorPopup")
-        .style.display =
-        "none";
+    document.getElementById("successPopup").style.display = "none";
+    document.getElementById("errorPopup").style.display = "none";
 }

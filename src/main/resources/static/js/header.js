@@ -1,3 +1,5 @@
+const BASE_URL = "";
+
 document.addEventListener(
     "DOMContentLoaded",
     function() {
@@ -5,14 +7,12 @@ document.addEventListener(
         console.log(
             "DNB Home Screen Loaded");
 
-        
-
         loadStipendMenu();
     });
 
 function loadStipendMenu() {
 
-    fetch("/api/stipend/access")
+    fetch(BASE_URL + "/api/stipend/access")
 
         .then(response => {
 
@@ -31,15 +31,11 @@ function loadStipendMenu() {
 
             if (data.authorized) {
 
-                
-
                 if (mobileMenu) {
                     mobileMenu.style.display = "block";
                 }
 
             } else {
-
-                
 
                 if (mobileMenu) {
                     mobileMenu.style.display = "none";

@@ -10,32 +10,15 @@
 
     <title>DNB Adjustment Entry</title>
 
- 
+    <!-- Make Context Path available to JavaScript -->
+    <script th:inline="javascript">
+        window.contextPath = /*[[@{/}]]*/ '';
+    </script>
 
-    <link rel="stylesheet"
-          href="/bootstrap/bootstrap.min.css">
-
-    <!-- Font Awesome -->
-
-    <link rel="stylesheet"
-          href="/bootstrap/all.min.css">
-
-    <!-- Bootstrap Icons -->
-
-	<!-- Custom CSS -->
-		  <link rel="stylesheet"
-		        href="/css/bootstrap-icons.min.css">
-    <!-- Common Header CSS -->
-
-    <link rel="stylesheet"
-          href="/css/header.css">
-
-    <!-- Existing Page CSS -->
-
-    <link rel="stylesheet"
-          th:href="@{/css/dnb-adjustment.css}">
-		  
-		 <script src="/js/header.js"></script>
+	<link rel="stylesheet" th:href="@{/bootstrap/bootstrap.min.css}">
+	   <link rel="stylesheet" th:href="@{/css/header.css}">
+	   <link rel="stylesheet" th:href="@{/css/bootstrap-icons.min.css}">
+	   <link rel="stylesheet" th:href="@{/css/payslip-report.css}">
 
 </head>
 
@@ -181,15 +164,10 @@
 </div>
 
  
-
-<script src="/bootstrap/bootstrap.bundle.min.js"></script>
- 
-
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
- 
-
-<script th:src="@{/js/dnb-adjustment.js}"></script>
+   <script th:src="@{/bootstrap/bootstrap.bundle.min.js}"></script>
+   <script th:src="@{/js/header.js}"></script>
+   <script th:src="@{/js/payslip-report.js}"></script>
 
 </body>
 

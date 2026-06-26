@@ -1,3 +1,4 @@
+const BASE_URL = "";
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -11,15 +12,15 @@ document.addEventListener(
         initializeExit();
 
         loadStipendMenu();
-		
-		loadResetMenu();
+
+        loadResetMenu();
     });
 
 
 
 function loadStipendMenu() {
 
-    fetch("/api/stipend/access")
+    fetch(BASE_URL + "/api/stipend/access")
 
         .then(response => {
 
@@ -70,7 +71,7 @@ function loadStipendMenu() {
 
 function loadResetMenu() {
 
-    fetch("/api/reset-pay/status")
+    fetch(BASE_URL + "/api/reset-pay/status")
 
         .then(response => {
 
@@ -157,13 +158,8 @@ function initializeExit() {
                     "Are you sure you want to exit?"
                 )) {
 
-                    /*
-                     * Replace with actual logout URL later
-                     */
-
                     window.location.href = "/";
                 }
             });
     }
 }
-

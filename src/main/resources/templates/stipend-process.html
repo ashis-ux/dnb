@@ -6,24 +6,18 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+          content="width=device-width, initial-scale="1.0">
 
     <title>Stipend Processing</title>
 
-    <link rel="stylesheet"
-          href="/bootstrap/bootstrap.min.css">
-
-    <link rel="stylesheet"
-          href="/css/bootstrap-icons.min.css">
-
-    <link rel="stylesheet"
-          href="/css/header.css">
-
-    <link rel="stylesheet"
-          href="/css/stipend-process.css">
-		  
-		  <script src="/js/header.js"></script>
-
+    <!-- Make Context Path available to JavaScript -->
+    <script th:inline="javascript">
+        window.contextPath = /*[[@{/}]]*/ '';
+    </script>
+	<link rel="stylesheet" th:href="@{/bootstrap/bootstrap.min.css}">
+	   <link rel="stylesheet" th:href="@{/css/header.css}">
+	   <link rel="stylesheet" th:href="@{/css/bootstrap-icons.min.css}">
+	   <link rel="stylesheet" th:href="@{/css/payslip-report.css}">
 </head>
 
 <body>
@@ -103,13 +97,10 @@
 
 </div>
 
-
-
-<script src="/bootstrap/bootstrap.bundle.min.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-<script src="/js/stipend-process.js"></script>
+   <script th:src="@{/bootstrap/bootstrap.bundle.min.js}"></script>
+   <script th:src="@{/js/header.js}"></script>
+   <script th:src="@{/js/payslip-report.js}"></script>
 
 </body>
 

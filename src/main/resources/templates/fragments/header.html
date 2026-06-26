@@ -1,434 +1,107 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-	<meta charset="UTF-8">
+<meta charset="UTF-8">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale="1.0">
 
-	<link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+<title>Update Master</title>
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<!-- Make Context Path available to JavaScript -->
+<script th:inline="javascript">
+    window.contextPath = /*[[@{/}]]*/ '';
+</script>
 
-	<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" th:href="@{/bootstrap/bootstrap.min.css}">
+   <link rel="stylesheet" th:href="@{/css/header.css}">
+   <link rel="stylesheet" th:href="@{/css/bootstrap-icons.min.css}">
+   <link rel="stylesheet" th:href="@{/css/payslip-report.css}">
 
 </head>
 
 <body>
 
-	<div th:fragment="header">
+<div th:replace="fragments/header :: header">
+</div>
 
-		<!-- HEADER -->
+<div class="container mt-4">
 
-		<!-- Added d-flex flex-nowrap to lock elements in place on all screens -->
-		<nav class="navbar navbar-expand-lg navbar-dark header-navbar d-flex flex-nowrap">
+    <div id="successPopup"
+         class="alert alert-success"
+         style="display:none;">
+    </div>
 
-			<div class="container-fluid p-0 d-flex flex-nowrap align-items-center">
+    <div id="errorPopup"
+         class="alert alert-danger"
+         style="display:none;">
+    </div>
 
-				<!-- Left Side: Trigger + Logo + Brand Text -->
-				<div class="d-flex align-items-center flex-grow-1 overflow-hidden">
+    <div class="card shadow">
 
-					<!-- Anchor tag menu trigger -->
-					<a class="text-white border-0 fs-5 p-1 ms-2 d-flex align-items-center justify-content-center"
-						role="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
-						style="background: transparent; width: auto !important; min-width: auto !important; text-decoration: none;">
-						<i class="bi bi-list"></i>
-					</a>
+        <div class="card-header form-header">
 
-					<!-- Logo -->
-					<img src="/images/sail-logo.png" alt="SAIL Logo" class="logo ms-2">
+            Update DNB Master
 
-					<!-- Title Group (Added text-nowrap to prevent text wrapping on mobile) -->
-					<div class="ms-2 overflow-hidden">
+        </div>
 
-						<h5 class="mb-0 text-white system-title">
-							DNB Management System
-						</h5>
+        <div class="card-body">
 
-						<small class="text-light system-subtitle">
-							Centralized DNB Processing System
-						</small>
+            <div class="row">
 
-					</div>
+                <div class="col-md-4">
 
-				</div>
+                    <label class="form-label">
 
-				<div class="ms-auto">
+                        Previous Month YYMM
 
-					<ul class="navbar-nav flex-row align-items-center mb-0">
+                        <span class="text-danger">*</span>
 
-						<li class="nav-item">
+                    </label>
 
-							<a class="nav-link text-white" href="/">
+                    <input type="text"
+                           id="yymm"
+                           class="form-control"
+                           readonly>
 
-								<i class="bi bi-house-fill"></i>
+                </div>
 
-								<span class="menu-text ms-1">
-									Home
-								</span>
+            </div>
 
-							</a>
+            <div class="mt-4 text-center">
 
-						</li>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="updateMaster()">
 
-						<li class="nav-item">
+                    <i class="bi bi-arrow-repeat"></i>
 
-							<a class="nav-link text-white" href="#">
+                    Update Master
 
-								<i class="bi bi-person-circle"></i>
+                </button>
 
-								<span class="menu-text ms-1">
-									User Profile
-								</span>
+            </div>
 
-							</a>
+        </div>
 
-						</li>
+        <div class="card-footer text-center">
 
-						<li class="nav-item">
+            Developed & Maintained by C&IT, BSP
 
-							<a class="nav-link text-white" href="#">
+        </div>
 
-								<i class="bi bi-box-arrow-right"></i>
+    </div>
 
-								<span class="menu-text ms-1">
-									Logout
-								</span>
+</div>
 
-							</a>
-
-						</li>
-
-					</ul>
-
-				</div>
-
-		</nav>
-
-		<!-- MOBILE MENU -->
-
-		<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
-
-			<div class="offcanvas-header">
-
-				<img src="/images/sail-logo.png" alt="SAIL Logo" class="logo me-2">
-
-				<div>
-
-					<h5 class="mb-0 text-white system-title">
-						DNB Management System
-					</h5>
-
-					<small class="text-light system-subtitle">
-						Centralized DNB Processing System
-					</small>
-
-				</div>
-
-				<button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas">
-				</button>
-
-			</div>
-
-			<div class="offcanvas-body">
-
-				<div class="accordion" id="mobileAccordion">
-
-					<!-- PROCESSING -->
-
-					<div class="accordion-item">
-
-						<h2 class="accordion-header">
-
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#mobileProcessingMenu">
-
-								<i class="bi bi-gear-fill me-2"></i>
-
-								PROCESSING
-
-							</button>
-
-						</h2>
-
-						<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-							data-bs-parent="#mobileAccordion">
-
-							<div class="accordion-body" id="mobileStipendMenu">
-
-								<a href="/stipend-process" class="menu-link"  
-									style="display:none;">
-
-									Stipend Processing
-
-								</a>
-
-							</div>
-
-						</div>
-						<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-							data-bs-parent="#mobileAccordion">
-
-							<div class="accordion-body">
-
-								<a href="/payslip-report" class="menu-link">
-
-									Print Payslip
-
-								</a>
-
-							</div>
-
-						</div>
-
-						<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-							data-bs-parent="#mobileAccordion">
-
-							<div class="accordion-body">
-
-								<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-									data-bs-parent="#mobileAccordion">
-
-									<div class="accordion-body">
-
-										<a href="/update-master" class="menu-link">
-
-											Update Master
-
-										</a>
-
-									</div>
-
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
-					<!-- MASTER -->
-
-					<div class="accordion-item">
-
-						<h2 class="accordion-header">
-
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#mobileMasterMenu">
-
-								<i class="bi bi-folder-fill me-2"></i>
-
-								MASTER
-
-							</button>
-
-						</h2>
-
-						<div id="mobileMasterMenu" class="accordion-collapse collapse"
-							data-bs-parent="#mobileAccordion">
-
-							<div class="accordion-body">
-
-								<a href="/dnb/create" class="menu-link">
-
-									New Entry For DNB
-
-								</a>
-
-								<a href="/dnb/edit" class="menu-link">
-
-									Edit DNB
-
-								</a>
-
-								<a href="#" class="menu-link">
-
-									Category Master
-
-								</a>
-
-								<a href="#" class="menu-link">
-
-									Role Master
-
-								</a>
-
-							</div>
-
-						</div>
-
-					</div>
-
-					<!-- ATT/ADJ -->
-
-					<div class="accordion-item">
-
-						<h2 class="accordion-header">
-
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#mobileAttAdjMenu">
-
-								<i class="bi bi-pencil-square me-2"></i>
-
-								ATT/ADJ
-
-							</button>
-
-						</h2>
-
-						<div id="mobileAttAdjMenu" class="accordion-collapse collapse"
-							data-bs-parent="#mobileAccordion">
-
-							<div class="accordion-body">
-
-								<a href="/attendance" class="menu-link">
-
-									Attendance Entry
-
-								</a>
-
-								<a href="/dnb-adjustment" class="menu-link">
-
-									Attendance Adjustment
-
-								</a>
-
-							</div>
-
-						</div>
-
-					</div>
-
-					<!-- REPORTS -->
-
-					<div class="accordion-item">
-
-						<h2 class="accordion-header">
-
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#mobileReportMenu">
-
-								<i class="bi bi-bar-chart-fill me-2"></i>
-
-								REPORTS
-
-							</button>
-
-						</h2>
-
-						<div id="mobileReportMenu" class="accordion-collapse collapse"
-							data-bs-parent="#mobileAccordion">
-
-							<div class="accordion-body">
-
-								<a href="/dnb-master-report" class="menu-link">
-
-									DNB Master Report
-
-								</a>
-
-								<a href="/attendance-report" class="menu-link">
-
-									Attendance Report
-
-								</a>
-
-								<a href="/adjustment-report" class="menu-link">
-
-									Adjustment Report
-
-								</a>
-
-								<a href="/paybill-report" class="menu-link">
-
-									Paybill Report
-
-								</a>
-
-							</div>
-
-						</div>
-
-					</div>
-
-					<button class="btn btn-danger w-100 exit-btn mt-2">
-
-						<i class="bi bi-box-arrow-right me-2"></i>
-
-						EXIT
-
-					</button>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-
-	<script src="/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+   <script th:src="@{/bootstrap/bootstrap.bundle.min.js}"></script>
+   <script th:src="@{/js/header.js}"></script>
+   <script th:src="@{/js/payslip-report.js}"></script>
 
 </body>
-
-<script>
-	
-	document.addEventListener(
-	    "DOMContentLoaded",
-	    function() {
-
-	        console.log(
-	            "DNB Home Screen Loaded");
-
-	        
-
-	        loadStipendMenu();
-	    });
-
-	function loadStipendMenu() {
-
-	    fetch("/api/stipend/access")
-
-	        .then(response => {
-
-	            if (!response.ok) {
-
-	                throw new Error("Unable to load access.");
-	            }
-
-	            return response.json();
-	        })
-
-	        .then(data => {
-
-	            const mobileMenu =
-	                document.getElementById("mobileStipendMenu");
-
-	            if (data.authorized) {
-
-	                
-
-	                if (mobileMenu) {
-	                    mobileMenu.style.display = "block";
-	                }
-
-	            } else {
-
-	                
-
-	                if (mobileMenu) {
-	                    mobileMenu.style.display = "none";
-	                }
-	            }
-	        })
-
-	        .catch(error => {
-
-	            console.error(error);
-	        });
-	}
-</script>
 
 </html>

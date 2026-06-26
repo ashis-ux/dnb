@@ -1,3 +1,5 @@
+const BASE_URL = "";
+
 document.addEventListener(
     "DOMContentLoaded",
     function () {
@@ -20,44 +22,44 @@ document.addEventListener(
 
     });
 
-	function showSessionMessage() {
+function showSessionMessage() {
 
-	    const successMessage =
-	        sessionStorage.getItem(
-	            "successMessage");
+    const successMessage =
+        sessionStorage.getItem(
+            "successMessage");
 
-	    if (successMessage) {
+    if (successMessage) {
 
-	        document.getElementById(
-	            "successPopup")
-	            .innerHTML =
-	            successMessage;
+        document.getElementById(
+            "successPopup")
+            .innerHTML =
+            successMessage;
 
-	        document.getElementById(
-	            "successPopup")
-	            .style.display =
-	            "block";
+        document.getElementById(
+            "successPopup")
+            .style.display =
+            "block";
 
-	        sessionStorage.removeItem(
-	            "successMessage");
+        sessionStorage.removeItem(
+            "successMessage");
 
-	        setTimeout(function () {
+        setTimeout(function () {
 
-	            document.getElementById(
-	                "successPopup")
-	                .style.display =
-	                "none";
+            document.getElementById(
+                "successPopup")
+                .style.display =
+                "none";
 
-	            sessionStorage.removeItem(
-	                "resetCompleted");
+            sessionStorage.removeItem(
+                "resetCompleted");
 
-	        }, 3000);
-	    }
-	}
+        }, 3000);
+    }
+}
 
 function loadStatus() {
 
-    fetch("/api/reset-pay/status")
+    fetch(BASE_URL + "/api/reset-pay/status")
 
         .then(response => {
 
@@ -104,14 +106,14 @@ function loadStatus() {
                 if (!sessionStorage.getItem(
                     "successMessage")) {
 
-						const resetCompleted =
-						    sessionStorage.getItem(
-						        "resetCompleted");
+                    const resetCompleted =
+                        sessionStorage.getItem(
+                            "resetCompleted");
 
-						if (!resetCompleted) {
+                    if (!resetCompleted) {
 
-						    showError(data.message);
-						}
+                        showError(data.message);
+                    }
                 }
 
                 return;
@@ -170,7 +172,7 @@ function executeReset() {
 
     btn.disabled = true;
 
-    fetch("/api/reset-pay/reset", {
+    fetch(BASE_URL + "/api/reset-pay/reset", {
 
         method: "POST"
 
@@ -196,13 +198,13 @@ function executeReset() {
 
         .then(message => {
 
-			sessionStorage.setItem(
-			    "resetCompleted",
-			    "true");
+            sessionStorage.setItem(
+                "resetCompleted",
+                "true");
 
-			sessionStorage.setItem(
-			    "successMessage",
-			    message);
+            sessionStorage.setItem(
+                "successMessage",
+                message);
 
             window.location.reload();
 

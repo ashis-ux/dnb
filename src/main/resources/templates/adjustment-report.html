@@ -1,236 +1,170 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<title>Adjustment Report</title>
+    <title>Adjustment Report</title>
 
-<!-- Bootstrap -->
+    <!-- Make Context Path available to JavaScript -->
+    <script th:inline="javascript">
+        window.contextPath = /*[[@{/}]]*/ '';
+    </script>
 
-<link rel="stylesheet"
-         href="/bootstrap/bootstrap.min.css">
-
-<!-- Bootstrap Icons -->
-
-<!-- Custom CSS -->
-	  <link rel="stylesheet"
-	        href="/css/bootstrap-icons.min.css">
-
-<!-- Custom CSS -->
-
-<link rel="stylesheet"
-      href="/css/adjustment-report.css">
-	  
-	  <link rel="stylesheet"
-	            href="/css/header.css">
-				
-			<script src="/js/header.js"></script>
+	<link rel="stylesheet" th:href="@{/bootstrap/bootstrap.min.css}">
+	   <link rel="stylesheet" th:href="@{/css/header.css}">
+	   <link rel="stylesheet" th:href="@{/css/bootstrap-icons.min.css}">
+	   <link rel="stylesheet" th:href="@{/css/payslip-report.css}">
 
 </head>
 
 <body>
 
-<!-- Header -->
+    <!-- Header -->
+    <div th:replace="fragments/header :: header"></div>
 
-<div th:replace="fragments/header :: header">
-</div>
+    <!-- Main Container -->
+    <div class="container-fluid mt-4">
 
-
-<div class="container-fluid mt-3">
-
-    <div id="errorPopup"
-         class="alert alert-danger"
-         style="display:none;">
-    </div>
-
-</div>
-
-<!-- Main Container -->
-
-<div class="container-fluid mt-4">
-
-    <!-- Error Message -->
-
-    <div id="errorPopup"
-         class="alert alert-danger"
-         style="display:none;">
-    </div>
-
-    <div class="card shadow">
-
-        <!-- Card Header -->
-
-        <div class="card-header form-header">
-
-            <h5 class="mb-0">
-
-                Adjustment Report
-
-            </h5>
-
+        <!-- Error Message -->
+        <div id="errorPopup"
+             class="alert alert-danger"
+             style="display:none;">
         </div>
 
-        <!-- Card Body -->
+        <div class="card shadow">
 
-        <div class="card-body">
+            <!-- Card Header -->
+            <div class="card-header form-header">
 
-            <!-- Filter Section -->
+                <h5 class="mb-0">
+                    Adjustment Report
+                </h5>
 
-            <div class="row mb-4">
+            </div>
 
-                <div class="col-md-3">
+            <!-- Card Body -->
+            <div class="card-body">
 
-                    <label class="form-label">
+                <!-- Filter Section -->
+                <div class="row mb-4">
 
-                        YYMM
+                    <div class="col-md-3">
 
-                        <span class="text-danger">
+                        <label class="form-label">
+                            YYMM
+                            <span class="text-danger">*</span>
+                        </label>
 
-                            *
+                        <select id="yymm"
+                                class="form-select">
 
-                        </span>
+                            <option value="">
+                                Select YYMM
+                            </option>
 
-                    </label>
+                        </select>
 
-                    <select id="yymm"
-                            class="form-select">
+                    </div>
 
-                        <option value="">
+                </div>
 
-                            Select YYMM
+                <!-- Buttons -->
+                <div class="row mb-4">
 
-                        </option>
+                    <div class="col-md-12 text-center">
 
-                    </select>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            id="btnSearch">
 
+                            <i class="bi bi-search"></i>
+                            View Report
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn btn-success ms-2"
+                            id="btnExport">
+
+                            <i class="bi bi-file-earmark-excel"></i>
+                            Export Excel
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn btn-secondary ms-2"
+                            id="btnClear">
+
+                            <i class="bi bi-arrow-clockwise"></i>
+                            Clear
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Report Table -->
+                <div class="table-responsive">
+
+                    <table id="reportTable"
+                           class="table table-bordered table-striped table-hover">
+
+                        <thead class="table-dark">
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>YYMM</th>
+                                <th>For Month</th>
+                                <th>Days</th>
+                                <th>Category</th>
+                                <th>Year</th>
+                                <th>Amount</th>
+                                <th>Stop Adj</th>
+                                <th>Paid</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="reportBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <!-- Pagination -->
+                <div id="paginationContainer"
+                     class="mt-3 text-center">
                 </div>
 
             </div>
 
-            <!-- Buttons -->
-
-            <div class="row mb-4">
-
-                <div class="col-md-12 text-center">
-
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        id="btnSearch">
-
-                        <i class="bi bi-search"></i>
-
-                        View Report
-
-                    </button>
-
-                    <button
-                        type="button"
-                        class="btn btn-success ms-2"
-                        id="btnExport">
-
-                        <i class="bi bi-file-earmark-excel"></i>
-
-                        Export Excel
-
-                    </button>
-
-                    <button
-                        type="button"
-                        class="btn btn-secondary ms-2"
-                        id="btnClear">
-
-                        <i class="bi bi-arrow-clockwise"></i>
-
-                        Clear
-
-                    </button>
-
-                </div>
-
+            <!-- Footer -->
+            <div class="card-footer text-center">
+                Developed &amp; Maintained by C&amp;IT, BSP
             </div>
-
-            <!-- Report Table -->
-
-            <div class="table-responsive">
-
-                <table id="reportTable"
-                       class="table table-bordered table-striped table-hover">
-
-                    <thead class="table-dark">
-
-                    <tr>
-
-                        <th>ID</th>
-
-                        <th>Name</th>
-
-                        <th>YYMM</th>
-
-                        <th>For Month</th>
-
-                        <th>Days</th>
-
-                        <th>Category</th>
-
-                        <th>Year</th>
-
-                        <th>Amount</th>
-
-                        <th>Stop Adj</th>
-
-                        <th>Paid</th>
-
-                    </tr>
-
-                    </thead>
-
-                    <tbody id="reportBody">
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-            <!-- Pagination -->
-
-            <div id="paginationContainer"
-                 class="mt-3 text-center">
-
-            </div>
-
-        </div>
-
-        <!-- Footer -->
-
-        <div class="card-footer text-center">
-
-            Developed & Maintained by C&IT, BSP
 
         </div>
 
     </div>
 
-</div>
-
-<!-- JQuery -->
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-<!-- Bootstrap -->
-
-<script src="/bootstrap/bootstrap.bundle.min.js"></script>
-
-<!-- Custom JS -->
-
-<script src="/js/adjustment-report.js"></script>
+    <!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	   <script th:src="@{/bootstrap/bootstrap.bundle.min.js}"></script>
+	   <script th:src="@{/js/header.js}"></script>
+	   <script th:src="@{/js/payslip-report.js}"></script>
 
 </body>
 

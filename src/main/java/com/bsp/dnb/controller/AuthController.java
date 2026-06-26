@@ -51,6 +51,6 @@ public class AuthController {
         log.info("JWT cookie stored successfully");
 
         response.sendRedirect(
-                 "/");
+                 "/DNB");
     }
 }
