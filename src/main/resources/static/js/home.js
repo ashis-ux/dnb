@@ -1,4 +1,4 @@
-const BASE_URL = "";
+const BASE_URL = (window.contextPath || "").replace(/\/$/, "");
 
 document.addEventListener(
     "DOMContentLoaded",

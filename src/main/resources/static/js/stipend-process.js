@@ -1,124 +1,137 @@
-const API_BASE = "/api";
-
+const BASE_URL = (window.contextPath || "").replace(/\/$/, "");
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
         setPreviousMonth();
+
         loadStatus();
 
-        document.getElementById("btnProceed")
-            .addEventListener("click", createStipend);
-    }
-);
+        document.getElementById(
+            "btnProceed")
+            .addEventListener(
+                "click",
+                createStipend);
 
-/* ---------------------------
-   Load Status
----------------------------- */
+    });
 
 function loadStatus() {
-
-    fetch(`${API_BASE}/stipend/access`)
-
+	fetch(BASE_URL + "/api/stipend/access")
         .then(response => response.json())
 
         .then(data => {
 
-            document.getElementById("yymm").value =
+            document.getElementById(
+                "yymm")
+                .value =
                 data.previousMonth;
 
             const btn =
-                document.getElementById("btnProceed");
+                document.getElementById(
+                    "btnProceed");
 
             if (!data.authorized) {
 
-                btn.style.display = "none";
+                btn.style.display =
+                    "none";
 
-                showError("You are not authorized.");
+                showError(
+                    "You are not authorized.");
+
                 return;
             }
 
             if (data.paybillGenerated) {
 
-                btn.disabled = true;
+                btn.disabled =
+                    true;
 
-                showError("Stipend already generated for this month.");
+                showError(
+                    "Stipend already generated for this month.");
 
             } else {
 
-                btn.disabled = false;
+                btn.disabled =
+                    false;
             }
+
         })
 
-        .catch(() => {
+        .catch(error => {
 
-            showError("Unable to load status.");
+            showError(
+                "Unable to load status.");
+
         });
 }
-
-/* ---------------------------
-   Create Stipend
----------------------------- */
 
 function createStipend() {
 
     const btn =
-        document.getElementById("btnProceed");
+        document.getElementById(
+            "btnProceed");
 
     btn.disabled = true;
 
-    fetch(`${API_BASE}/stipend/create`, {
+    fetch("/api/stipend/create", {
 
         method: "POST"
 
     })
 
-        .then(response => {
+    .then(response => {
 
-            if (!response.ok) {
+        if (!response.ok) {
 
-                throw new Error("Unable to create stipend.");
-            }
+            throw new Error(
+                "Unable to create stipend.");
+        }
 
-            return response.text();
-        })
+        return response.text();
 
-        .then(message => {
+    })
 
-            showSuccess(message);
-            loadStatus();
-        })
+    .then(message => {
 
-        .catch(error => {
+        showSuccess(message);
 
-            btn.disabled = false;
-            showError(error.message);
-        });
+        loadStatus();
+
+    })
+
+    .catch(error => {
+
+        btn.disabled = false;
+
+        showError(error.message);
+
+    });
+
 }
-
-/* ---------------------------
-   UI Messages
----------------------------- */
 
 function showSuccess(message) {
 
-    document.getElementById("errorPopup").style.display = "none";
+    document.getElementById("errorPopup")
+            .style.display = "none";
 
-    document.getElementById("successPopup").innerHTML = message;
-    document.getElementById("successPopup").style.display = "block";
+    document.getElementById("successPopup")
+            .innerHTML = message;
+
+    document.getElementById("successPopup")
+            .style.display = "block";
 }
 
 function showError(message) {
 
-    document.getElementById("successPopup").style.display = "none";
+    document.getElementById("successPopup")
+            .style.display = "none";
 
-    document.getElementById("errorPopup").innerHTML = message;
-    document.getElementById("errorPopup").style.display = "block";
+    document.getElementById("errorPopup")
+            .innerHTML = message;
+
+    document.getElementById("errorPopup")
+            .style.display = "block";
 }
-
-/* ---------------------------
-   Set Previous Month
----------------------------- */
 
 function setPreviousMonth() {
 

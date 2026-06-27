@@ -18,13 +18,28 @@ public class DnbMastDto {
     private String bankCd;
     private String bankAcno;
     private String pan;
-    private Integer catg;
+    public String getIfscCode() {
+		return ifscCode;
+	}
+	public void setIfscCode(String ifscCode) {
+		this.ifscCode = ifscCode;
+	}
+	public String getBankName() {
+		return bankName;
+	}
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+	private Integer catg;
     private String catgDesc;
     private String speciality;
     private Integer trgDuration;
     private Integer stopPayInd;
     private Integer tuitionFeeInd;
     private String dnbType;
+    private String ifscCode;
+
+    private String bankName;
     
     private String mobileNo;
 

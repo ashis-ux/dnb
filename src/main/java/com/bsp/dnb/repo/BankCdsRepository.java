@@ -43,6 +43,9 @@ public interface BankCdsRepository
 		List<String> findDistinctBankNamesByIfsc(
 		        @Param("ifscCode")
 		        String ifscCode);
+    
+    List<BankCds> findByIdBankCode(
+            Integer bankCode);
 
 
 }

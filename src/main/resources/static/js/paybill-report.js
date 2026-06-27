@@ -1,4 +1,4 @@
-const BASE_URL = "";
+const BASE_URL = (window.contextPath || "").replace(/\/$/, "");
 
 const PaybillReport = {
 
@@ -88,7 +88,8 @@ const PaybillReport = {
         $.ajax({
 
             url:
-                BASE_URL + "/api/paybill-report/"
+                BASE_URL
+                + "/api/paybill-report/"
                 + yymm
                 + "?page="
                 + this.currentPage
@@ -273,9 +274,11 @@ const PaybillReport = {
             .html(html);
     },
 
-    goToPage: function (page) {
+    goToPage: function (
+        page) {
 
-        this.currentPage = page;
+        this.currentPage =
+            page;
 
         this.loadReport();
     },
@@ -296,6 +299,8 @@ const PaybillReport = {
             < this.totalPages - 1) {
 
             this.currentPage++;
+
+            this.loadReport();
         }
     },
 
@@ -315,7 +320,8 @@ const PaybillReport = {
         }
 
         window.location.href =
-            BASE_URL + "/api/paybill-report/export/"
+            BASE_URL
+            + "/api/paybill-report/export/"
             + yymm;
     },
 
@@ -333,7 +339,8 @@ const PaybillReport = {
         this.hideMessages();
     },
 
-    showError: function (message) {
+    showError: function (
+        message) {
 
         $("#errorPopup")
             .text(message)
@@ -342,9 +349,11 @@ const PaybillReport = {
 
     hideMessages: function () {
 
-        $("#errorPopup").hide();
+        $("#errorPopup")
+            .hide();
 
-        $("#successPopup").hide();
+        $("#successPopup")
+            .hide();
     }
 };
 

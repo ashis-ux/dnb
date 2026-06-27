@@ -1,5 +1,4 @@
 const BASE_URL = (window.contextPath || "").replace(/\/$/, "");
-
 document.addEventListener(
     "DOMContentLoaded",
     function () {
@@ -34,22 +33,19 @@ function setPreviousMonth() {
 function loadAttendance() {
 
     const yymm = document.getElementById(
-        "yymm"
-    ).value.trim();
+            "yymm")
+            .value
+            .trim();
 
     if (!/^\d{6}$/.test(yymm)) {
 
         showError(
-            "YYMM should be in YYYYMM format."
-        );
+            "YYMM should be in YYYYMM format.");
 
         return;
     }
 
-    fetch(
-        BASE_URL + "/api/dnb-att/entry/"
-        + yymm
-    )
+   fetch(BASE_URL + "/api/dnb-att/entry/" + yymm)
 
         .then(response => {
 
@@ -74,8 +70,7 @@ function loadAttendance() {
 
             showError(
                 error.message
-                || "Unable to load attendance."
-            );
+                || "Unable to load attendance.");
         });
 }
 
@@ -83,8 +78,7 @@ function populateGrid(data) {
 
     const tbody =
         document.getElementById(
-            "attendanceBody"
-        );
+            "attendanceBody");
 
     tbody.innerHTML = "";
 
@@ -212,22 +206,21 @@ function saveAttendance() {
         return;
     }
 
-    const yymm =
+    const yymm = 
         parseInt(
             document.getElementById(
-                "yymm").value
-        );
+                "yymm").value);
 
     const rows =
         document.querySelectorAll(
-            "#attendanceBody tr"
-        );
+            "#attendanceBody tr");
 
     let attendanceList = [];
 
     rows.forEach(row => {
 
         if (!row.querySelector(".employee-id")) {
+
             return;
         }
 
@@ -238,148 +231,168 @@ function saveAttendance() {
             id: parseInt(
                 row.querySelector(".employee-id")
                     .innerText
-                    .trim()
-            ),
+                    .trim()),
 
             duty: parseInteger(
-                row.querySelector(".duty").value
-            ),
+                row.querySelector(".duty").value),
 
             al: parseInteger(
-                row.querySelector(".al").value
-            ),
+                row.querySelector(".al").value),
 
             cl: parseInteger(
-                row.querySelector(".cl").value
-            ),
+                row.querySelector(".cl").value),
 
             pl: parseInteger(
-                row.querySelector(".pl").value
-            ),
+                row.querySelector(".pl").value),
 
             ml: parseInteger(
-                row.querySelector(".ml").value
-            ),
+                row.querySelector(".ml").value),
 
             abs: parseInteger(
-                row.querySelector(".abs").value
-            )
+                row.querySelector(".abs").value)
         });
     });
 
-    fetch(BASE_URL + "/api/dnb-att/bulk", {
+  fetch(BASE_URL + "/api/dnb-att/bulk", {
 
         method: "POST",
 
         headers: {
-            "Content-Type": "application/json"
+
+            "Content-Type":
+                "application/json"
         },
 
-        body: JSON.stringify(attendanceList)
+        body:
+            JSON.stringify(
+                attendanceList)
     })
 
-        .then(async response => {
+    .then(async response => {
 
-            if (!response.ok) {
+        if (!response.ok) {
 
-                const error =
-                    await response.json();
+            const error =
+                await response.json();
 
-                throw error;
-            }
+            throw error;
+        }
 
-            const text =
-                await response.text();
+        /*
+         * Handle empty response body
+         */
+        const text =
+            await response.text();
 
-            return text
-                ? JSON.parse(text)
-                : [];
-        })
+        return text
+            ? JSON.parse(text)
+            : [];
+    })
 
-        .then(data => {
+    .then(data => {
 
-            console.log(
-                "Attendance saved successfully"
-            );
+        console.log(
+            "Attendance saved successfully");
 
-            showSuccess(
-                "Attendance saved successfully."
-            );
+        showSuccess(
+            "Attendance saved successfully.");
 
-            setTimeout(function () {
+        /*
+         * Refresh after success message
+         */
+        setTimeout(function () {
 
-                loadAttendance();
+            loadAttendance();
 
-            }, 3000);
-        })
+        }, 3000);
+    })
 
-        .catch(error => {
+    .catch(error => {
 
-            console.error(error);
+        console.error(error);
 
-            showError(
-                error.message
-                || "Unable to save attendance."
-            );
-        });
+        showError(
+            error.message
+            || "Unable to save attendance.");
+    });
 }
 
 function validateAttendanceGrid() {
 
     const rows =
         document.querySelectorAll(
-            "#attendanceBody tr"
-        );
+            "#attendanceBody tr");
 
     for (const row of rows) {
 
-        if (!row.querySelector(".employee-id")) {
+        if (!row.querySelector(
+            ".employee-id")) {
+
             continue;
         }
 
         const duty =
-            parseInteger(row.querySelector(".duty").value);
+            parseInteger(
+                row.querySelector(
+                    ".duty").value);
 
         const al =
-            parseInteger(row.querySelector(".al").value);
+            parseInteger(
+                row.querySelector(
+                    ".al").value);
 
         const cl =
-            parseInteger(row.querySelector(".cl").value);
+            parseInteger(
+                row.querySelector(
+                    ".cl").value);
 
         const pl =
-            parseInteger(row.querySelector(".pl").value);
+            parseInteger(
+                row.querySelector(
+                    ".pl").value);
 
         const ml =
-            parseInteger(row.querySelector(".ml").value);
+            parseInteger(
+                row.querySelector(
+                    ".ml").value);
 
         const abs =
-            parseInteger(row.querySelector(".abs").value);
+            parseInteger(
+                row.querySelector(
+                    ".abs").value);
 
         const eligible =
-            parseInteger(row.querySelector(".eligibleDays").value);
+            parseInteger(
+                row.querySelector(
+                    ".eligibleDays")
+                    .value);
 
         const total =
-            duty + al + cl + pl + ml + abs;
+            duty
+            + al
+            + cl
+            + pl
+            + ml
+            + abs;
 
-        if (total === 0) {
-            continue;
-        }
-
+			if (total === 0) {
+			    continue;
+			}
         if (total !== eligible) {
-
             const empId =
-                row.querySelector(".employee-id")
+                row.querySelector(
+                    ".employee-id")
                     .innerText
                     .trim();
 
             showError(
+
                 "Employee "
                 + empId
                 + " total attendance must be "
                 + eligible
                 + " days. Entered : "
-                + total
-            );
+                + total);
 
             return false;
         }
@@ -391,19 +404,26 @@ function validateAttendanceGrid() {
 function initializeNumericValidation() {
 
     const inputs =
-        document.querySelectorAll(".attendance-input");
+        document.querySelectorAll(
+            ".attendance-input");
 
     inputs.forEach(input => {
 
-        input.addEventListener("input", function () {
+        input.addEventListener(
+            "input",
+            function () {
 
-            if (this.value < 0) {
-                this.value = 0;
-            }
+                if (this.value < 0) {
 
-            this.value =
-                this.value.replace(/\D/g, "");
-        });
+                    this.value = 0;
+                }
+
+                this.value =
+                    this.value
+                        .replace(
+                            /\D/g,
+                            "");
+            });
     });
 }
 
@@ -413,37 +433,44 @@ function clearForm() {
 
     setPreviousMonth();
 
-    document.getElementById("attendanceBody").innerHTML =
+    document.getElementById(
+        "attendanceBody")
+        .innerHTML =
 
         `<tr>
+
             <td colspan="10"
                 class="text-center empty-row">
 
                 Click Load to fetch attendance.
 
             </td>
+
         </tr>`;
 }
 
 function exitScreen() {
 
     const modal =
+
         new bootstrap.Modal(
-            document.getElementById("exitModal")
-        );
+
+            document.getElementById(
+                "exitModal"));
 
     modal.show();
 }
 
 function confirmExit() {
 
-    window.location.href =
-        BASE_URL + "/";
+   window.location.href = BASE_URL + "/";
 }
 
 function parseInteger(value) {
 
-    if (!value || value === "") {
+    if (!value ||
+        value === "") {
+
         return 0;
     }
 
@@ -453,6 +480,7 @@ function parseInteger(value) {
 function formatDate(date) {
 
     if (!date) {
+
         return "";
     }
 
@@ -460,35 +488,74 @@ function formatDate(date) {
         new Date(date);
 
     const day =
-        String(d.getDate()).padStart(2, "0");
+        String(
+            d.getDate())
+            .padStart(2, "0");
 
     const month =
-        String(d.getMonth() + 1).padStart(2, "0");
+        String(
+            d.getMonth() + 1)
+            .padStart(2, "0");
 
     const year =
         d.getFullYear();
 
-    return day + "-" + month + "-" + year;
+    return day
+        + "-"
+        + month
+        + "-"
+        + year;
 }
 
 function clearMessages() {
 
-    document.getElementById("successPopup").style.display = "none";
-    document.getElementById("errorPopup").style.display = "none";
+    document.getElementById(
+        "successPopup")
+        .style.display =
+        "none";
+
+    document.getElementById(
+        "errorPopup")
+        .style.display =
+        "none";
 }
 
 function showSuccess(message) {
 
-    document.getElementById("successPopup").innerHTML = message;
-    document.getElementById("successPopup").style.display = "block";
+    document.getElementById(
+        "successPopup")
+        .innerHTML =
+        message;
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.getElementById(
+        "successPopup")
+        .style.display =
+        "block";
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+    });
 }
 
 function showError(message) {
 
-    document.getElementById("errorPopup").innerHTML = message;
-    document.getElementById("errorPopup").style.display = "block";
+    document.getElementById(
+        "errorPopup")
+        .innerHTML =
+        message;
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.getElementById(
+        "errorPopup")
+        .style.display =
+        "block";
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+    });
 }

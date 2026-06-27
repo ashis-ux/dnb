@@ -12,11 +12,13 @@ import org.springframework.stereotype.Service;
 import com.bsp.dnb.dto.DnbMastDto;
 import com.bsp.dnb.dto.PayBillDto;
 import com.bsp.dnb.dto.UpdateMasterDto;
+import com.bsp.dnb.entity.BankCds;
 import com.bsp.dnb.entity.Category;
 import com.bsp.dnb.entity.DnbMast;
 import com.bsp.dnb.exception.BadRequestException;
 import com.bsp.dnb.exception.DuplicateResourceException;
 import com.bsp.dnb.exception.ResourceNotFoundException;
+import com.bsp.dnb.repo.BankCdsRepository;
 import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
 import com.bsp.dnb.repo.RoleCategoryRepository;
@@ -54,6 +56,9 @@ public class DnbMastServiceImpl implements DnbMastService {
 
 	@Autowired
     private  DnbMastRepository repository;
+	
+	@Autowired
+	private BankCdsRepository bankCdsRepository;
 	
 	@Autowired
 	private DataSource dataSource;
@@ -244,8 +249,10 @@ public class DnbMastServiceImpl implements DnbMastService {
         dto.setStipendRate(entity.getStipendRate());
         dto.setDailyRate(entity.getDailyRate());
         dto.setSexCode(entity.getSexCode());
+
         dto.setBankCd(entity.getBankCd());
         dto.setBankAcno(entity.getBankAcno());
+
         dto.setPan(entity.getPan());
         dto.setCatg(entity.getCatg());
         dto.setCatgDesc(entity.getCatgDesc());
@@ -254,12 +261,29 @@ public class DnbMastServiceImpl implements DnbMastService {
         dto.setStopPayInd(entity.getStopPayInd());
         dto.setTuitionFeeInd(entity.getTuitionFeeInd());
         dto.setDnbType(entity.getDnbType());
-        
-        dto.setMobileNo(
-                entity.getMobileNo());
 
-        dto.setEmailId(
-                entity.getEmailId());
+        dto.setMobileNo(entity.getMobileNo());
+        dto.setEmailId(entity.getEmailId());
+
+        if (entity.getBankCd() != null
+                && !entity.getBankCd().isBlank()) {
+
+            List<BankCds> banks =
+            		bankCdsRepository.findByIdBankCode(
+                            Integer.valueOf(entity.getBankCd()));
+
+            if (!banks.isEmpty()) {
+
+                BankCds bank =
+                        banks.get(0);
+
+                dto.setIfscCode(
+                        bank.getIfsCd());
+
+                dto.setBankName(
+                        bank.getBankName());
+            }
+        }
 
         return dto;
     }
@@ -381,6 +405,7 @@ public class DnbMastServiceImpl implements DnbMastService {
                                         "DNB not found with PAN : "
                                                 + searchValue);
                             });
+            
         }
 
         return entityToDto(entity);

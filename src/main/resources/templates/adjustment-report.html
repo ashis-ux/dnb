@@ -5,8 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Adjustment Report</title>
 
@@ -18,14 +17,14 @@
 	<link rel="stylesheet" th:href="@{/bootstrap/bootstrap.min.css}">
 	   <link rel="stylesheet" th:href="@{/css/header.css}">
 	   <link rel="stylesheet" th:href="@{/css/bootstrap-icons.min.css}">
-	   <link rel="stylesheet" th:href="@{/css/payslip-report.css}">
+	   <link rel="stylesheet" th:href="@{/css/adjustment-report.css}">
 
 </head>
 
 <body>
 
     <!-- Header -->
-    <div th:replace="fragments/header :: header"></div>
+<div th:replace="~{fragments/header :: header}"></div>
 
     <!-- Main Container -->
     <div class="container-fluid mt-4">
@@ -163,8 +162,8 @@
     <!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	   <script th:src="@{/bootstrap/bootstrap.bundle.min.js}"></script>
-	   <script th:src="@{/js/header.js}"></script>
-	   <script th:src="@{/js/payslip-report.js}"></script>
+	  
+	   <script th:src="@{/js/adjustment-report.js}"></script>
 
 </body>
 

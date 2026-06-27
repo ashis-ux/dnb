@@ -1,5 +1,4 @@
 const BASE_URL = (window.contextPath || "").replace(/\/$/, "");
-
 let categoryList = [];
 
 document.addEventListener(
@@ -12,24 +11,23 @@ document.addEventListener(
 
         loadCategories();
     });
+	document.addEventListener("click",function(e){
 
-document.addEventListener("click",function(e){
+	    if(e.target.closest(".addRow")){
 
-    if(e.target.closest(".addRow")){
+	        addAdjustmentRow(
+	            e.target.closest(".addRow"));
 
-        addAdjustmentRow(
-            e.target.closest(".addRow"));
+	    }
 
-    }
+	    if(e.target.closest(".removeRow")){
 
-    if(e.target.closest(".removeRow")){
+	        removeAdjustmentRow(
+	            e.target.closest(".removeRow"));
 
-        removeAdjustmentRow(
-            e.target.closest(".removeRow"));
+	    }
 
-    }
-
-});
+	});
 
 function bindButtons() {
 
@@ -86,8 +84,7 @@ function setPreviousMonth() {
 
 function loadCategories() {
 
-    fetch(
-        BASE_URL + "/api/categories/logged-in-user-all-categories")
+   fetch(BASE_URL + "/api/categories/logged-in-user-all-categories")
 
         .then(response =>
             response.json())
@@ -118,9 +115,7 @@ function loadAdjustments() {
             "yymm")
             .value;
 
-    fetch(
-        BASE_URL + "/api/dnb-adj/entry/"
-        + yymm)
+    fetch(BASE_URL + "/api/dnb-adj/entry/" + yymm)
 
         .then(response => {
 
@@ -164,105 +159,106 @@ function populateGrid(data) {
                 ? "disabled"
                 : "";
 
-        const row =
+				const row =
 
-        `<tr data-original-forym="${emp.originalForym || emp.forym || ''}">
+				`<tr data-original-forym="${emp.originalForym || emp.forym || ''}">
+				
 
-            <td class="emp-id">
+                <td class="emp-id">
 
-                ${emp.id}
+                    ${emp.id}
 
-            </td>
+                </td>
 
-            <td>
+                <td>
 
-                ${emp.name}
+                    ${emp.name}
 
-            </td>
+                </td>
 
-            <td>
+                <td>
 
-            <select class="forym"  ${disabled}>
-                ${buildForymOptions(
-                        document.getElementById(
-                            "yymm").value,
-                        emp.doj,
-                        emp.forym)}
+				<select class="forym"  ${disabled}>
+				    ${buildForymOptions(
+				            document.getElementById(
+				                "yymm").value,
+				            emp.doj,
+				            emp.forym)}
 
-            </select>
+				</select>
 
-            </td>
+                </td>
+				
+				<td>
+				    <select class="days"
+				            ${disabled}>
+				        <option value="${emp.days|| 0}" selected>
+				            ${emp.days || 0}
+				        </option>
+				    </select>
+				</td>
 
-            <td>
-                <select class="days"
-                        ${disabled}>
-                    <option value="${emp.days|| 0}" selected>
-                        ${emp.days || 0}
-                    </option>
-                </select>
-            </td>
+				<td class="category"
+				    data-catg="${emp.catg}"
+				    data-year="${emp.yr}">
+				    ${emp.catg_desc}
+				</td>
 
-            <td class="category"
-                data-catg="${emp.catg}"
-                data-year="${emp.yr}">
-                ${emp.catg_desc}
-            </td>
+                <td>
 
-            <td>
+                    <input type="text"
+                           class="amt"
+                           value="${emp.amt ?? 0}"
+                           readonly>
 
-                <input type="text"
-                       class="amt"
-                       value="${emp.amt ?? 0}"
-                       readonly>
+                </td>
 
-            </td>
+                <td>
 
-            <td>
+                    <select class="stopAdj"
+                            ${disabled}>
 
-                <select class="stopAdj"
-                        ${disabled}>
+                        <option value="0"
+                            ${emp.stopAdjInd === 0 ? "selected" : ""}>
 
-                    <option value="0"
-                        ${emp.stopAdjInd === 0 ? "selected" : ""}>
+                            No
 
-                        No
+                        </option>
 
-                    </option>
+                        <option value="1"
+                            ${emp.stopAdjInd === 1 ? "selected" : ""}>
 
-                    <option value="1"
-                        ${emp.stopAdjInd === 1 ? "selected" : ""}>
+                            Yes
 
-                        Yes
+                        </option>
 
-                    </option>
+                    </select>
 
-                </select>
+                </td>
 
-            </td>
+				<td class="text-center">
 
-            <td class="text-center">
+				    <button
+				        type="button"
+				        class="btn btn-success btn-sm addRow"
+				        ${disabled}>
 
-                <button
-                    type="button"
-                    class="btn btn-success btn-sm addRow"
-                    ${disabled}>
+				        <i class="bi bi-plus-lg"></i>
 
-                    <i class="bi bi-plus-lg"></i>
+				    </button>
 
-                </button>
+				    <button
+				        type="button"
+				        class="btn btn-danger btn-sm removeRow"
+				        ${disabled}>
 
-                <button
-                    type="button"
-                    class="btn btn-danger btn-sm removeRow"
-                    ${disabled}>
+				        <i class="bi bi-dash-lg"></i>
 
-                    <i class="bi bi-dash-lg"></i>
+				    </button>
 
-                </button>
+				</td>
 
-            </td>
-
-        </tr>`;
+            </tr>`;
 
         tbody.insertAdjacentHTML(
             "beforeend",
@@ -271,6 +267,237 @@ function populateGrid(data) {
 
     initializeRows(data);
 }
+
+/* ---------------------------
+   Category Dropdown
+---------------------------- */
+
+function buildCategoryOptions(
+        empCatg,
+        selectedCatg,
+        selectedYr) {
+
+    let html =
+        '<option value="">Select</option>';
+
+    categoryList
+        .filter(cat => cat.catg == empCatg)
+        .forEach(cat => {
+
+            const selected =
+                cat.catg == selectedCatg &&
+                cat.year == selectedYr
+                    ? "selected"
+                    : "";
+
+            html += `
+                <option
+                    value="${cat.catg}_${cat.year}"
+                    data-catg="${cat.catg}"
+                    data-year="${cat.year}"
+                    data-stipend="${cat.stipend}"
+                    ${selected}>
+
+                    ${cat.description}
+                    - Year ${cat.year}
+
+                </option>`;
+        });
+
+    return html;
+}
+
+
+function buildForymOptions(
+        yymm,
+        doj,
+        selectedForym) {
+
+    let options =
+        '<option value="">Select</option>';
+
+    const currentYymm =
+        parseInt(yymm);
+
+    let currentDate =
+        new Date(
+            parseInt(
+                String(currentYymm)
+                    .substring(0, 4)),
+            parseInt(
+                String(currentYymm)
+                    .substring(4, 6)) - 1,
+            1);
+
+    currentDate.setMonth(
+        currentDate.getMonth() - 1);
+
+    let oldestDate =
+        new Date(currentDate);
+
+    oldestDate.setMonth(
+        oldestDate.getMonth() - 11);
+
+    let dojDate =
+        new Date(doj);
+
+    let dojMonth =
+        new Date(
+            dojDate.getFullYear(),
+            dojDate.getMonth(),
+            1);
+
+    for (let dt =
+         new Date(currentDate);
+
+         dt >= oldestDate;
+
+         dt.setMonth(
+            dt.getMonth() - 1)) {
+
+        let yymmValue =
+
+            dt.getFullYear()
+            +
+            String(
+                dt.getMonth() + 1)
+                .padStart(
+                    2,
+                    "0");
+
+        let candidateMonth =
+            new Date(
+                dt.getFullYear(),
+                dt.getMonth(),
+                1);
+
+        if (candidateMonth < dojMonth) {
+
+            continue;
+        }
+
+        options +=
+
+            `<option value="${yymmValue}"
+                ${parseInt(yymmValue)
+                    === selectedForym
+                    ? "selected"
+                    : ""}>
+
+                ${yymmValue}
+
+            </option>`;
+    }
+
+    return options;
+}
+
+/* ---------------------------
+   Initialize Rows
+---------------------------- */
+
+function initializeRows(data) {
+
+    document.querySelectorAll(
+        "#adjustmentBody tr")
+
+        .forEach((row, index) => {
+
+            const dto =
+                data[index];
+
+            const forymInput =
+                row.querySelector(
+                    ".forym");
+
+            const daysSelect =
+                row.querySelector(
+                    ".days");
+
+            if (dto.forym) {
+
+                populateDaysDropdown(
+                    daysSelect,
+                    dto.forym,
+                    dto.days);
+            }
+
+            forymInput.addEventListener(
+                "change",
+                function () {
+
+                    populateDaysDropdown(
+                        daysSelect,
+                        this.value,
+                        dto.days);
+
+                    calculateAmount(
+                        row);
+                });
+
+            daysSelect.addEventListener(
+                "change",
+                function () {
+
+                    calculateAmount(
+                        row);
+                });
+
+             
+        });
+}
+
+/* ---------------------------
+   Days Dropdown
+---------------------------- */
+
+function populateDaysDropdown(
+    select,
+    forym,
+    selectedValue) {
+
+    select.innerHTML = "";
+
+    forym = String(forym);
+
+    if (!forym ||
+        forym.length !== 6) {
+
+        select.innerHTML =
+            '<option value="0" selected>0</option>';
+
+        return;
+    }
+
+    const year =
+        parseInt(forym.substring(0, 4));
+
+    const month =
+        parseInt(forym.substring(4, 6));
+
+    const maxDays =
+        new Date(
+            year,
+            month,
+            0)
+            .getDate();
+
+    select.innerHTML +=
+        `<option value="0"
+            ${selectedValue == 0 ? "selected" : ""}>
+            0
+        </option>`;
+
+    for (let i = 1; i <= maxDays; i++) {
+
+        select.innerHTML +=
+            `<option value="${i}"
+                ${i == selectedValue ? "selected" : ""}>
+                ${i}
+            </option>`;
+    }
+}
+
 
 /* ---------------------------
    Calculate Amount
@@ -296,11 +523,11 @@ function calculateAmount(row) {
     }
 
     fetch(
-        BASE_URL + `/api/dnb-adj/calculate?id=${id}&forym=${forym}&days=${days}`)
+        `/api/dnb-adj/calculate?id=${id}&forym=${forym}&days=${days}`)
         .then(response => response.json())
         .then(data => {
 
-            row.querySelector(".amt").value = data;
+            row.querySelector(".amt").value =data;
 
         })
         .catch(() => {
@@ -309,7 +536,6 @@ function calculateAmount(row) {
 
         });
 }
-
 /* ---------------------------
    Save
 ---------------------------- */
@@ -342,6 +568,9 @@ function saveAdjustments() {
                 parseInt(
                     row.querySelector(".amt").value || 0);
 
+            /*
+             * Skip blank rows
+             */
             if (!forym || days <= 0 || amount <= 0) {
 
                 return;
@@ -366,6 +595,9 @@ function saveAdjustments() {
                 catg: parseInt(
                     category.dataset.catg),
 
+                /*
+                 * Backend will calculate year.
+                 */
                 yr: 0,
 
                 amt: amount,
@@ -386,72 +618,67 @@ function saveAdjustments() {
         return;
     }
 
-    fetch(BASE_URL + "/api/dnb-adj/bulk", {
+	fetch(BASE_URL + "/api/dnb-adj/bulk", {
 
-        method: "POST",
+	    method: "POST",
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+	    headers: {
+	        "Content-Type": "application/json"
+	    },
 
-        body: JSON.stringify(dtoList)
+	    body: JSON.stringify(dtoList)
 
-    })
-    .then(async response => {
+	})
+	.then(async response => {
 
-        let result = "";
+	    let result = "";
 
-        try {
+	    try {
 
-            result = await response.text();
+	        result = await response.text();
 
-        } catch (e) {
+	    } catch (e) {
 
-            result = "";
-        }
+	        result = "";
+	    }
 
-        if (!response.ok) {
+	    if (!response.ok) {
 
-            throw new Error(
-                result || "Unable to save adjustment.");
+	        throw new Error(
+	            result || "Unable to save adjustment.");
 
-        }
+	    }
 
-        return result;
+	    return result;
 
-    })
-    .then(message => {
+	})
+	.then(message => {
 
-        showSuccess(
-             "Adjustment saved successfully.");
+	    showSuccess(
+	         "Adjustment saved successfully.");
 
-        setTimeout(function () {
+	    setTimeout(function () {
 
-            loadAdjustments();
+	        loadAdjustments();
 
-        }, 2000);
+	    }, 2000);
 
-    })
-    .catch(error => {
+	})
+	.catch(error => {
 
-        console.error(error);
+	            console.error(error);
 
-        showError(
-            error.message ||
-            "Unable to save adjustment.");
+	            showError(
+	                error.message
+	                || "Unable to save adjustment."
+	            );
 
-        setTimeout(function () {
-
-            loadAdjustments();
-
-        }, 2000);
-
-    });
+	});
 
 }
 
 /* ---------------------------
-   Remaining code unchanged...
+   Utility
 ---------------------------- */
 
 function clearForm() {
@@ -465,8 +692,7 @@ function clearForm() {
 
 function exitScreen() {
 
-    window.location.href =
-        "/home";
+   window.location.href = BASE_URL + "/";
 }
 
 function showSuccess(message) {
@@ -488,19 +714,10 @@ function showSuccess(message) {
 
 function showError(message) {
 
-    const popup =
-        document.getElementById(
-            "errorPopup");
+    document.getElementById("errorPopup").innerHTML = message;
+    document.getElementById("errorPopup").style.display = "block";
 
-    popup.innerHTML = message;
-
-    popup.style.display =
-        "block";
-
-    document.getElementById(
-        "successPopup")
-        .style.display =
-        "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function clearMessages() {
@@ -515,3 +732,104 @@ function clearMessages() {
         .style.display =
         "none";
 }
+
+function addAdjustmentRow(button) {
+
+    const currentRow = button.closest("tr");
+
+    const clone = currentRow.cloneNode(true);
+
+    clone.dataset.originalForym = "";
+
+    clone.querySelector(".forym").value = "";
+
+    clone.querySelector(".days").innerHTML =
+        '<option value="0">0</option>';
+
+    clone.querySelector(".amt").value = 0;
+
+    clone.querySelector(".stopAdj").value = 0;
+
+    currentRow.after(clone);
+
+    initializeSingleRow(clone);
+
+    refreshForymDropdowns();
+}
+
+function removeAdjustmentRow(button) {
+
+    const tbody =
+        document.getElementById("adjustmentBody");
+
+    if (tbody.rows.length == 1) {
+
+        showError("At least one row is required.");
+
+        return;
+    }
+
+    button.closest("tr").remove();
+
+    refreshForymDropdowns();
+}
+
+function refreshForymDropdowns() {
+
+    const selectedMonths = [];
+
+    document.querySelectorAll(".forym").forEach(function(select){
+
+        if(select.value){
+
+            selectedMonths.push(select.value);
+
+        }
+
+    });
+
+    document.querySelectorAll(".forym").forEach(function(select){
+
+        const current = select.value;
+
+        Array.from(select.options).forEach(function(option){
+
+            if(option.value=="")
+
+                return;
+
+            option.hidden =
+                option.value != current &&
+                selectedMonths.includes(option.value);
+
+        });
+
+    });
+	}
+	function initializeSingleRow(row){
+
+	    const forym = row.querySelector(".forym");
+
+	    const days = row.querySelector(".days");
+
+	    forym.addEventListener("change",function(){
+
+	        populateDaysDropdown(
+	            days,
+	            this.value,
+	            0);
+
+	        calculateAmount(row);
+
+	        refreshForymDropdowns();
+
+	    });
+
+	    days.addEventListener("change",function(){
+
+	        calculateAmount(row);
+
+	    });
+
+	}
+

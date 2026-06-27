@@ -191,13 +191,13 @@ public class DnbAdjServiceImpl implements DnbAdjService {
 	            dtoList.get(0)
 	                    .getYymm();
 
-//	    if (pbillRepository.existsByIdYymm(
-//	            yymm)) {
-//
-//	        throw new BadRequestException(
-//	                "Paybill has already been generated for YYMM : "
-//	                        + yymm);
-//	    }
+	    if (pbillRepository.existsByIdYymm(
+	            yymm)) {
+
+	        throw new BadRequestException(
+	                "Paybill has already been generated for YYMM : "
+	                        + yymm);
+	    }
 
 	    List<DnbAdjDto> response =
 	            new ArrayList<>();

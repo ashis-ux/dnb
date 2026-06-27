@@ -1,19 +1,20 @@
-const BASE_URL = "";
+const BASE_URL = (window.contextPath || "").replace(/\/$/, "");
 
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
+    function() {
 
         loadCategories();
 
         initializePanField();
     });
 
+
 document.getElementById(
     "mobileNo")
     .addEventListener(
         "input",
-        function () {
+        function() {
 
             this.value =
                 this.value.replace(
@@ -28,7 +29,6 @@ document.getElementById(
                         10);
             }
         });
-
 function searchDnb() {
 
     clearMessages();
@@ -47,9 +47,7 @@ function searchDnb() {
         return;
     }
 
-    fetch(
-        BASE_URL + "/api/dnb/search?value="
-        + encodeURIComponent(value))
+    fetch(BASE_URL + "/api/dnb/search?value=" + encodeURIComponent(value))
 
         .then(response => {
 
@@ -88,6 +86,138 @@ function searchDnb() {
         });
 }
 
+function validateDOS() {
+    const doj =
+        document.getElementById("doj").value;
+
+    const dos =
+        document.getElementById("dos").value;
+
+    if (doj && dos) {
+
+        const dojDate =
+            new Date(doj);
+
+        const dosDate =
+            new Date(dos);
+
+        if (dosDate <= dojDate) {
+
+            showError(
+                "DOS must be greater than DOJ");
+
+            return false;
+        }
+    }
+    return true;
+}
+
+function populateForm(data) {
+
+    document.getElementById(
+        "dnbId")
+        .value =
+        data.id;
+
+    document.getElementById(
+        "name")
+        .value =
+        data.name || "";
+
+    document.getElementById(
+        "dob")
+        .value =
+        formatDate(
+            data.dob);
+
+    document.getElementById(
+        "pan")
+        .value =
+        data.pan || "";
+
+    document.getElementById(
+        "doj")
+        .value =
+        formatDate(
+            data.doj);
+
+    document.getElementById(
+        "dos")
+        .value =
+        formatDate(
+            data.dos);
+
+    document.getElementById(
+        "sexCode")
+        .value =
+        data.sexCode || "";
+
+    document.getElementById(
+        "empStatus")
+        .value =
+        data.empStatus;
+
+    document.getElementById(
+        "mobileNo")
+        .value =
+        data.mobileNo || "";
+
+    document.getElementById(
+        "emailId")
+        .value =
+        data.emailId || "";
+
+    // IFSC Code
+    document.getElementById(
+        "ifscCode")
+        .value =
+        data.ifscCode || "";
+
+    // Bank Name Dropdown
+    const bankDropdown =
+        document.getElementById(
+            "bankName");
+
+    bankDropdown.innerHTML = "";
+
+    if (data.bankName) {
+
+        bankDropdown.innerHTML =
+            `<option value="${data.bankName}" selected>
+			            ${data.bankName}
+			         </option>`;
+    }
+
+    // Bank Code
+    document.getElementById(
+        "bankCd")
+        .value =
+        data.bankCd || "";
+
+    // Account Number
+    document.getElementById(
+        "bankAcno")
+        .value =
+        data.bankAcno || "";
+
+    document.getElementById(
+        "catg")
+        .value =
+        data.catg;
+
+    document.getElementById(
+        "speciality")
+        .value =
+        data.speciality || "";
+
+    document.getElementById(
+        "tuitionFeeInd")
+        .value =
+        data.tuitionFeeInd;
+
+    setEditableFields();
+}
+
 function updateDnb() {
 
     clearMessages();
@@ -98,6 +228,7 @@ function updateDnb() {
             .value;
 
     if (!validateForm()) {
+
         return;
     }
 
@@ -125,7 +256,8 @@ function updateDnb() {
 
         empStatus:
             parseInteger(
-                getValue("empStatus")),
+                getValue(
+                    "empStatus")),
 
         mobileNo:
             document.getElementById(
@@ -156,7 +288,8 @@ function updateDnb() {
 
         catg:
             parseInteger(
-                getValue("catg")),
+                getValue(
+                    "catg")),
 
         speciality:
             document.getElementById(
@@ -166,7 +299,8 @@ function updateDnb() {
 
         tuitionFeeInd:
             parseInteger(
-                getValue("tuitionFeeInd"))
+                getValue(
+                    "tuitionFeeInd"))
     };
 
     fetch(BASE_URL + "/api/dnb/" + id, {
@@ -174,10 +308,13 @@ function updateDnb() {
         method: "PUT",
 
         headers: {
-            "Content-Type": "application/json"
+
+            "Content-Type":
+                "application/json"
         },
 
-        body: JSON.stringify(dto)
+        body:
+            JSON.stringify(dto)
     })
 
         .then(response => {
@@ -186,6 +323,7 @@ function updateDnb() {
 
                 return response.json()
                     .then(error => {
+
                         throw error;
                     });
             }
@@ -227,9 +365,311 @@ function loadCategories() {
             data.forEach(cat => {
 
                 category.innerHTML +=
+
                     `<option value="${cat.catg}">
                         ${cat.description}
                      </option>`;
             });
         });
 }
+
+function setEditableFields() {
+
+    // Read Only Fields
+
+    document.getElementById("name").disabled = true;
+
+    document.getElementById("sexCode").disabled = true;
+
+    document.getElementById("empStatus").disabled = true;
+
+    document.getElementById("bankCd").readOnly = true;
+
+    document.getElementById("bankAcno").readOnly = true;
+
+    document.getElementById("catg").disabled = true;
+
+    document.getElementById("tuitionFeeInd").disabled = true;
+
+    // Editable Fields
+
+    document.getElementById("dob").readOnly = false;
+
+    document.getElementById("pan").readOnly = false;
+
+    document.getElementById("doj").readOnly = false;
+
+    document.getElementById("dos").readOnly = false;
+
+    document.getElementById("speciality").readOnly = false;
+
+    document.getElementById("mobileNo").readOnly = false;
+
+    document.getElementById("emailId").readOnly = false;
+
+    document.getElementById(
+        "ifscCode")
+        .readOnly = true;
+
+    document.getElementById(
+        "bankName")
+        .disabled = true;
+
+    document.getElementById(
+        "bankCd")
+        .readOnly = true;
+}
+
+function validateForm() {
+
+    if (isBlank("mobileNo")) {
+
+        showError(
+            "Mobile Number is mandatory");
+
+        return false;
+    }
+
+    if (isBlank("emailId")) {
+
+        showError(
+            "Email ID is mandatory");
+
+        return false;
+    }
+
+    if (isBlank("name")) {
+
+        showError(
+            "Name is mandatory");
+
+        return false;
+    }
+
+    if (!validateDOS()) {
+
+        return false;
+    }
+
+    if (!validatePan()) {
+
+        return false;
+    }
+
+    if (!validateAccount()) {
+
+        return false;
+    }
+
+    if (!validateMobile()) {
+
+        return false;
+    }
+
+    if (!validateEmail()) {
+
+        return false;
+    }
+
+    return true;
+}
+
+function validateMobile() {
+
+    const mobile =
+        document.getElementById(
+            "mobileNo")
+            .value
+            .trim();
+
+    const regex =
+        /^[6-9]\d{9}$/;
+
+    if (!regex.test(mobile)) {
+
+        showError(
+            "Mobile Number should contain exactly 10 digits");
+
+        return false;
+    }
+
+    return true;
+}
+
+function validateEmail() {
+
+    const email =
+        document.getElementById(
+            "emailId")
+            .value
+            .trim();
+
+    const regex =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regex.test(email)) {
+
+        showError(
+            "Invalid Email ID");
+
+        return false;
+    }
+
+    return true;
+}
+
+function validatePan() {
+
+    const pan =
+        document.getElementById(
+            "pan")
+            .value
+            .trim()
+            .toUpperCase();
+
+    const regex =
+        /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+
+    if (!regex.test(pan)) {
+
+        showError(
+            "PAN should be in format ABCDE1234F");
+
+        return false;
+    }
+
+    return true;
+}
+
+function validateAccount() {
+
+    const account =
+        document.getElementById(
+            "bankAcno")
+            .value
+            .trim();
+
+    const regex =
+        /^\d{9,17}$/;
+
+    if (!regex.test(account)) {
+
+        showError(
+            "Bank Account Number should contain 9 to 17 digits");
+
+        return false;
+    }
+
+    return true;
+}
+
+function initializePanField() {
+
+    document.getElementById(
+        "pan")
+        .addEventListener(
+            "input",
+            function() {
+
+                this.value =
+                    this.value.toUpperCase();
+            });
+
+    document.getElementById(
+        "bankAcno")
+        .addEventListener(
+            "input",
+            function() {
+
+                this.value =
+                    this.value.replace(
+                        /\D/g,
+                        "");
+            });
+}
+
+function formatDate(date) {
+
+    if (!date) {
+
+        return "";
+    }
+
+    return date.substring(0, 10);
+}
+
+function getValue(id) {
+
+    return document.getElementById(
+        id).value;
+}
+
+function parseInteger(value) {
+
+    if (!value) {
+
+        return null;
+    }
+
+    return parseInt(value);
+}
+
+function isBlank(id) {
+
+    return getValue(id)
+        .trim() === "";
+}
+
+function clearMessages() {
+
+    document.getElementById(
+        "successPopup")
+        .style.display =
+        "none";
+
+    document.getElementById(
+        "errorPopup")
+        .style.display =
+        "none";
+}
+
+function showSuccess(message) {
+
+    document.getElementById(
+        "successPopup")
+        .innerHTML =
+        message;
+
+    document.getElementById(
+        "successPopup")
+        .style.display =
+        "block";
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+    });
+}
+
+function showError(message) {
+
+    document.getElementById(
+        "errorPopup")
+        .innerHTML =
+        message;
+
+    document.getElementById(
+        "errorPopup")
+        .style.display =
+        "block";
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+    });
+}
+
