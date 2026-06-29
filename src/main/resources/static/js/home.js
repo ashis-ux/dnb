@@ -14,6 +14,8 @@ document.addEventListener(
         loadStipendMenu();
 
         loadResetMenu();
+		
+		loadSPostSAPtatus();
     });
 
 
@@ -120,6 +122,59 @@ function loadResetMenu() {
 }
 
 
+function loadSPostSAPtatus() {
+
+
+    fetch(BASE_URL + "/api/post-sap/status")
+
+	.then(response => {
+
+	            if (!response.ok) {
+
+	                throw new Error("Unable to load access.");
+	            }
+
+	            return response.json();
+	        })
+
+	        .then(data => {
+
+	            const desktopMenu =
+	                document.getElementById("desktopPostSAPMenu");
+
+	            const mobileMenu =
+	                document.getElementById("mobileStipendMenu");
+
+	            if (data.authorized) {
+
+	                if (desktopMenu) {
+	                    desktopMenu.style.display = "block";
+	                }
+
+	                if (mobileMenu) {
+	                    mobileMenu.style.display = "block";
+	                }
+
+	            } else {
+
+	                if (desktopMenu) {
+	                    desktopMenu.style.display = "none";
+	                }
+
+	                if (mobileMenu) {
+	                    mobileMenu.style.display = "none";
+	                }
+	            }
+	        })
+
+	        .catch(error => {
+
+	            console.error(error);
+	        });
+
+}
+
+
 
 function initializeMenu() {
 
@@ -158,7 +213,7 @@ function initializeExit() {
                     "Are you sure you want to exit?"
                 )) {
 
-                    window.location.href = "/";
+                    window.location.href = BASE_URL + "/";
                 }
             });
     }

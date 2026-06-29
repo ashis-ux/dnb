@@ -15,12 +15,14 @@ import com.bsp.dnb.dto.UpdateMasterDto;
 import com.bsp.dnb.entity.BankCds;
 import com.bsp.dnb.entity.Category;
 import com.bsp.dnb.entity.DnbMast;
+import com.bsp.dnb.entity.DnbMonthlyUpdateAudit;
 import com.bsp.dnb.exception.BadRequestException;
 import com.bsp.dnb.exception.DuplicateResourceException;
 import com.bsp.dnb.exception.ResourceNotFoundException;
 import com.bsp.dnb.repo.BankCdsRepository;
 import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
+import com.bsp.dnb.repo.DnbMonthlyUpdateAuditRepository;
 import com.bsp.dnb.repo.RoleCategoryRepository;
 import com.bsp.dnb.service.DnbMastService;
 import com.bsp.dnb.service.DnbRoleService;
@@ -61,7 +63,13 @@ public class DnbMastServiceImpl implements DnbMastService {
 	private BankCdsRepository bankCdsRepository;
 	
 	@Autowired
+	private DnbMonthlyUpdateAuditRepository updateAuditRepository;
+	
+	@Autowired
 	private DataSource dataSource;
+	
+	@Value("${dnb.proc.monthly-update}")
+	private String monthlyUpdateProc;
 
 	private static final Logger log =
 	        LoggerFactory.getLogger(DnbMastServiceImpl.class);
@@ -625,13 +633,18 @@ public class DnbMastServiceImpl implements DnbMastService {
 	public UpdateMasterDto runMonthlyUpdate(String yymm) {
 		log.info("Calling PROC_DNB_MASTER_UPDATE for month : {}", yymm);
 		UpdateMasterDto dto = new UpdateMasterDto();
-		try (Connection conn = dataSource.getConnection();
-				CallableStatement cs = conn.prepareCall("{call PROC_DNB_MASTER_UPDATE(?)}")) {
+		DnbMonthlyUpdateAudit audit=new DnbMonthlyUpdateAudit();
+		String sql = "{call " + monthlyUpdateProc + "(?)}";
+		 try (Connection conn = dataSource.getConnection();
+		         CallableStatement cs = conn.prepareCall(sql)) {
 			cs.setString(1, yymm);
 			cs.execute();
 			dto.setStatusCode(1);
 			dto.setStatusMsg("SUCCESS");
 			dto.setException(null);
+			audit.setYymm(Integer.parseInt(yymm));
+			audit.setStatus("Y");
+			updateAuditRepository.save(audit);
 			log.info("PROC_DNB_MASTER_UPDATE executed successfully for {}", yymm);
 		} catch (Exception ex) {
 			log.error("Error while executing PROC_DNB_MASTER_UPDATE", ex);

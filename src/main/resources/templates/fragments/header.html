@@ -5,19 +5,19 @@
 <head>
 
 	<meta charset="UTF-8">
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	<script th:inline="javascript">
-	       window.contextPath = /*[[@{/}]]*/ '';
-	   </script>
+		window.contextPath = /*[[@{/}]]*/ '';
+	</script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" th:href="@{/bootstrap/bootstrap.min.css}">
-	   <link rel="stylesheet" th:href="@{/css/header.css}">
-	   <link rel="stylesheet" th:href="@{/css/bootstrap-icons.min.css}">
-	   
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="stylesheet" th:href="@{/css/bootstrap-icons.min.css}">
+
 
 </head>
 
@@ -163,8 +163,7 @@
 
 							<div class="accordion-body" id="mobileStipendMenu">
 
-								<a th:href="@{/stipend-process}" class="menu-link"  
-									style="display:none;">
+								<a th:href="@{/stipend-process}" class="menu-link" style="display:none;">
 
 									Stipend Processing
 
@@ -173,10 +172,42 @@
 							</div>
 
 						</div>
+
 						<div id="mobileProcessingMenu" class="accordion-collapse collapse"
 							data-bs-parent="#mobileAccordion">
 
-							<div class="accordion-body">
+							<div class="accordion-body" id="mobileResetMenu">
+
+								<a th:href="@{/reset-pay-data}" class="menu-link" style="display:none;">
+
+									Reset Pay Data
+
+								</a>
+
+							</div>
+
+						</div>
+
+
+						<div id="mobileProcessingMenu" class="accordion-collapse collapse"
+							data-bs-parent="#mobileAccordion">
+
+							<div class="accordion-body" id="mobileStipendMenu">
+
+								<a th:href="@{/update-master}" class="menu-link">
+
+									Update Master
+
+								</a>
+
+							</div>
+
+						</div>
+
+						<div id="mobileProcessingMenu" class="accordion-collapse collapse"
+							data-bs-parent="#mobileAccordion">
+
+							<div class="accordion-body" >
 
 								<a th:href="@{/payslip-report}" class="menu-link">
 
@@ -188,25 +219,17 @@
 
 						</div>
 
+
 						<div id="mobileProcessingMenu" class="accordion-collapse collapse"
 							data-bs-parent="#mobileAccordion">
 
-							<div class="accordion-body">
+							<div class="accordion-body" id="mobilePostIntoSAPMenu">
 
-								<div id="mobileProcessingMenu" class="accordion-collapse collapse"
-									data-bs-parent="#mobileAccordion">
+								<a th:href="@{/post-into-sap}" class="menu-link">
 
-									<div class="accordion-body">
+									Post Into Sap
 
-										<a th:href="@{/update-master}" class="menu-link">
-
-											Update Master
-
-										</a>
-
-									</div>
-
-								</div>
+								</a>
 
 							</div>
 
@@ -364,12 +387,12 @@
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-		   <script th:src="@{/bootstrap/bootstrap.bundle.min.js}"></script>
-		   <script th:src="@{/js/header.js}"></script>
-		  
+	<script th:src="@{/bootstrap/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/js/header.js}"></script>
+
 
 </body>
 
- 
+
 
 </html>

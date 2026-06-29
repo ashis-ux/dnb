@@ -36,7 +36,7 @@ function loadStatus() {
                     "none";
 
                 showError(
-                    "You are not authorized.");
+                   data.message ||  "You are not authorized.");
 
                 return;
             }
@@ -47,7 +47,7 @@ function loadStatus() {
                     true;
 
                 showError(
-                    "Stipend already generated for this month.");
+                   data.message || "Stipend already generated for this month.");
 
             } else {
 
@@ -67,46 +67,37 @@ function loadStatus() {
 
 function createStipend() {
 
-    const btn =
-        document.getElementById(
-            "btnProceed");
-
+    const btn = document.getElementById("btnProceed");
     btn.disabled = true;
 
-    fetch("/api/stipend/create", {
-
+    fetch(BASE_URL + "/api/stipend/create", {
         method: "POST"
-
     })
+    .then(async response => {
 
-    .then(response => {
+        const data = await response.json().catch(() => null);
 
         if (!response.ok) {
-
             throw new Error(
-                "Unable to create stipend.");
+                data?.message || "Unable to create stipend."
+            );
         }
 
-        return response.text();
-
+        return data;
     })
+    .then(data => {
 
-    .then(message => {
-
-        showSuccess(message);
-
+        showSuccess(data.message || "Success");
         loadStatus();
 
     })
-
     .catch(error => {
 
         btn.disabled = false;
 
+      
         showError(error.message);
-
     });
-
 }
 
 function showSuccess(message) {

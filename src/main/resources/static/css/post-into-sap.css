@@ -1,0 +1,230 @@
+/* ==========================================
+   PAGE
+========================================== */
+
+body {
+    background-color: #f4f6f9;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.card {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.form-header {
+    background: #0b3d75;
+    color: #fff;
+    padding: 14px 18px;
+}
+
+.form-header h5 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 30px 25px;
+    min-height: 170px;
+}
+
+.card-footer {
+    background: #f8f9fa;
+    text-align: center;
+    font-size: 14px;
+    color: #000;
+}
+
+/* ==========================================
+   LABELS
+========================================== */
+
+.col-form-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0b3d75;
+}
+
+.text-danger {
+    color: red !important;
+}
+
+/* ==========================================
+   INPUT
+========================================== */
+
+.form-control {
+    height: 42px;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.form-control:read-only {
+    background: #ffffff;
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+#btnProceed {
+
+    min-width: 180px;
+
+    height: 44px;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    border-radius: 6px;
+}
+
+#btnProceed:disabled {
+
+    cursor: not-allowed;
+
+    opacity: .65;
+}
+
+/* ==========================================
+   ALERTS
+========================================== */
+
+.alert {
+
+    font-size: 17px;
+
+    border-radius: 6px;
+
+    margin-bottom: 25px;
+}
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal-header {
+
+    background: #0b3d75;
+
+    color: #fff;
+}
+
+.modal-title {
+
+    font-weight: 600;
+}
+
+.modal-body {
+
+    font-size: 17px;
+}
+
+.modal-footer .btn {
+
+    min-width: 100px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 991px) {
+
+    .card-body {
+
+        padding: 25px 20px;
+    }
+
+    .col-form-label {
+
+        margin-bottom: 8px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .card-body {
+
+        padding: 20px 15px;
+    }
+
+    .row {
+
+        margin-bottom: 10px;
+    }
+
+    .col-form-label {
+
+        margin-bottom: 6px;
+    }
+
+    .form-control {
+
+        margin-bottom: 15px;
+    }
+
+    #btnProceed {
+
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .container {
+
+        padding-left: 8px;
+
+        padding-right: 8px;
+    }
+
+    .form-header h5 {
+
+        font-size: 17px;
+    }
+
+    .card-body {
+
+        padding: 18px 12px;
+    }
+
+    .col-form-label {
+
+        font-size: 15px;
+    }
+
+    .form-control {
+
+        height: 40px;
+
+        font-size: 15px;
+    }
+
+    #btnProceed {
+
+        height: 42px;
+
+        font-size: 16px;
+    }
+
+    .alert {
+
+        font-size: 15px;
+    }
+
+    .modal-body {
+
+        font-size: 15px;
+    }
+
+}

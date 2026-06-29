@@ -1,11 +1,27 @@
 const BASE_URL = (window.contextPath || "").replace(/\/$/, "");
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
+    function() {
 
         loadPreviousMonth();
-    });
 
+        document
+            .getElementById("btnConfirmUpdate")
+            .addEventListener(
+                "click",
+                function() {
+
+                    bootstrap.Modal
+                        .getInstance(
+                            document.getElementById(
+                                "confirmUpdateModal"))
+                        .hide();
+
+                    updateMaster();
+
+                });
+
+    });
 function loadPreviousMonth() {
 
     const today =
@@ -37,34 +53,34 @@ function updateMaster() {
             "yymm")
             .value;
 
-			fetch(BASE_URL + "/api/dnb/runMonthlyUpdate/" + yymm, {
-			    method: "POST"
-			})
-			     
-			.then(async response => {
+    fetch(BASE_URL + "/api/dnb/runMonthlyUpdate/" + yymm, {
+        method: "POST"
+    })
 
-			    const data =
-			        await response.json();
+        .then(async response => {
 
-			    if (!response.ok) {
+            const data =
+                await response.json();
 
-			        throw new Error(
-			            data.exception ||
-			            data.statusMsg);
-			    }
+            if (!response.ok) {
 
-			    return data;
-			})
-			.then(data => {
+                throw new Error(
+                    data.exception ||
+                    data.statusMsg);
+            }
 
-			    showSuccess(
-			        "DNB Master updated successfully");
-			})
-			.catch(error => {
+            return data;
+        })
+        .then(data => {
 
-			    showError(
-			        error.message);
-			});
+            showSuccess(
+                "DNB Master updated successfully");
+        })
+        .catch(error => {
+
+            showError(
+                error.message);
+        });
 }
 
 function showSuccess(message) {

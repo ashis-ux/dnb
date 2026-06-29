@@ -2,7 +2,7 @@ const BASE_URL = (window.contextPath || "").replace(/\/$/, "");
 
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
+    function() {
 
         showSessionMessage();
 
@@ -43,7 +43,7 @@ function showSessionMessage() {
         sessionStorage.removeItem(
             "successMessage");
 
-        setTimeout(function () {
+        setTimeout(function() {
 
             document.getElementById(
                 "successPopup")
@@ -84,6 +84,19 @@ function loadStatus() {
                     "btnReset");
 
             if (!data.authorized) {
+
+                btn.disabled = true;
+
+                btn.classList.add(
+                    "disabled");
+
+                showError(
+                    data.message);
+
+                return;
+            }
+
+            if (data.postIntoSapExist) {
 
                 btn.disabled = true;
 
@@ -237,7 +250,7 @@ function showSuccess(message) {
         .style.display =
         "block";
 
-    setTimeout(function () {
+    setTimeout(function() {
 
         document.getElementById(
             "successPopup")

@@ -75,5 +75,10 @@ public class HomeController {
 
 		return "reset-pay-data";
 	}
+	@GetMapping("/post-into-sap")
+	public String post_into_sap() {
+
+		return "post-into-sap";
+	}
 
 }

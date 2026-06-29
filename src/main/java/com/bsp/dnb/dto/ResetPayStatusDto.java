@@ -5,10 +5,22 @@ public class ResetPayStatusDto {
     private boolean authorized;
 
     private boolean paybillExists;
+    
+    private boolean postIntoSapExist;
 
     private Integer previousMonth;
 
     private String message;
+
+	 
+
+	public boolean isPostIntoSapExist() {
+		return postIntoSapExist;
+	}
+
+	public void setPostIntoSapExist(boolean postIntoSapExist) {
+		this.postIntoSapExist = postIntoSapExist;
+	}
 
 	public boolean isAuthorized() {
 		return authorized;

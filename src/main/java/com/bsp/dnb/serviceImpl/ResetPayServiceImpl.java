@@ -12,6 +12,7 @@ import com.bsp.dnb.exception.BadRequestException;
 import com.bsp.dnb.exception.ResourceNotFoundException;
 import com.bsp.dnb.repo.DnbCumRepository;
 import com.bsp.dnb.repo.DnbPbillRepository;
+import com.bsp.dnb.repo.PayPymtDataRepository;
 import com.bsp.dnb.service.ResetPayService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,9 @@ public class ResetPayServiceImpl
 
     @Autowired
     private DnbCumRepository dnbCumRepository;
+    
+    @Autowired
+    private PayPymtDataRepository payPymtDataRepository;
 
     @Override
     public String resetPayData() {
@@ -138,7 +142,34 @@ public class ResetPayServiceImpl
 
             return dto;
         }
+        
+  
+        // check wheather data posted into SAP
+        Integer curMonthYYMM =
+                Integer.parseInt(
+                        YearMonth.now()
+                                .format(DateTimeFormatter.ofPattern("yyMM")));
 
+        Integer latestSapMonth =
+                payPymtDataRepository.findLatestPaymentMonth();
+
+        log.info("Previous Month (yyMM): {}", curMonthYYMM);
+        log.info("Latest SAP Month      : {}", latestSapMonth);
+
+        if (latestSapMonth != null
+                && latestSapMonth.equals(curMonthYYMM)) {
+
+            log.warn("Salary already posted into SAP for month {}.", curMonthYYMM);
+
+            dto.setMessage(
+                    "Stipend already posted into SAP for this month.");
+            dto.setPostIntoSapExist(true);
+            return dto;
+        }
+        
+        
+        
+        //Check weather Paybill exist
         boolean paybillExists =
                 pbillRepository.existsByIdYymm(
                         previousMonth);

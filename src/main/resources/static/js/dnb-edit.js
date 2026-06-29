@@ -446,6 +446,14 @@ function validateForm() {
         return false;
     }
 
+    if ("dojDate" < "dobDate") {
+
+        showError(
+            "DOJ cannot be less than DOB.");
+
+        return false;
+    }
+
     if (!validateDOS()) {
 
         return false;
@@ -471,9 +479,84 @@ function validateForm() {
         return false;
     }
 
+    if (!validateDOJ()) {
+
+        return false;
+    }
+
+    if (!validateServiceDuration()) {
+
+        return false;
+    }
+
     return true;
 }
 
+
+function validateDOJ() {
+
+    const doj =
+        document.getElementById("doj").value;
+
+    if (doj) {
+
+        const dojDate =
+            new Date(doj);
+
+        const today =
+            new Date();
+
+        today.setHours(0, 0, 0, 0);
+
+        if (dojDate > today) {
+
+            showError(
+                "DOJ cannot be future date.");
+
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/*---------------------------------------
+ * Service Duration Validation
+ *--------------------------------------*/
+
+function validateServiceDuration() {
+
+    const doj =
+        document.getElementById("doj").value;
+
+    const dos =
+        document.getElementById("dos").value;
+
+    if (doj && dos) {
+
+        const dojDate =
+            new Date(doj);
+
+        const dosDate =
+            new Date(dos);
+
+        const diff =
+            dosDate - dojDate;
+
+        const years =
+            diff / (1000 * 60 * 60 * 24 * 365);
+
+        if (years > 5) {
+
+            showError(
+                "Service duration should be less than 5 years.");
+
+            return false;
+        }
+    }
+
+    return true;
+}
 function validateMobile() {
 
     const mobile =

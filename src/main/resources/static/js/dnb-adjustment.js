@@ -631,50 +631,51 @@ function saveAdjustments() {
 	})
 	.then(async response => {
 
-	    let result = "";
+	        if (!response.ok) {
 
-	    try {
+	            const error =
+	                await response.json();
 
-	        result = await response.text();
+	            throw error;
+	        }
 
-	    } catch (e) {
+	        /*
+	         * Handle empty response body
+	         */
+	        const text =
+	            await response.text();
 
-	        result = "";
-	    }
+	        return text
+	            ? JSON.parse(text)
+	            : [];
+	    })
 
-	    if (!response.ok) {
+	    .then(data => {
 
-	        throw new Error(
-	            result || "Unable to save adjustment.");
+	        console.log(
+	            "Adjustment saved successfully");
 
-	    }
+	        showSuccess(
+	            "Adjustment saved successfully.");
 
-	    return result;
+	        /*
+	         * Refresh after success message
+	         */
+	        setTimeout(function () {
 
-	})
-	.then(message => {
+	            loadAttendance();
 
-	    showSuccess(
-	         "Adjustment saved successfully.");
+	        }, 3000);
+	    })
 
-	    setTimeout(function () {
+	    .catch(error => {
 
-	        loadAdjustments();
+	        console.error(error);
 
-	    }, 2000);
-
-	})
-	.catch(error => {
-
-	            console.error(error);
-
-	            showError(
-	                error.message
-	                || "Unable to save adjustment."
-	            );
-
-	});
-
+	        showError(
+	            error.message
+	            || "Unable to save Adjustment.");
+	    });
 }
 
 /* ---------------------------

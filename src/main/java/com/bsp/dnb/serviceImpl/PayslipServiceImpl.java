@@ -3,7 +3,7 @@ package com.bsp.dnb.serviceImpl;
 import com.bsp.dnb.dto.PayslipDto;
 import com.bsp.dnb.dto.PayslipSearchDto;
 import com.bsp.dnb.entity.*;
-import com.bsp.dnb.exception.NoResourceFoundException;
+import com.bsp.dnb.exception.ResourceNotFoundException;
 import com.bsp.dnb.repo.*;
 import com.bsp.dnb.service.DnbRoleService;
 import com.bsp.dnb.service.PayslipService;
@@ -98,21 +98,21 @@ public class PayslipServiceImpl implements PayslipService {
 
 	        DnbMast mast = getMast(id);
 	        if (mast == null) {
-	            throw new NoResourceFoundException("DNBMAST record not found for id=" + id);
+	            throw new ResourceNotFoundException("DNBMAST record not found for id=" + id);
 	        }
 
 	        DnbAtt att = dnbAttRepository.findAttendance(id, yymm)
 	                .orElseThrow(() ->
-	                        new NoResourceFoundException("Attendance not found for id=" + id + ", yymm=" + yymm));
+	                        new ResourceNotFoundException("Attendance not found for id=" + id + ", yymm=" + yymm));
 
 	        DnbPbill paybill = getPaybill(yymm, id);
 	        if (paybill == null) {
-	            throw new NoResourceFoundException("Paybill not found for id=" + id + ", yymm=" + yymm);
+	            throw new ResourceNotFoundException("Paybill not found for id=" + id + ", yymm=" + yymm);
 	        }
 
 	        DnbCum cum = dnbCumRepository.findFirstByIdAndYymm(id, yymm);
 	        if (cum == null) {
-	            throw new NoResourceFoundException("DnbCum not found for id=" + id + ", yymm=" + yymm);
+	            throw new ResourceNotFoundException("DnbCum not found for id=" + id + ", yymm=" + yymm);
 	        }
 
 	        PayslipDto dto = buildDto(mast, att, paybill, cum, yymm);
@@ -658,7 +658,7 @@ public class PayslipServiceImpl implements PayslipService {
 	            && (pan == null || pan.isBlank())
 	            && yymm == null) {
 
-	        throw new NoResourceFoundException(
+	        throw new ResourceNotFoundException(
 	                "Please enter DNB ID/PAN or select YYMM.");
 	    }
 
@@ -674,7 +674,7 @@ public class PayslipServiceImpl implements PayslipService {
 	                        .findByPanIgnoreCase(
 	                                pan.trim())
 	                        .orElseThrow(() ->
-	                                new NoResourceFoundException(
+	                                new ResourceNotFoundException(
 	                                        "No employee found for PAN : "
 	                                                + pan));
 
