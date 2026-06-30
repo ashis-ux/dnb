@@ -62,53 +62,57 @@ public interface DnbPbillRepository
 			          Pageable pageable);
 	  
 	  @Query("""
-			  SELECT new com.bsp.dnb.dto.PayslipSearchDto(
+			    SELECT new com.bsp.dnb.dto.PayslipSearchDto(
 
-			          p.id.id,
+			            p.id.id,
 
-			          m.name,
+			            m.name,
 
-			          m.catgDesc,
+			            m.catgDesc,
 
-			          p.id.yymm
+			            p.id.yymm
 
-			  )
+			    )
 
-			  FROM DnbPbill p
+			    FROM DnbPbill p
 
-			  JOIN DnbMast m
-			  ON p.id.id = m.id
+			    INNER JOIN DnbMast m
+			        ON p.id.id = m.id
 
-			  WHERE
+			    INNER JOIN DnbCum c
+			        ON c.id.id = p.id.id
+                    AND c.id.yymm = p.id.yymm
 
-			  (:id IS NULL OR m.id = :id)
+			    WHERE
 
-			  AND
+			        (:id IS NULL OR m.id = :id)
 
-			  (:yymm IS NULL OR p.id.yymm = :yymm)
+			        AND
 
-			  AND
+			        (:yymm IS NULL OR p.id.yymm = :yymm)
 
-			  m.catg IN :categories
+			        AND
 
-			  ORDER BY
+			        m.catg IN :categories
 
-			  p.id.yymm DESC,
+			    ORDER BY
 
-			  m.name ASC
-			  """)
-			  Page<PayslipSearchDto> searchPayslips(
+			        p.id.yymm DESC,
 
-			          @Param("id")
-			          Integer id,
+			        m.name ASC
+			    """)
+			Page<PayslipSearchDto> searchPayslips(
 
-			          @Param("yymm")
-			          Integer yymm,
+			        @Param("id")
+			        Integer id,
 
-			          @Param("categories")
-			          List<Integer> categories,
+			        @Param("yymm")
+			        Integer yymm,
 
-			          Pageable pageable);
+			        @Param("categories")
+			        List<Integer> categories,
+
+			        Pageable pageable);
 	  
 	  @Query("""
 	            SELECT MAX(p.id.yymm)

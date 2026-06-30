@@ -1,5 +1,4 @@
-
-
+ 
 document.addEventListener(
     "DOMContentLoaded",
     function() {
@@ -12,7 +11,41 @@ document.addEventListener(
 		loadResetMenu();
 		
 		loadPostIntoSAPMenu();
+		
+		loadLoggedInUser();
     });
+	
+	function loadLoggedInUser() {
+
+	    fetch(BASE_URL + "/sso/user")
+	        .then(response => {
+
+	            if (!response.ok) {
+	                throw new Error("Unable to fetch logged-in user.");
+	            }
+
+	            return response.json();
+	        })
+	        .then(data => {
+
+	            const userElement = document.getElementById("loggedInUser");
+
+	            if (userElement) {
+	                userElement.textContent = data;
+	            }
+	        })
+	        .catch(error => {
+
+	            console.error(error);
+
+	            const userElement = document.getElementById("loggedInUser");
+
+	            if (userElement) {
+	                userElement.textContent = "SYSTEM";
+	            }
+	        });
+	}
+
 
 function loadStipendMenu() {
 
@@ -56,7 +89,7 @@ function loadStipendMenu() {
 
 function loadResetMenu() {
 
-    fetch(BASE_URL + "/api/reset-pay/access")
+    fetch(BASE_URL + "/api/reset-pay/status")
 
         .then(response => {
 
@@ -96,7 +129,7 @@ function loadResetMenu() {
 
 function loadPostIntoSAPMenu() {
 
-    fetch(BASE_URL + "/api/post-sap/access")
+    fetch(BASE_URL + "/api/post-sap/status")
 
         .then(response => {
 

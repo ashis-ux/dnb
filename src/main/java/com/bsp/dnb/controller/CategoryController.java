@@ -2,8 +2,7 @@ package com.bsp.dnb.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+ 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @PreAuthorize("hasAuthority('APP_DNB')")
 public class CategoryController {
-	
-	private static final Logger log =
-	        LoggerFactory.getLogger(CategoryController.class);
 
     @Autowired
     private CategoryService categoryService;
@@ -66,18 +62,29 @@ public class CategoryController {
     }
     
     @GetMapping("/logged-in-user")
-    public ResponseEntity<List<CategoryDto>>
-    getLoggedInUserCategories() {
+    public ResponseEntity<List<CategoryDto>> getLoggedInUserCategories() {
 
-        return ResponseEntity.ok(
-                categoryService.getLoggedInUserCategories());
+        log.info("Received request to fetch categories for logged-in user.");
+
+        List<CategoryDto> response =
+                categoryService.getLoggedInUserCategories();
+
+        log.info("Returning {} categories for logged-in user.", response.size());
+
+        return ResponseEntity.ok(response);
     }
     
     @GetMapping("/logged-in-user-all-categories")
     public ResponseEntity<List<CategoryDto>> getLoggedInUserAllCategories() {
 
-        return ResponseEntity.ok(
-                categoryService.getLoggedInUserAllCategories());
+        log.info("Received request to fetch all categories for logged-in user.");
+
+        List<CategoryDto> response =
+                categoryService.getLoggedInUserAllCategories();
+
+        log.info("Returning {} categories.", response.size());
+
+        return ResponseEntity.ok(response);
     }
     
     @GetMapping("/stipend")

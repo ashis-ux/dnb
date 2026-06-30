@@ -10,49 +10,36 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecurityUtil {
 
-    public SecurityUtil() {
-    }
+	public SecurityUtil() {
+	}
 
-    public static String getLoggedInUser() {
+	public static String getLoggedInUser() {
 
-        Authentication authentication =
-                SecurityContextHolder
-                        .getContext()
-                        .getAuthentication();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (authentication == null) {
-            return "SYSTEM";
-        }
+		if (authentication == null) {
+			return "SYSTEM";
+		}
 
-        return authentication.getName();
-    }
+		return authentication.getName();
+	}
 
-    public static boolean hasRole(
-            String roleName) {
+	public static boolean hasRole(String roleName) {
 
-        Authentication authentication =
-                SecurityContextHolder
-                        .getContext()
-                        .getAuthentication();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (authentication == null
-                || authentication.getAuthorities() == null) {
+		if (authentication == null || authentication.getAuthorities() == null) {
 
-            return false;
-        }
+			return false;
+		}
 
-        Collection<? extends GrantedAuthority> authorities =
-                authentication.getAuthorities();
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
-        return authorities.stream()
-                .anyMatch(authority ->
-                        authority.getAuthority()
-                                .equalsIgnoreCase(roleName));
-    }
+		return authorities.stream().anyMatch(authority -> authority.getAuthority().equalsIgnoreCase(roleName));
+	}
 
-    public static boolean isMastOrSu() {
+	public static boolean isMastOrSu() {
 
-        return hasRole("MAST")
-                || hasRole("SU");
-    }
+		return hasRole("MAST") || hasRole("SU");
+	}
 }

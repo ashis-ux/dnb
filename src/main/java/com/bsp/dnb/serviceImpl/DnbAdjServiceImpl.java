@@ -1,10 +1,9 @@
 package com.bsp.dnb.serviceImpl;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+ 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.Period;
+ 
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -20,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.bsp.dnb.dto.AdjustmentEntryDto;
 import com.bsp.dnb.dto.DnbAdjDto;
 import com.bsp.dnb.dto.DnbMastDto;
@@ -29,7 +27,7 @@ import com.bsp.dnb.entity.DnbAdj;
 import com.bsp.dnb.entity.DnbAdjId;
 import com.bsp.dnb.entity.DnbMast;
 import com.bsp.dnb.exception.BadRequestException;
-import com.bsp.dnb.exception.ResourceNotFoundException;
+ 
 import com.bsp.dnb.repo.CategoryRepository;
 import com.bsp.dnb.repo.DnbAdjRepository;
 import com.bsp.dnb.repo.DnbMastRepository;
@@ -365,42 +363,7 @@ public class DnbAdjServiceImpl implements DnbAdjService {
 	    }
 	}
 	
-	private Integer calculateAmount(
-	        DnbAdjDto dto) {
-
-	    if (dto.getAmt() != null &&
-	            dto.getAmt() > 0) {
-
-	        return dto.getAmt();
-	    }
-	    Integer stipend =
-	    		catgRepository.findStipend(
-	                    dto.getCatg(),
-	                    dto.getYr());
-
-	    if (stipend == null) {
-
-	        throw new BadRequestException(
-	                "Stipend not found for Category : "
-	                        + dto.getCatg()
-	                        + " Year : "
-	                        + dto.getYr());
-	    }
-
-	    YearMonth ym =
-	            YearMonth.of(
-	                    dto.getForym() / 100,
-	                    dto.getForym() % 100);
-
-	    int monthDays =
-	            ym.lengthOfMonth();
-
-	    return (int)
-	            Math.round(
-	                    ((double) stipend
-	                            / monthDays)
-	                            * dto.getDays());
-	}
+ 
 	
 	private void validateYymm(
 	        Integer yymm) {

@@ -212,15 +212,19 @@ public class IamJwtFilter extends OncePerRequestFilter {
     }
     
     @Override
-    protected boolean shouldNotFilter(
-            HttpServletRequest request)
-            throws ServletException {
+    protected boolean shouldNotFilter(HttpServletRequest request) {
 
         String uri = request.getRequestURI();
 
-        return uri.startsWith("/sso/")
-                || uri.startsWith("/css/")
-                || uri.startsWith("/js/")
-                || uri.startsWith("/images/");
+        log.info("URI = {}", uri);
+
+        boolean skip = uri.startsWith("/DNB/sso/callback")
+                || uri.startsWith("/DNB/css/")
+                || uri.startsWith("/DNB/js/")
+                || uri.startsWith("/DNB/images/");
+
+        log.info("Skip Filter = {}", skip);
+
+        return skip;
     }
 }

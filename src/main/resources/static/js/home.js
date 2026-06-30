@@ -9,13 +9,13 @@ document.addEventListener(
 
         initializeMenu();
 
-        initializeExit();
-
         loadStipendMenu();
 
         loadResetMenu();
 		
 		loadSPostSAPtatus();
+		
+		loadLoggedInUser();
     });
 
 
@@ -195,26 +195,39 @@ function initializeMenu() {
     });
 }
 
-function initializeExit() {
+ 
 
-    const exitButton =
-        document.querySelector(
-            ".exit-btn");
+function loadLoggedInUser() {
 
-    if (exitButton) {
+    fetch(BASE_URL + "/sso/user")
+        .then(response => {
 
-        exitButton.addEventListener(
-            "click",
-            function(event) {
+            if (!response.ok) {
+                throw new Error("Unable to fetch logged-in user.");
+            }
 
-                event.preventDefault();
+            return response.json();
+        })
+        .then(data => {
 
-                if (confirm(
-                    "Are you sure you want to exit?"
-                )) {
+            const userElement = document.getElementById("loggedInUser");
 
-                    window.location.href = BASE_URL + "/";
-                }
-            });
-    }
+            if (userElement) {
+                userElement.textContent = data;
+            }
+        })
+        .catch(error => {
+
+            console.error(error);
+
+            const userElement = document.getElementById("loggedInUser");
+
+            if (userElement) {
+                userElement.textContent = "SYSTEM";
+            }
+        });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    loadLoggedInUser();
+});

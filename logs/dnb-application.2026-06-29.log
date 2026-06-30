@@ -1,0 +1,1728 @@
+2026-06-29 16:12:04.815 DnbApplication - Starting DnbApplication using Java 21.0.11 with PID 26068 (C:\Users\Administrator\eclipse-workspace\dnb\target\classes started by Administrator in C:\Users\Administrator\eclipse-workspace\dnb)
+2026-06-29 16:12:04.816 DnbApplication - The following 1 profile is active: "dev"
+2026-06-29 16:12:06.022 RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-29 16:12:06.315 RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 286 ms. Found 12 JPA repository interfaces.
+2026-06-29 16:12:06.855 TomcatWebServer - Tomcat initialized with port 8088 (http)
+2026-06-29 16:12:06.871 StandardService - Starting service [Tomcat]
+2026-06-29 16:12:06.871 StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 16:12:07.316 [/DNB] - Initializing Spring embedded WebApplicationContext
+2026-06-29 16:12:07.316 ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2484 ms
+2026-06-29 16:12:07.363 IamPublicKeyLoader - Fetching IAM public key from http://localhost:8080/auth/public-key
+2026-06-29 16:12:07.379 IamPublicKeyLoader - IAM public key loaded successfully
+2026-06-29 16:12:07.609 LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-29 16:12:07.648 RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-29 16:12:07.747 SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-29 16:12:07.761 HikariDataSource - HikariPool-192 - Starting...
+2026-06-29 16:12:07.921 HikariPool - HikariPool-192 - Added connection oracle.jdbc.driver.T4CConnection@3e431d4a
+2026-06-29 16:12:07.921 HikariDataSource - HikariPool-192 - Start completed.
+2026-06-29 16:12:07.938 Dialect - HHH000511: The 12.2.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+2026-06-29 16:12:07.938 deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-29 16:12:07.938 pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-192)']
+	Database driver: undefined/unknown
+	Database version: 12.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-29 16:12:08.564 JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-29 16:12:08.997 LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:12:10.093 JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-29 16:12:10.438 UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 365bcf5e-bafa-4a5f-a3a9-66fb025ff3fa
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-29 16:12:10.438 InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-29 16:12:10.454 SecurityConfig - information recieved
+2026-06-29 16:12:10.845 OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-06-29 16:12:10.892 TomcatWebServer - Tomcat started on port 8088 (http) with context path '/DNB'
+2026-06-29 16:12:10.898 DnbApplication - Started DnbApplication in 6.984 seconds (process running for 186762.871)
+2026-06-29 16:12:10.908 ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-06-29 16:12:24.281 SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2026-06-29 16:12:24.283 GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-29 16:12:24.289 GracefulShutdown - Graceful shutdown complete
+2026-06-29 16:12:24.293 LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:12:24.294 HikariDataSource - HikariPool-192 - Shutdown initiated...
+2026-06-29 16:12:24.360 HikariDataSource - HikariPool-192 - Shutdown completed.
+2026-06-29 16:12:30.078 Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-06-29 16:12:30.135 DnbApplication - Starting DnbApplication using Java 21.0.11 with PID 23016 (C:\Users\Administrator\eclipse-workspace\dnb\target\classes started by Administrator in C:\Users\Administrator\eclipse-workspace\dnb)
+2026-06-29 16:12:30.137 DnbApplication - The following 1 profile is active: "dev"
+2026-06-29 16:12:30.181 ChangeableUrls - The Class-Path manifest attribute in C:\Users\Administrator\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.7.0.25.01\ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/C:/Users/Administrator/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.7.0.25.01/oraclepki.jar
+2026-06-29 16:12:30.182 DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-06-29 16:12:30.182 DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-06-29 16:12:31.271 RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-29 16:12:31.378 RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 98 ms. Found 12 JPA repository interfaces.
+2026-06-29 16:12:32.043 TomcatWebServer - Tomcat initialized with port 8088 (http)
+2026-06-29 16:12:32.058 Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:12:32.060 StandardService - Starting service [Tomcat]
+2026-06-29 16:12:32.060 StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 16:12:32.117 [/DNB] - Initializing Spring embedded WebApplicationContext
+2026-06-29 16:12:32.118 ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1936 ms
+2026-06-29 16:12:32.144 IamPublicKeyLoader - Fetching IAM public key from http://localhost:8080/auth/public-key
+2026-06-29 16:12:32.222 IamPublicKeyLoader - IAM public key loaded successfully
+2026-06-29 16:12:32.467 LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-29 16:12:32.523 Version - HHH000412: Hibernate ORM core version 6.6.49.Final
+2026-06-29 16:12:32.562 RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-29 16:12:32.853 SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-29 16:12:32.882 HikariDataSource - HikariPool-1 - Starting...
+2026-06-29 16:12:33.398 HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@5b6f12f5
+2026-06-29 16:12:33.400 HikariDataSource - HikariPool-1 - Start completed.
+2026-06-29 16:12:33.490 Dialect - HHH000511: The 12.2.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+2026-06-29 16:12:33.496 deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-29 16:12:33.656 pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 12.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-29 16:12:34.727 JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-29 16:12:35.173 LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:12:35.417 QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-29 16:12:36.966 JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-29 16:12:37.237 UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: caddc985-c241-4405-884d-6f6a6d09217e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-29 16:12:37.246 InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-29 16:12:37.294 SecurityConfig - information recieved
+2026-06-29 16:12:37.779 OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-06-29 16:12:37.807 Http11NioProtocol - Starting ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:12:37.854 TomcatWebServer - Tomcat started on port 8088 (http) with context path '/DNB'
+2026-06-29 16:12:37.863 DnbApplication - Started DnbApplication in 8.239 seconds (process running for 8.968)
+2026-06-29 16:12:48.668 [/DNB] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-29 16:12:48.669 DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-29 16:12:48.670 DispatcherServlet - Completed initialization in 1 ms
+2026-06-29 16:12:48.693 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:12:48.840 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:48.840 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.233 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:12:49.233 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:12:49.233 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:12:49.233 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:12:49.233 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:12:49.233 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:12:49.236 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.236 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.236 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.236 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.236 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.236 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.236 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.236 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.237 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.237 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.237 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.237 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.258 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:12:49.258 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:12:49.261 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.261 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.261 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.261 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.279 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:12:49.282 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.283 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.284 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:12:49.286 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:12:49.286 IamJwtFilter - URI : /DNB/api/reset-pay/access
+2026-06-29 16:12:49.286 IamJwtFilter - URI : /DNB/api/post-sap/access
+2026-06-29 16:12:49.287 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.287 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.289 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.289 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.289 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:12:49.289 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.289 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.289 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:12:49.289 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:12:49.296 GlobalExceptionHandler - Resource not found : api/post-sap/access
+2026-06-29 16:12:49.296 GlobalExceptionHandler - Resource not found : api/reset-pay/access
+2026-06-29 16:12:49.306 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:12:49.306 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:12:49.307 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:12:49.307 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:12:49.318 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/reset-pay/access.]
+2026-06-29 16:12:49.318 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/post-sap/access.]
+2026-06-29 16:12:49.402 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:12:49.402 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:12:49.498 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:12:49.498 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:12:49.498 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:12:49.498 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:13:10.634 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:13:10.634 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.634 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.692 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:13:10.692 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:13:10.693 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:13:10.693 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:13:10.693 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:13:10.694 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.694 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.695 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.695 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.695 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:13:10.696 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.696 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.696 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.696 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.696 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.696 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.697 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.697 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.705 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:13:10.705 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:13:10.707 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.707 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.707 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.707 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.722 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:13:10.723 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.723 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.727 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:13:10.727 IamJwtFilter - URI : /DNB/api/reset-pay/access
+2026-06-29 16:13:10.727 IamJwtFilter - URI : /DNB/api/post-sap/access
+2026-06-29 16:13:10.727 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:13:10.732 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.732 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.732 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.732 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:13:10.732 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.732 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.732 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.732 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:13:10.734 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:13:10.734 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:13:10.734 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:13:10.734 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:13:10.734 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:13:10.736 GlobalExceptionHandler - Resource not found : api/reset-pay/access
+2026-06-29 16:13:10.737 GlobalExceptionHandler - Resource not found : api/post-sap/access
+2026-06-29 16:13:10.737 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/post-sap/access.]
+2026-06-29 16:13:10.737 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/reset-pay/access.]
+2026-06-29 16:13:10.819 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:13:10.820 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:13:10.877 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:13:10.878 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:13:10.878 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:13:10.878 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:18:02.338 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:18:02.343 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.343 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.388 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:18:02.388 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:18:02.390 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.390 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.390 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.390 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.392 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:18:02.392 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:18:02.393 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.394 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.394 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.394 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.396 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:18:02.396 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:18:02.398 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.398 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.398 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.398 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.400 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:18:02.402 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.402 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.404 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:18:02.406 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.406 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.421 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:18:02.421 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.421 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.428 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:18:02.429 IamJwtFilter - URI : /DNB/api/reset-pay/access
+2026-06-29 16:18:02.431 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:18:02.431 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.431 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.431 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.431 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.431 IamJwtFilter - URI : /DNB/api/post-sap/access
+2026-06-29 16:18:02.432 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:18:02.433 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.433 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.435 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:18:02.435 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:18:02.436 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:18:02.436 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:18:02.436 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:18:02.436 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:18:02.438 GlobalExceptionHandler - Resource not found : api/reset-pay/access
+2026-06-29 16:18:02.439 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/reset-pay/access.]
+2026-06-29 16:18:02.439 GlobalExceptionHandler - Resource not found : api/post-sap/access
+2026-06-29 16:18:02.440 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/post-sap/access.]
+2026-06-29 16:18:02.449 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:18:02.449 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:18:02.623 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:18:02.623 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:18:02.623 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:18:02.623 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+
+
+
+
+
+
+
+
+
+
+
+
+2026-06-29 16:19:27.384 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:19:27.385 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.385 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.420 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:19:27.420 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:19:27.420 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:19:27.420 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:19:27.422 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.422 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.422 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.422 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.422 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:19:27.422 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.422 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.422 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.422 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:19:27.422 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.423 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.423 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.423 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.423 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.431 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:19:27.431 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:19:27.433 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.433 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.433 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.433 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.447 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:19:27.449 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.449 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.454 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:19:27.454 IamJwtFilter - URI : /DNB/api/post-sap/access
+2026-06-29 16:19:27.454 IamJwtFilter - URI : /DNB/api/reset-pay/access
+2026-06-29 16:19:27.454 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:19:27.458 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.458 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.458 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.458 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.458 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.458 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.458 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:19:27.458 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:19:27.458 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:19:27.458 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:19:27.461 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:19:27.461 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:19:27.462 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:19:27.463 GlobalExceptionHandler - Resource not found : api/reset-pay/access
+2026-06-29 16:19:27.464 GlobalExceptionHandler - Resource not found : api/post-sap/access
+2026-06-29 16:19:27.464 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/reset-pay/access.]
+2026-06-29 16:19:27.465 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/post-sap/access.]
+2026-06-29 16:19:27.473 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:19:27.473 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:19:27.602 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:19:27.603 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:19:27.603 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:19:27.603 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:21:47.266 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:21:47.266 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:21:47.266 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:21:47.266 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:21:47.266 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:21:47.271 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:21:47.271 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:21:47.271 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:21:47.271 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:21:47.271 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:21:47.271 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:21:47.271 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:21:47.360 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:21:47.361 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:21:47.361 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:21:47.394 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:21:47.399 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:21:47.399 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:03.934 IamJwtFilter - URI : /DNB/reset-pay-data
+2026-06-29 16:22:03.936 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:03.936 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.002 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:22:04.002 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:22:04.003 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:22:04.003 IamJwtFilter - URI : /DNB/css/reset-pay-data.css
+2026-06-29 16:22:04.003 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.003 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.003 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.004 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.005 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.005 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.005 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.006 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.006 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:22:04.006 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:22:04.008 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.008 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.008 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.008 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.013 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:22:04.015 IamJwtFilter - URI : /DNB/js/reset-pay-data.js
+2026-06-29 16:22:04.015 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.015 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.017 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.017 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.050 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:22:04.052 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.052 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.069 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:22:04.070 IamJwtFilter - URI : /DNB/api/reset-pay/access
+2026-06-29 16:22:04.071 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.071 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.072 IamJwtFilter - URI : /DNB/api/post-sap/access
+2026-06-29 16:22:04.072 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.072 IamJwtFilter - URI : /DNB/api/reset-pay/status
+2026-06-29 16:22:04.072 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.073 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:22:04.073 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.073 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.073 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.074 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.075 GlobalExceptionHandler - Resource not found : api/reset-pay/access
+2026-06-29 16:22:04.076 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/reset-pay/access.]
+2026-06-29 16:22:04.076 ResetPayDataController - Received request to fetch Reset Pay Data status.
+2026-06-29 16:22:04.078 GlobalExceptionHandler - Resource not found : api/post-sap/access
+2026-06-29 16:22:04.079 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/post-sap/access.]
+2026-06-29 16:22:04.094 ResetPayServiceImpl - Fetching Reset Pay Data status.
+2026-06-29 16:22:04.095 ResetPayServiceImpl - Previous Month YYMM : 202605
+2026-06-29 16:22:04.095 ResetPayServiceImpl - User Authorized : true
+2026-06-29 16:22:04.135 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:22:04.137 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.137 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.137 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:22:04.139 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:04.139 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:04.235 ResetPayServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:22:04.235 ResetPayServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:22:04.235 ResetPayServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:22:04.239 ResetPayDataController - Reset Pay Data status fetched successfully. Authorized: true, Paybill Exists: false
+2026-06-29 16:22:04.240 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:22:04.241 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:22:04.241 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:22:04.241 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:22:05.941 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:22:05.943 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:05.943 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:05.982 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:22:05.982 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:22:05.982 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:22:05.984 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:05.984 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:05.984 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:05.984 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:05.984 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:05.984 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:05.985 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:22:05.985 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:22:05.985 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:22:05.987 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:05.987 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:05.987 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:05.987 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:05.987 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:05.987 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:05.996 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:22:05.998 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:05.998 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:06.024 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:22:06.026 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:06.026 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:06.049 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:22:06.051 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:06.051 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:06.055 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:22:06.056 IamJwtFilter - URI : /DNB/api/reset-pay/access
+2026-06-29 16:22:06.058 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:06.058 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:06.059 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:06.059 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:06.059 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:22:06.059 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:22:06.060 IamJwtFilter - URI : /DNB/api/post-sap/access
+2026-06-29 16:22:06.061 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:06.061 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:06.061 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:06.061 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:06.063 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:22:06.063 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:22:06.063 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:22:06.064 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:22:06.063 GlobalExceptionHandler - Resource not found : api/reset-pay/access
+2026-06-29 16:22:06.066 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/reset-pay/access.]
+2026-06-29 16:22:06.067 GlobalExceptionHandler - Resource not found : api/post-sap/access
+2026-06-29 16:22:06.067 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/post-sap/access.]
+2026-06-29 16:22:06.089 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:22:06.090 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:06.090 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:06.287 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:22:06.287 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:22:06.287 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:22:06.287 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:22:06.291 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:22:06.291 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:22:07.736 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:22:07.737 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.737 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.772 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:22:07.773 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.773 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.775 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:22:07.775 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:22:07.775 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:22:07.776 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:22:07.777 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.777 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.777 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.777 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.777 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.777 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.778 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:22:07.778 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.778 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.780 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.780 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.782 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:22:07.784 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.784 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.787 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:22:07.789 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.789 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.828 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:22:07.830 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.830 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.833 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:22:07.835 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.835 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.838 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:22:07.839 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:22:07.840 IamJwtFilter - URI : /DNB/api/reset-pay/access
+2026-06-29 16:22:07.841 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.841 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.841 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.841 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.841 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.841 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.841 IamJwtFilter - URI : /DNB/api/post-sap/access
+2026-06-29 16:22:07.842 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:22:07.844 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.844 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.847 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:22:07.847 GlobalExceptionHandler - Resource not found : api/post-sap/access
+2026-06-29 16:22:07.848 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/post-sap/access.]
+2026-06-29 16:22:07.848 GlobalExceptionHandler - Resource not found : api/reset-pay/access
+2026-06-29 16:22:07.849 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/reset-pay/access.]
+2026-06-29 16:22:07.849 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:07.849 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:07.851 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:22:07.851 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:22:07.851 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:22:07.851 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:22:07.856 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:22:07.856 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:22:07.994 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:22:07.994 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:22:07.994 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:22:07.994 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:22:08.628 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:22:08.630 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.630 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.668 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:22:08.668 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:22:08.671 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:22:08.671 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:22:08.671 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:22:08.671 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.671 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.672 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.672 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.672 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.672 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.672 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.672 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.672 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.673 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.673 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:22:08.674 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.675 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.689 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:22:08.690 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:22:08.693 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.693 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.694 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.694 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.737 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:22:08.739 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.739 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.748 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:22:08.751 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:22:08.751 IamJwtFilter - URI : /DNB/api/post-sap/access
+2026-06-29 16:22:08.752 IamJwtFilter - URI : /DNB/api/reset-pay/access
+2026-06-29 16:22:08.752 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.752 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.753 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.753 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.753 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.753 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.753 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:22:08.754 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:22:08.754 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:22:08.754 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:22:08.754 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:22:08.754 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.754 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.756 GlobalExceptionHandler - Resource not found : api/post-sap/access
+2026-06-29 16:22:08.756 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/post-sap/access.]
+2026-06-29 16:22:08.757 GlobalExceptionHandler - Resource not found : api/reset-pay/access
+2026-06-29 16:22:08.757 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/reset-pay/access.]
+2026-06-29 16:22:08.767 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:22:08.767 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:22:08.837 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:22:08.837 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:22:08.837 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.837 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:08.837 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.837 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:08.893 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:22:08.894 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:22:08.894 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:22:08.894 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:22:09.598 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:22:09.599 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.599 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.640 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:22:09.640 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:22:09.640 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:22:09.640 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:22:09.641 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.641 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.641 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.641 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.642 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.642 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.641 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.642 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.642 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:22:09.642 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:22:09.643 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.643 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.644 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.644 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.652 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:22:09.652 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:22:09.653 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.653 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.653 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.653 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.695 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:22:09.696 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.696 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.705 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:22:09.705 IamJwtFilter - URI : /DNB/api/reset-pay/access
+2026-06-29 16:22:09.707 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.707 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.707 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:22:09.707 IamJwtFilter - URI : /DNB/api/post-sap/access
+2026-06-29 16:22:09.707 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.707 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.708 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:22:09.708 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.708 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.708 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.708 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.709 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:22:09.709 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:22:09.709 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:22:09.709 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:22:09.711 GlobalExceptionHandler - Resource not found : api/reset-pay/access
+2026-06-29 16:22:09.711 GlobalExceptionHandler - Resource not found : api/post-sap/access
+2026-06-29 16:22:09.712 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/reset-pay/access.]
+2026-06-29 16:22:09.712 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/post-sap/access.]
+2026-06-29 16:22:09.717 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:22:09.717 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:22:09.753 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:22:09.754 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.755 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.755 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:22:09.755 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:09.755 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:09.851 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:22:09.851 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:22:09.851 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:22:09.851 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:22:21.143 IamJwtFilter - URI : /DNB/post-into-sap
+2026-06-29 16:22:21.143 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.144 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.198 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:22:21.198 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:22:21.200 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.200 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.200 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.200 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.200 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:22:21.201 IamJwtFilter - URI : /DNB/css/post-into-sap.css
+2026-06-29 16:22:21.202 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.202 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.202 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.202 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.202 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:22:21.203 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:22:21.203 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.205 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.206 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.206 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.211 IamJwtFilter - URI : /DNB/js/post-into-sap.js
+2026-06-29 16:22:21.212 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.212 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.242 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:22:21.243 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.243 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.249 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:22:21.251 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.251 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.254 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:22:21.255 IamJwtFilter - URI : /DNB/api/post-sap/status
+2026-06-29 16:22:21.255 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.256 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.257 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:21.257 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:21.258 PostSapController - Received request to fetch Post Into SAP status.
+2026-06-29 16:22:21.259 PostSapServiceImpl - Fetching Post Into SAP status.
+2026-06-29 16:22:21.431 PostSapServiceImpl - Stipend already posted into SAP for this month.
+2026-06-29 16:22:21.432 PostSapController - Post Into SAP status fetched successfully. Authorized: true, Paybill Generated: true, SAP Payment Available: true
+2026-06-29 16:22:23.915 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:22:23.917 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:23.917 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:23.955 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:22:23.955 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:22:23.957 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:22:23.958 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:23.958 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:23.958 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:23.958 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:23.958 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:22:23.958 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:23.958 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:23.959 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:22:23.959 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:23.959 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:22:23.959 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:23.960 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:23.960 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:23.961 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:23.961 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:23.968 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:22:23.970 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:23.970 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:23.993 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:22:23.995 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:23.995 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:24.013 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:22:24.014 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:24.014 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:24.026 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:22:24.028 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:24.028 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:24.028 IamJwtFilter - URI : /DNB/api/post-sap/access
+2026-06-29 16:22:24.028 IamJwtFilter - URI : /DNB/api/reset-pay/access
+2026-06-29 16:22:24.028 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:22:24.030 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:24.030 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:24.030 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:22:24.030 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:24.030 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:24.032 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:24.032 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:24.034 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:22:24.034 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:22:24.034 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:22:24.034 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:22:24.036 GlobalExceptionHandler - Resource not found : api/reset-pay/access
+2026-06-29 16:22:24.036 GlobalExceptionHandler - Resource not found : api/post-sap/access
+2026-06-29 16:22:24.036 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/post-sap/access.]
+2026-06-29 16:22:24.036 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/reset-pay/access.]
+2026-06-29 16:22:24.067 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:22:24.067 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:22:24.069 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:22:24.070 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:24.070 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:24.185 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:22:24.185 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:22:24.185 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:22:24.185 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:22:31.813 IamJwtFilter - URI : /DNB/
+2026-06-29 16:22:31.814 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.814 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.868 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:22:31.869 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.869 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.869 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:22:31.869 IamJwtFilter - URI : /DNB/css/home.css
+2026-06-29 16:22:31.869 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:22:31.869 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:22:31.870 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.871 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.870 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.870 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.871 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.871 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.870 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.871 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.872 IamJwtFilter - URI : /DNB/js/home.js
+2026-06-29 16:22:31.873 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.874 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.920 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:22:31.921 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.921 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.929 IamJwtFilter - URI : /DNB/api/post-sap/status
+2026-06-29 16:22:31.929 IamJwtFilter - URI : /DNB/api/reset-pay/status
+2026-06-29 16:22:31.929 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:22:31.930 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.930 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.930 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.930 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.930 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.930 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.931 ResetPayDataController - Received request to fetch Reset Pay Data status.
+2026-06-29 16:22:31.931 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:22:31.931 PostSapController - Received request to fetch Post Into SAP status.
+2026-06-29 16:22:31.932 PostSapServiceImpl - Fetching Post Into SAP status.
+2026-06-29 16:22:31.934 ResetPayServiceImpl - Fetching Reset Pay Data status.
+2026-06-29 16:22:31.934 ResetPayServiceImpl - Previous Month YYMM : 202605
+2026-06-29 16:22:31.934 ResetPayServiceImpl - User Authorized : true
+2026-06-29 16:22:31.966 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:22:31.968 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.968 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:31.978 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:22:31.979 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:31.979 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:32.072 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:22:32.072 ResetPayServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:22:32.072 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:22:32.072 ResetPayServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:22:32.072 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:22:32.072 ResetPayServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:22:32.072 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:22:32.072 ResetPayDataController - Reset Pay Data status fetched successfully. Authorized: true, Paybill Exists: false
+2026-06-29 16:22:32.237 PostSapServiceImpl - Stipend already posted into SAP for this month.
+2026-06-29 16:22:32.237 PostSapController - Post Into SAP status fetched successfully. Authorized: true, Paybill Generated: true, SAP Payment Available: true
+2026-06-29 16:22:36.167 IamJwtFilter - URI : /DNB/update-master
+2026-06-29 16:22:36.169 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.169 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.216 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:22:36.216 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:22:36.216 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:22:36.217 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.217 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.217 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.217 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.217 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.217 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.218 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:22:36.218 IamJwtFilter - URI : /DNB/css/update-master.css
+2026-06-29 16:22:36.219 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.219 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.219 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.219 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.220 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:22:36.221 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.221 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.226 IamJwtFilter - URI : /DNB/js/update-master.js
+2026-06-29 16:22:36.226 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:22:36.228 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.228 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.228 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.228 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.269 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:22:36.270 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.271 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.277 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:22:36.278 IamJwtFilter - URI : /DNB/api/reset-pay/access
+2026-06-29 16:22:36.278 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.278 IamJwtFilter - URI : /DNB/api/post-sap/access
+2026-06-29 16:22:36.278 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.278 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:22:36.281 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.281 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.281 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.281 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.285 GlobalExceptionHandler - Resource not found : api/reset-pay/access
+2026-06-29 16:22:36.285 GlobalExceptionHandler - Resource not found : api/post-sap/access
+2026-06-29 16:22:36.285 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/post-sap/access.]
+2026-06-29 16:22:36.285 ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/reset-pay/access.]
+2026-06-29 16:22:36.298 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:22:36.299 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.299 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.320 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:22:36.321 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:22:36.321 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:22:36.435 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:22:36.435 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:22:36.435 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:22:36.435 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:23:49.298 IamJwtFilter - URI : /DNB/update-master
+2026-06-29 16:23:49.298 IamJwtFilter - JWT is near expiry. Refreshing token.
+2026-06-29 16:23:49.363 IamJwtFilter - JWT refreshed
+2026-06-29 16:23:49.363 IamJwtFilter - JWT cookie updated successfully
+2026-06-29 16:23:49.363 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.363 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.404 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:23:49.405 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.405 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.409 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:23:49.410 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.410 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.413 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:23:49.414 IamJwtFilter - URI : /DNB/css/update-master.css
+2026-06-29 16:23:49.415 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.415 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:23:49.415 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.415 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.415 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.416 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.416 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.417 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:23:49.418 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:23:49.418 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.419 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.419 IamJwtFilter - URI : /DNB/js/update-master.js
+2026-06-29 16:23:49.420 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.420 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.421 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.421 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.464 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:23:49.466 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.466 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.472 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:23:49.473 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.473 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.475 IamJwtFilter - URI : /DNB/api/reset-pay/status
+2026-06-29 16:23:49.475 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:23:49.476 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.476 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.476 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.477 IamJwtFilter - URI : /DNB/api/post-sap/status
+2026-06-29 16:23:49.477 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.477 ResetPayDataController - Received request to fetch Reset Pay Data status.
+2026-06-29 16:23:49.478 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.478 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.478 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:23:49.479 PostSapController - Received request to fetch Post Into SAP status.
+2026-06-29 16:23:49.479 PostSapServiceImpl - Fetching Post Into SAP status.
+2026-06-29 16:23:49.480 ResetPayServiceImpl - Fetching Reset Pay Data status.
+2026-06-29 16:23:49.480 ResetPayServiceImpl - Previous Month YYMM : 202605
+2026-06-29 16:23:49.481 ResetPayServiceImpl - User Authorized : true
+2026-06-29 16:23:49.483 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:23:49.485 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:23:49.485 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:23:49.624 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:23:49.624 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:23:49.624 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:23:49.624 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:23:49.625 ResetPayServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:23:49.625 ResetPayServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:23:49.625 ResetPayServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:23:49.625 ResetPayDataController - Reset Pay Data status fetched successfully. Authorized: true, Paybill Exists: false
+2026-06-29 16:23:49.756 PostSapServiceImpl - Stipend already posted into SAP for this month.
+2026-06-29 16:23:49.756 PostSapController - Post Into SAP status fetched successfully. Authorized: true, Paybill Generated: true, SAP Payment Available: true
+
+
+
+
+
+
+
+
+
+
+
+2026-06-29 16:24:08.813 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:24:08.814 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.814 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.856 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:24:08.857 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.857 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.857 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:24:08.857 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:24:08.857 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:24:08.858 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:24:08.858 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.858 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.858 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.858 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.858 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.858 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.859 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.859 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.859 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:24:08.861 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.861 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.865 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:24:08.865 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:24:08.865 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.865 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.865 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.865 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.912 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:24:08.913 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.913 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.917 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:24:08.918 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.918 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.926 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:24:08.927 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.927 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.927 IamJwtFilter - URI : /DNB/api/reset-pay/status
+2026-06-29 16:24:08.928 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:24:08.928 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.929 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.929 IamJwtFilter - URI : /DNB/api/post-sap/status
+2026-06-29 16:24:08.929 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:24:08.929 ResetPayDataController - Received request to fetch Reset Pay Data status.
+2026-06-29 16:24:08.930 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.930 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.930 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.930 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:08.930 PostSapController - Received request to fetch Post Into SAP status.
+2026-06-29 16:24:08.931 PostSapServiceImpl - Fetching Post Into SAP status.
+2026-06-29 16:24:08.931 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:24:08.931 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:24:08.931 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:24:08.931 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:24:08.931 ResetPayServiceImpl - Fetching Reset Pay Data status.
+2026-06-29 16:24:08.931 ResetPayServiceImpl - Previous Month YYMM : 202605
+2026-06-29 16:24:08.931 ResetPayServiceImpl - User Authorized : true
+2026-06-29 16:24:08.962 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:24:08.963 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:24:08.963 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:24:09.072 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:24:09.072 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:24:09.072 ResetPayServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:24:09.072 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:24:09.072 ResetPayServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:24:09.072 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:24:09.072 ResetPayServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:24:09.072 ResetPayDataController - Reset Pay Data status fetched successfully. Authorized: true, Paybill Exists: false
+2026-06-29 16:24:09.105 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:24:09.106 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:24:09.220 PostSapServiceImpl - Stipend already posted into SAP for this month.
+2026-06-29 16:24:09.221 PostSapController - Post Into SAP status fetched successfully. Authorized: true, Paybill Generated: true, SAP Payment Available: true
+2026-06-29 16:26:49.406 LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-06-29 16:26:49.411 GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-29 16:26:49.412 Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:26:49.418 GracefulShutdown - Graceful shutdown complete
+2026-06-29 16:26:49.419 Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:26:49.426 LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:26:49.430 HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-06-29 16:26:49.667 HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-06-29 16:26:49.773 DnbApplication - Starting DnbApplication using Java 21.0.11 with PID 23016 (C:\Users\Administrator\eclipse-workspace\dnb\target\classes started by Administrator in C:\Users\Administrator\eclipse-workspace\dnb)
+2026-06-29 16:26:49.773 DnbApplication - The following 1 profile is active: "dev"
+2026-06-29 16:26:50.124 RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-29 16:26:50.171 RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 12 JPA repository interfaces.
+2026-06-29 16:26:50.349 TomcatWebServer - Tomcat initialized with port 8088 (http)
+2026-06-29 16:26:50.350 Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:26:50.350 StandardService - Starting service [Tomcat]
+2026-06-29 16:26:50.350 StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 16:26:50.372 [/DNB] - Initializing Spring embedded WebApplicationContext
+2026-06-29 16:26:50.372 ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 596 ms
+2026-06-29 16:26:50.383 IamPublicKeyLoader - Fetching IAM public key from http://localhost:8080/auth/public-key
+2026-06-29 16:26:50.389 IamPublicKeyLoader - IAM public key loaded successfully
+2026-06-29 16:26:50.487 LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-29 16:26:50.490 RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-29 16:26:50.504 SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-29 16:26:50.505 HikariDataSource - HikariPool-2 - Starting...
+2026-06-29 16:26:50.636 HikariPool - HikariPool-2 - Added connection oracle.jdbc.driver.T4CConnection@99bbd7
+2026-06-29 16:26:50.636 HikariDataSource - HikariPool-2 - Start completed.
+2026-06-29 16:26:50.643 Dialect - HHH000511: The 12.2.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+2026-06-29 16:26:50.643 deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-29 16:26:50.647 pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 12.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-29 16:26:50.867 JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-29 16:26:51.291 LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:26:51.760 JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-29 16:26:51.891 UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 877313e5-c2da-4847-9964-9f00ab814a3f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-29 16:26:51.893 InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-29 16:26:51.898 SecurityConfig - information recieved
+2026-06-29 16:26:52.099 OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-06-29 16:26:52.112 Http11NioProtocol - Starting ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:26:52.118 TomcatWebServer - Tomcat started on port 8088 (http) with context path '/DNB'
+2026-06-29 16:26:52.122 DnbApplication - Started DnbApplication in 2.393 seconds (process running for 863.228)
+2026-06-29 16:26:52.124 ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-06-29 16:27:45.348 LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-06-29 16:27:45.349 GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-29 16:27:45.350 Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:27:45.354 GracefulShutdown - Graceful shutdown complete
+2026-06-29 16:27:45.355 Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:27:45.357 LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:27:45.358 HikariDataSource - HikariPool-2 - Shutdown initiated...
+2026-06-29 16:27:45.423 HikariDataSource - HikariPool-2 - Shutdown completed.
+2026-06-29 16:27:45.517 DnbApplication - Starting DnbApplication using Java 21.0.11 with PID 23016 (C:\Users\Administrator\eclipse-workspace\dnb\target\classes started by Administrator in C:\Users\Administrator\eclipse-workspace\dnb)
+2026-06-29 16:27:45.517 DnbApplication - The following 1 profile is active: "dev"
+2026-06-29 16:27:45.874 RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-29 16:27:45.944 RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 70 ms. Found 12 JPA repository interfaces.
+2026-06-29 16:27:46.106 TomcatWebServer - Tomcat initialized with port 8088 (http)
+2026-06-29 16:27:46.106 Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:27:46.106 StandardService - Starting service [Tomcat]
+2026-06-29 16:27:46.106 StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 16:27:46.145 [/DNB] - Initializing Spring embedded WebApplicationContext
+2026-06-29 16:27:46.145 ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 626 ms
+2026-06-29 16:27:46.154 IamPublicKeyLoader - Fetching IAM public key from http://localhost:8080/auth/public-key
+2026-06-29 16:27:46.154 IamPublicKeyLoader - IAM public key loaded successfully
+2026-06-29 16:27:46.245 LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-29 16:27:46.249 RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-29 16:27:46.249 SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-29 16:27:46.249 HikariDataSource - HikariPool-3 - Starting...
+2026-06-29 16:27:46.394 HikariPool - HikariPool-3 - Added connection oracle.jdbc.driver.T4CConnection@1e55d8d4
+2026-06-29 16:27:46.394 HikariDataSource - HikariPool-3 - Start completed.
+2026-06-29 16:27:46.401 Dialect - HHH000511: The 12.2.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+2026-06-29 16:27:46.401 deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-29 16:27:46.405 pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 12.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-29 16:27:46.601 JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-29 16:27:46.854 LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:27:47.417 JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-29 16:27:47.562 UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: ddfc761f-97c7-4441-804c-90a5cf8a699f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-29 16:27:47.562 InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-29 16:27:47.582 SecurityConfig - information recieved
+2026-06-29 16:27:47.795 OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-06-29 16:27:47.812 Http11NioProtocol - Starting ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:27:47.812 TomcatWebServer - Tomcat started on port 8088 (http) with context path '/DNB'
+2026-06-29 16:27:47.825 DnbApplication - Started DnbApplication in 2.34 seconds (process running for 918.931)
+2026-06-29 16:27:47.829 ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-06-29 16:27:47.829 [/DNB] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-29 16:27:47.829 DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-29 16:27:47.829 DispatcherServlet - Completed initialization in 0 ms
+2026-06-29 16:27:47.829 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:27:47.829 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:47.829 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:47.941 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:27:47.944 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:27:47.943 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:27:47.948 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:47.948 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:47.946 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:47.947 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:27:47.947 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:27:47.949 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:47.950 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:47.950 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:47.951 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:47.951 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:47.953 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:47.954 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:47.963 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:27:47.965 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:27:47.966 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:27:47.966 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:47.967 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:47.968 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:47.968 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:47.970 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:47.970 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:48.007 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:27:48.010 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:48.010 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:48.043 IamJwtFilter - URI : /DNB/api/post-sap/status
+2026-06-29 16:27:48.043 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:27:48.045 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:48.046 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:48.047 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:27:48.048 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:48.049 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:48.049 PostSapController - Received request to fetch Post Into SAP status.
+2026-06-29 16:27:48.049 PostSapServiceImpl - Fetching Post Into SAP status.
+2026-06-29 16:27:48.050 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:48.050 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:48.051 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:27:48.052 IamJwtFilter - URI : /DNB/api/reset-pay/status
+2026-06-29 16:27:48.056 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:48.056 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:48.056 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:27:48.056 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:27:48.057 ResetPayDataController - Received request to fetch Reset Pay Data status.
+2026-06-29 16:27:48.058 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:27:48.058 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:27:48.061 ResetPayServiceImpl - Fetching Reset Pay Data status.
+2026-06-29 16:27:48.062 ResetPayServiceImpl - Previous Month YYMM : 202605
+2026-06-29 16:27:48.062 ResetPayServiceImpl - User Authorized : true
+2026-06-29 16:27:48.101 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:27:48.101 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:48.101 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:48.114 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:27:48.117 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:27:48.117 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:27:48.209 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:27:48.209 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:27:48.209 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:27:48.209 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:27:48.212 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:27:48.213 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:27:48.270 ResetPayServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:27:48.271 ResetPayServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:27:48.271 ResetPayServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:27:48.271 ResetPayDataController - Reset Pay Data status fetched successfully. Authorized: true, Paybill Exists: false
+2026-06-29 16:27:48.365 PostSapServiceImpl - Stipend already posted into SAP for this month.
+2026-06-29 16:27:48.365 PostSapController - Post Into SAP status fetched successfully. Authorized: true, Paybill Generated: true, SAP Payment Available: true
+2026-06-29 16:28:42.397 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:28:42.398 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.398 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.446 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:28:42.446 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:28:42.446 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:28:42.446 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:28:42.448 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.448 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.449 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:28:42.450 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.450 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.451 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:28:42.451 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.451 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.451 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.451 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.453 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.453 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.454 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.454 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.464 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:28:42.464 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:28:42.466 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.466 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.467 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.467 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.500 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:28:42.503 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.504 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.532 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:28:42.532 IamJwtFilter - URI : /DNB/api/reset-pay/status
+2026-06-29 16:28:42.541 IamJwtFilter - URI : /DNB/api/post-sap/status
+2026-06-29 16:28:42.541 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:28:42.541 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.541 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.543 ResetPayDataController - Received request to fetch Reset Pay Data status.
+2026-06-29 16:28:42.543 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.543 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.543 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.543 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.543 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.543 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.543 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:28:42.543 PostSapController - Received request to fetch Post Into SAP status.
+2026-06-29 16:28:42.543 PostSapServiceImpl - Fetching Post Into SAP status.
+2026-06-29 16:28:42.543 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:28:42.543 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:28:42.543 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:28:42.545 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:28:42.547 ResetPayServiceImpl - Fetching Reset Pay Data status.
+2026-06-29 16:28:42.547 ResetPayServiceImpl - Previous Month YYMM : 202605
+2026-06-29 16:28:42.547 ResetPayServiceImpl - User Authorized : true
+2026-06-29 16:28:42.554 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:28:42.555 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.555 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.558 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:28:42.558 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:28:42.577 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:28:42.579 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:28:42.579 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:28:42.705 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:28:42.705 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:28:42.705 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:28:42.705 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:28:42.771 ResetPayServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:28:42.771 ResetPayServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:28:42.771 ResetPayServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:28:42.771 ResetPayDataController - Reset Pay Data status fetched successfully. Authorized: true, Paybill Exists: false
+2026-06-29 16:28:42.801 PostSapServiceImpl - Stipend already posted into SAP for this month.
+2026-06-29 16:28:42.802 PostSapController - Post Into SAP status fetched successfully. Authorized: true, Paybill Generated: true, SAP Payment Available: true
+2026-06-29 16:29:43.707 LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-06-29 16:29:43.708 GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-29 16:29:43.709 Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:29:43.714 GracefulShutdown - Graceful shutdown complete
+2026-06-29 16:29:43.714 Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:29:43.717 LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:29:43.718 HikariDataSource - HikariPool-3 - Shutdown initiated...
+2026-06-29 16:29:43.784 HikariDataSource - HikariPool-3 - Shutdown completed.
+2026-06-29 16:29:43.876 DnbApplication - Starting DnbApplication using Java 21.0.11 with PID 23016 (C:\Users\Administrator\eclipse-workspace\dnb\target\classes started by Administrator in C:\Users\Administrator\eclipse-workspace\dnb)
+2026-06-29 16:29:43.876 DnbApplication - The following 1 profile is active: "dev"
+2026-06-29 16:29:44.135 RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-29 16:29:44.177 RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 12 JPA repository interfaces.
+2026-06-29 16:29:44.321 TomcatWebServer - Tomcat initialized with port 8088 (http)
+2026-06-29 16:29:44.322 Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:29:44.323 StandardService - Starting service [Tomcat]
+2026-06-29 16:29:44.323 StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 16:29:44.344 [/DNB] - Initializing Spring embedded WebApplicationContext
+2026-06-29 16:29:44.344 ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 466 ms
+2026-06-29 16:29:44.356 IamPublicKeyLoader - Fetching IAM public key from http://localhost:8080/auth/public-key
+2026-06-29 16:29:44.362 IamPublicKeyLoader - IAM public key loaded successfully
+2026-06-29 16:29:44.426 LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-29 16:29:44.429 RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-29 16:29:44.437 SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-29 16:29:44.438 HikariDataSource - HikariPool-4 - Starting...
+2026-06-29 16:29:44.572 HikariPool - HikariPool-4 - Added connection oracle.jdbc.driver.T4CConnection@7a4980ba
+2026-06-29 16:29:44.572 HikariDataSource - HikariPool-4 - Start completed.
+2026-06-29 16:29:44.578 Dialect - HHH000511: The 12.2.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+2026-06-29 16:29:44.578 deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-29 16:29:44.582 pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-4)']
+	Database driver: undefined/unknown
+	Database version: 12.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-29 16:29:44.752 JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-29 16:29:45.084 LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:29:45.508 JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-29 16:29:45.622 UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 8a55899d-9a49-4258-8bb4-c8ed56975da5
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-29 16:29:45.623 InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-29 16:29:45.628 SecurityConfig - information recieved
+2026-06-29 16:29:45.802 OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-06-29 16:29:45.816 Http11NioProtocol - Starting ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:29:45.821 TomcatWebServer - Tomcat started on port 8088 (http) with context path '/DNB'
+2026-06-29 16:29:45.825 DnbApplication - Started DnbApplication in 1.979 seconds (process running for 1036.931)
+2026-06-29 16:29:45.826 ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-06-29 16:29:48.992 [/DNB] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-29 16:29:48.992 DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-29 16:29:48.995 DispatcherServlet - Completed initialization in 3 ms
+2026-06-29 16:29:48.998 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:29:49.001 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.001 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.064 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:29:49.066 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:29:49.067 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.067 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.068 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.068 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.068 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:29:49.069 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:29:49.070 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.070 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.070 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.070 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.074 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:29:49.074 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:29:49.076 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.076 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.076 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.076 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.080 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:29:49.080 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:29:49.082 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.082 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.083 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.083 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.143 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:29:49.144 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.144 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.155 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:29:49.157 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.157 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.157 IamJwtFilter - URI : /DNB/api/reset-pay/status
+2026-06-29 16:29:49.159 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.159 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.159 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:29:49.159 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:29:49.159 IamJwtFilter - URI : /DNB/api/post-sap/status
+2026-06-29 16:29:49.160 ResetPayDataController - Received request to fetch Reset Pay Data status.
+2026-06-29 16:29:49.161 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.162 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.162 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.162 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.163 PostSapController - Received request to fetch Post Into SAP status.
+2026-06-29 16:29:49.163 PostSapServiceImpl - Fetching Post Into SAP status.
+2026-06-29 16:29:49.163 ResetPayServiceImpl - Fetching Reset Pay Data status.
+2026-06-29 16:29:49.164 ResetPayServiceImpl - Previous Month YYMM : 202605
+2026-06-29 16:29:49.164 ResetPayServiceImpl - User Authorized : true
+2026-06-29 16:29:49.170 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:29:49.171 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:29:49.172 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:29:49.174 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:29:49.214 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:29:49.217 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.217 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.283 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:29:49.285 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:29:49.285 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:29:49.307 ResetPayServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:29:49.307 ResetPayServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:29:49.307 ResetPayServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:29:49.307 ResetPayDataController - Reset Pay Data status fetched successfully. Authorized: true, Paybill Exists: false
+2026-06-29 16:29:49.313 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:29:49.313 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:29:49.321 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:29:49.321 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:29:49.321 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:29:49.321 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:29:49.449 PostSapServiceImpl - Stipend already posted into SAP for this month.
+2026-06-29 16:29:49.449 PostSapController - Post Into SAP status fetched successfully. Authorized: true, Paybill Generated: true, SAP Payment Available: true
+2026-06-29 16:32:53.616 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:32:53.616 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.616 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.661 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:32:53.662 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:32:53.662 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.662 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.663 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.663 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.665 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:32:53.665 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:32:53.666 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:32:53.666 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.666 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.667 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.667 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.667 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.667 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.669 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:32:53.672 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.673 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.677 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:32:53.677 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:32:53.679 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.679 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.679 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.679 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.720 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:32:53.722 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.723 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.744 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:32:53.746 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:32:53.746 IamJwtFilter - URI : /DNB/api/reset-pay/status
+2026-06-29 16:32:53.746 IamJwtFilter - URI : /DNB/api/post-sap/status
+2026-06-29 16:32:53.746 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.747 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.747 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.747 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.747 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.747 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.748 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:32:53.748 ResetPayDataController - Received request to fetch Reset Pay Data status.
+2026-06-29 16:32:53.748 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:32:53.749 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:32:53.747 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.749 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.749 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:32:53.749 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:32:53.750 PostSapController - Received request to fetch Post Into SAP status.
+2026-06-29 16:32:53.750 PostSapServiceImpl - Fetching Post Into SAP status.
+2026-06-29 16:32:53.753 ResetPayServiceImpl - Fetching Reset Pay Data status.
+2026-06-29 16:32:53.753 ResetPayServiceImpl - Previous Month YYMM : 202605
+2026-06-29 16:32:53.753 ResetPayServiceImpl - User Authorized : true
+2026-06-29 16:32:53.764 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:32:53.764 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:32:53.781 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:32:53.782 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.782 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:53.808 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:32:53.809 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:32:53.809 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:32:54.004 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:32:54.004 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:32:54.004 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:32:54.005 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:32:54.104 PostSapServiceImpl - Stipend already posted into SAP for this month.
+2026-06-29 16:32:54.104 PostSapController - Post Into SAP status fetched successfully. Authorized: true, Paybill Generated: true, SAP Payment Available: true
+2026-06-29 16:32:54.164 ResetPayServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:32:54.164 ResetPayServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:32:54.165 ResetPayServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:32:54.165 ResetPayDataController - Reset Pay Data status fetched successfully. Authorized: true, Paybill Exists: false
+2026-06-29 16:35:11.927 LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-06-29 16:35:11.927 GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-29 16:35:11.927 Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:35:11.927 GracefulShutdown - Graceful shutdown complete
+2026-06-29 16:35:11.927 Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:35:11.927 LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:35:11.927 HikariDataSource - HikariPool-4 - Shutdown initiated...
+2026-06-29 16:35:12.027 HikariDataSource - HikariPool-4 - Shutdown completed.
+2026-06-29 16:35:12.127 DnbApplication - Starting DnbApplication using Java 21.0.11 with PID 23016 (C:\Users\Administrator\eclipse-workspace\dnb\target\classes started by Administrator in C:\Users\Administrator\eclipse-workspace\dnb)
+2026-06-29 16:35:12.127 DnbApplication - The following 1 profile is active: "dev"
+2026-06-29 16:35:12.426 RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-29 16:35:12.459 RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 43 ms. Found 12 JPA repository interfaces.
+2026-06-29 16:35:12.609 TomcatWebServer - Tomcat initialized with port 8088 (http)
+2026-06-29 16:35:12.626 Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:35:12.626 StandardService - Starting service [Tomcat]
+2026-06-29 16:35:12.626 StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 16:35:12.649 [/DNB] - Initializing Spring embedded WebApplicationContext
+2026-06-29 16:35:12.649 ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 522 ms
+2026-06-29 16:35:12.662 IamPublicKeyLoader - Fetching IAM public key from http://localhost:8080/auth/public-key
+2026-06-29 16:35:12.669 IamPublicKeyLoader - IAM public key loaded successfully
+2026-06-29 16:35:12.766 LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-29 16:35:12.766 RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-29 16:35:12.783 SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-29 16:35:12.785 HikariDataSource - HikariPool-5 - Starting...
+2026-06-29 16:35:12.928 HikariPool - HikariPool-5 - Added connection oracle.jdbc.driver.T4CConnection@3385ce6a
+2026-06-29 16:35:12.928 HikariDataSource - HikariPool-5 - Start completed.
+2026-06-29 16:35:12.928 Dialect - HHH000511: The 12.2.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+2026-06-29 16:35:12.928 deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-29 16:35:12.944 pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-5)']
+	Database driver: undefined/unknown
+	Database version: 12.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-29 16:35:13.141 JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-29 16:35:13.425 LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:35:13.885 JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-29 16:35:14.028 UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 943afbe5-1570-400e-8a27-f422829ca43b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-29 16:35:14.028 InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-29 16:35:14.028 SecurityConfig - information recieved
+2026-06-29 16:35:14.266 OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-06-29 16:35:14.280 Http11NioProtocol - Starting ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:35:14.285 TomcatWebServer - Tomcat started on port 8088 (http) with context path '/DNB'
+2026-06-29 16:35:14.289 DnbApplication - Started DnbApplication in 2.201 seconds (process running for 1365.395)
+2026-06-29 16:35:14.290 ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-06-29 16:35:20.911 LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-06-29 16:35:20.911 GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-29 16:35:20.911 Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:35:20.911 GracefulShutdown - Graceful shutdown complete
+2026-06-29 16:35:20.911 Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:35:20.911 LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:35:20.911 HikariDataSource - HikariPool-5 - Shutdown initiated...
+2026-06-29 16:35:21.013 HikariDataSource - HikariPool-5 - Shutdown completed.
+2026-06-29 16:35:21.111 DnbApplication - Starting DnbApplication using Java 21.0.11 with PID 23016 (C:\Users\Administrator\eclipse-workspace\dnb\target\classes started by Administrator in C:\Users\Administrator\eclipse-workspace\dnb)
+2026-06-29 16:35:21.111 DnbApplication - The following 1 profile is active: "dev"
+2026-06-29 16:35:21.376 RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-29 16:35:21.426 RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 46 ms. Found 12 JPA repository interfaces.
+2026-06-29 16:35:21.587 TomcatWebServer - Tomcat initialized with port 8088 (http)
+2026-06-29 16:35:21.587 Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:35:21.588 StandardService - Starting service [Tomcat]
+2026-06-29 16:35:21.588 StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 16:35:21.610 [/DNB] - Initializing Spring embedded WebApplicationContext
+2026-06-29 16:35:21.610 ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 499 ms
+2026-06-29 16:35:21.610 IamPublicKeyLoader - Fetching IAM public key from http://localhost:8080/auth/public-key
+2026-06-29 16:35:21.627 IamPublicKeyLoader - IAM public key loaded successfully
+2026-06-29 16:35:21.713 LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-29 16:35:21.716 RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-29 16:35:21.730 SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-29 16:35:21.731 HikariDataSource - HikariPool-6 - Starting...
+2026-06-29 16:35:22.059 HikariPool - HikariPool-6 - Added connection oracle.jdbc.driver.T4CConnection@3b822905
+2026-06-29 16:35:22.060 HikariDataSource - HikariPool-6 - Start completed.
+2026-06-29 16:35:22.078 Dialect - HHH000511: The 12.2.0 version for [org.hibernate.dialect.OracleDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 19.0.0. Check the community dialects project for available legacy versions.
+2026-06-29 16:35:22.078 deprecation - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-29 16:35:22.176 pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-6)']
+	Database driver: undefined/unknown
+	Database version: 12.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-29 16:35:22.343 JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-29 16:35:23.537 LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-29 16:35:24.019 JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-29 16:35:24.180 UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: b1055a65-cac0-48de-a59b-d259941d2007
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-29 16:35:24.182 InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-29 16:35:24.187 SecurityConfig - information recieved
+2026-06-29 16:35:24.395 OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-06-29 16:35:24.411 Http11NioProtocol - Starting ProtocolHandler ["http-nio-8088"]
+2026-06-29 16:35:24.417 TomcatWebServer - Tomcat started on port 8088 (http) with context path '/DNB'
+2026-06-29 16:35:24.421 DnbApplication - Started DnbApplication in 3.343 seconds (process running for 1375.527)
+2026-06-29 16:35:24.422 ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-06-29 16:35:24.915 [/DNB] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-29 16:35:24.915 DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-29 16:35:24.917 DispatcherServlet - Completed initialization in 2 ms
+2026-06-29 16:35:24.918 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:35:24.924 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:24.924 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:24.980 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:35:24.980 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:35:24.981 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:24.981 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:24.981 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:24.981 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:24.985 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:35:24.985 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:35:24.985 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:35:24.986 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:24.986 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:24.986 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:24.986 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:24.986 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:24.986 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:24.989 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:35:24.990 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:24.990 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:24.991 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:35:24.992 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:24.992 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:24.995 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:35:24.995 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:24.995 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:25.040 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:35:25.041 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:25.041 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:25.077 IamJwtFilter - URI : /DNB/api/reset-pay/status
+2026-06-29 16:35:25.077 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:35:25.078 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:25.078 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:25.078 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:25.078 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:25.079 IamJwtFilter - URI : /DNB/api/post-sap/status
+2026-06-29 16:35:25.080 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:35:25.080 ResetPayDataController - Received request to fetch Reset Pay Data status.
+2026-06-29 16:35:25.080 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:25.080 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:25.081 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:35:25.081 PostSapController - Received request to fetch Post Into SAP status.
+2026-06-29 16:35:25.081 PostSapServiceImpl - Fetching Post Into SAP status.
+2026-06-29 16:35:25.082 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:25.082 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:25.085 ResetPayServiceImpl - Fetching Reset Pay Data status.
+2026-06-29 16:35:25.086 CategoryController - Received request to fetch categories for logged-in user.
+2026-06-29 16:35:25.086 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:35:25.086 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:35:25.086 ResetPayServiceImpl - Previous Month YYMM : 202605
+2026-06-29 16:35:25.086 ResetPayServiceImpl - User Authorized : true
+2026-06-29 16:35:25.088 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:35:25.088 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:35:25.106 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:35:25.107 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:25.107 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:25.138 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:35:25.139 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:25.139 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:25.239 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:35:25.239 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:35:25.239 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:35:25.239 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:35:25.240 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:35:25.240 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:35:25.269 CategoryController - Returning 5 categories for logged-in user.
+2026-06-29 16:35:25.432 ResetPayServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:35:25.432 ResetPayServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:35:25.432 ResetPayServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:35:25.433 ResetPayDataController - Reset Pay Data status fetched successfully. Authorized: true, Paybill Exists: false
+2026-06-29 16:35:25.433 PostSapServiceImpl - Stipend already posted into SAP for this month.
+2026-06-29 16:35:25.433 PostSapController - Post Into SAP status fetched successfully. Authorized: true, Paybill Generated: true, SAP Payment Available: true
+2026-06-29 16:35:30.533 IamJwtFilter - URI : /DNB/dnb/create
+2026-06-29 16:35:30.534 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.534 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.578 IamJwtFilter - URI : /DNB/css/bootstrap-icons.min.css
+2026-06-29 16:35:30.579 IamJwtFilter - URI : /DNB/css/header.css
+2026-06-29 16:35:30.579 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css
+2026-06-29 16:35:30.579 IamJwtFilter - URI : /DNB/css/dnb-create.css
+2026-06-29 16:35:30.579 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.579 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.580 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.580 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.580 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.580 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.581 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.581 IamJwtFilter - URI : /DNB/images/sail-logo.png
+2026-06-29 16:35:30.581 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.582 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.582 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js
+2026-06-29 16:35:30.582 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.583 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.583 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.590 IamJwtFilter - URI : /DNB/js/header.js
+2026-06-29 16:35:30.591 IamJwtFilter - URI : /DNB/js/dnb-create.js
+2026-06-29 16:35:30.591 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.591 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.592 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.592 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.634 IamJwtFilter - URI : /DNB/fonts/bootstrap-icons.woff2
+2026-06-29 16:35:30.635 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.635 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.641 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.min.css.map
+2026-06-29 16:35:30.642 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.642 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.647 IamJwtFilter - URI : /DNB/api/stipend/access
+2026-06-29 16:35:30.648 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.648 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.650 StipendController - Received request to fetch stipend access status.
+2026-06-29 16:35:30.650 IamJwtFilter - URI : /DNB/api/reset-pay/status
+2026-06-29 16:35:30.651 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.652 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.652 IamJwtFilter - URI : /DNB/api/post-sap/status
+2026-06-29 16:35:30.652 IamJwtFilter - URI : /DNB/api/categories/logged-in-user
+2026-06-29 16:35:30.653 ResetPayDataController - Received request to fetch Reset Pay Data status.
+2026-06-29 16:35:30.655 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.655 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.655 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.656 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.656 PostSapController - Received request to fetch Post Into SAP status.
+2026-06-29 16:35:30.656 PostSapServiceImpl - Fetching Post Into SAP status.
+2026-06-29 16:35:30.657 CategoryController - Received request to fetch categories for logged-in user.
+2026-06-29 16:35:30.657 DnbRoleService - Fetching role id for logged-in user
+2026-06-29 16:35:30.657 DnbRoleService - Fetching logged-in user role name
+2026-06-29 16:35:30.657 DnbRoleService - JWT Role : ROLE_SUPER_ADMIN
+2026-06-29 16:35:30.657 DnbRoleService - Resolved role name : SUPER_ADMIN
+2026-06-29 16:35:30.660 ResetPayServiceImpl - Fetching Reset Pay Data status.
+2026-06-29 16:35:30.660 ResetPayServiceImpl - Previous Month YYMM : 202605
+2026-06-29 16:35:30.660 ResetPayServiceImpl - User Authorized : true
+2026-06-29 16:35:30.696 IamJwtFilter - URI : /DNB/bootstrap/bootstrap.bundle.min.js.map
+2026-06-29 16:35:30.697 IamJwtFilter - Authenticated user: 404134
+2026-06-29 16:35:30.697 IamJwtFilter - Authorities: [ROLE_SUPER_ADMIN, APP_DNB]
+2026-06-29 16:35:30.791 StipendServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:35:30.792 StipendServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:35:30.792 StipendServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:35:30.792 StipendController - Stipend access status fetched successfully. Authorized: true, Paybill Generated: true
+2026-06-29 16:35:30.793 DnbRoleService - Resolved role id : 2 for role : SUPER_ADMIN
+2026-06-29 16:35:30.794 DnbAttServiceImpl - Fetching categories for role : 2
+2026-06-29 16:35:30.799 CategoryController - Returning 5 categories for logged-in user.
+2026-06-29 16:35:30.829 ResetPayServiceImpl - Previous Month (yyMM): 2606
+2026-06-29 16:35:30.829 ResetPayServiceImpl - Latest SAP Month      : 2606
+2026-06-29 16:35:30.829 ResetPayServiceImpl - Salary already posted into SAP for month 2606.
+2026-06-29 16:35:30.829 ResetPayDataController - Reset Pay Data status fetched successfully. Authorized: true, Paybill Exists: false
+2026-06-29 16:35:30.907 PostSapServiceImpl - Stipend already posted into SAP for this month.
+2026-06-29 16:35:30.907 PostSapController - Post Into SAP status fetched successfully. Authorized: true, Paybill Generated: true, SAP Payment Available: true

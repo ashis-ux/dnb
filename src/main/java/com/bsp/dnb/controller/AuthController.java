@@ -2,11 +2,15 @@ package com.bsp.dnb.controller;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AuthController {
 	
 	private static final Logger log =
-	        LoggerFactory.getLogger(DnbMastController.class);
+	        LoggerFactory.getLogger(AuthController.class);
 
     @GetMapping("/callback")
     public void callback(
@@ -52,5 +56,27 @@ public class AuthController {
 
         response.sendRedirect(
                  "/DNB");
+    }
+    
+    @GetMapping("/user")
+    public ResponseEntity<String> getLoggedInUser() {
+
+        Logger log = LoggerFactory.getLogger(getClass());
+
+        log.info("Fetching logged-in user");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String username;
+
+        if (authentication == null) {
+            log.warn("No authentication found. Returning SYSTEM");
+            username = "SYSTEM";
+        } else {
+            username = authentication.getName();
+            log.info("Logged-in user: {}", username);
+        }
+
+        return ResponseEntity.ok(username);
     }
 }

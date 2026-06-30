@@ -46,7 +46,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/css/**",
                                 "/js/**",
-                                "/sso/**",
+                                "/sso/callback/**",
                                 "/images/**")
                         .permitAll()
                         .anyRequest()

@@ -1,40 +1,22 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-
-	<meta charset="UTF-8">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<script th:inline="javascript">
-		window.contextPath = /*[[@{/}]]*/ '';
-	</script>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="stylesheet" th:href="@{/bootstrap/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/css/header.css}">
-	<link rel="stylesheet" th:href="@{/css/bootstrap-icons.min.css}">
-
-
-</head>
 
 <body>
 
 	<div th:fragment="header">
 
-		<!-- HEADER -->
+		<script th:inline="javascript">
+			window.contextPath = /*[[@{/}]]*/ '';
+		</script>
 
-		<!-- Added d-flex flex-nowrap to lock elements in place on all screens -->
 		<nav class="navbar navbar-expand-lg navbar-dark header-navbar d-flex flex-nowrap">
 
 			<div class="container-fluid p-0 d-flex flex-nowrap align-items-center">
 
-				<!-- Left Side: Trigger + Logo + Brand Text -->
+				<!-- LEFT -->
 				<div class="d-flex align-items-center flex-grow-1 overflow-hidden">
 
+					<!-- Mobile Menu -->
 					<!-- Anchor tag menu trigger -->
 					<a class="text-white border-0 fs-5 p-1 ms-2 d-flex align-items-center justify-content-center"
 						role="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
@@ -42,76 +24,45 @@
 						<i class="bi bi-list"></i>
 					</a>
 
-					<!-- Logo -->
-					<img th:src="@{/images/sail-logo.png}" alt="SAIL Logo" class="logo me-2">
+					<img th:src="@{/images/sail-logo.png}" class="logo ms-2" alt="Logo">
 
-					<!-- Title Group (Added text-nowrap to prevent text wrapping on mobile) -->
-					<div class="ms-2 overflow-hidden">
-
-						<h5 class="mb-0 text-white system-title">
-							DNB Management System
-						</h5>
-
-						<small class="text-light system-subtitle">
-							Centralized DNB Processing System
-						</small>
-
+					<div class="ms-3 text-nowrap">
+						<h5 class="mb-0 text-white">DNB Management System</h5>
+						<small class="text-light">Centralized DNB Processing System</small>
 					</div>
 
 				</div>
 
-				<div class="ms-auto">
+				<!-- RIGHT -->
+				<ul class="navbar-nav flex-row align-items-center">
 
-					<ul class="navbar-nav flex-row align-items-center mb-0">
+					<li class="nav-item">
+						<a class="nav-link text-white" th:href="@{/}">
+							<i class="bi bi-house-fill"></i>
+							<span class="ms-1">Home</span>
+						</a>
+					</li>
 
-						<li class="nav-item">
+					<li class="nav-item">
+						<span class="nav-link text-white">
+							<i class="bi bi-person-circle"></i>
+							<span id="loggedInUser" class="ms-1">Loading...</span>
+						</span>
+					</li>
 
-							<a class="nav-link text-white" th:href="@{/}">
+					<li class="nav-item">
+						<a class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#logoutModal">
+							<i class="bi bi-box-arrow-right"></i>
+							<span class="ms-1">Logout</span>
+						</a>
+					</li>
 
-								<i class="bi bi-house-fill"></i>
+				</ul>
 
-								<span class="menu-text ms-1">
-									Home
-								</span>
-
-							</a>
-
-						</li>
-
-						<li class="nav-item">
-
-							<a class="nav-link text-white" href="#">
-
-								<i class="bi bi-person-circle"></i>
-
-								<span class="menu-text ms-1">
-									User Profile
-								</span>
-
-							</a>
-
-						</li>
-
-						<li class="nav-item">
-
-							<a class="nav-link text-white" href="#">
-
-								<i class="bi bi-box-arrow-right"></i>
-
-								<span class="menu-text ms-1">
-									Logout
-								</span>
-
-							</a>
-
-						</li>
-
-					</ul>
-
-				</div>
-
+			</div>
 		</nav>
 
+		<!-- MOBILE MENU -->
 		<!-- MOBILE MENU -->
 
 		<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
@@ -207,7 +158,7 @@
 						<div id="mobileProcessingMenu" class="accordion-collapse collapse"
 							data-bs-parent="#mobileAccordion">
 
-							<div class="accordion-body" >
+							<div class="accordion-body">
 
 								<a th:href="@{/payslip-report}" class="menu-link">
 
@@ -367,32 +318,91 @@
 							</div>
 
 						</div>
+						<div class="accordion-item">
+                        
+						<div class="accordion-item">
 
+							<button class="btn btn-danger w-100 exit-btn" data-bs-toggle="modal"
+								data-bs-target="#exitModal">
+								<i class="bi bi-box-arrow-right me-2"></i>
+								EXIT
+							</button>
+
+						</div>
+						</div>
 					</div>
 
-					<button class="btn btn-danger w-100 exit-btn mt-2">
 
-						<i class="bi bi-box-arrow-right me-2"></i>
-
-						EXIT
-
-					</button>
 
 				</div>
 
 			</div>
 
 		</div>
+		
+		<div class="modal fade" id="exitModal" tabindex="-1">
+			    <div class="modal-dialog modal-dialog-centered">
+			        <div class="modal-content">
 
+			            <div class="modal-header">
+			                <h5 class="modal-title">Confirm Exit</h5>
+			                <button type="button" class="btn-close"
+			                        data-bs-dismiss="modal"></button>
+			            </div>
+
+			            <div class="modal-body">
+			                Are you sure you want to exit?
+			            </div>
+
+			            <div class="modal-footer">
+			                <button type="button"
+			                        class="btn btn-secondary"
+			                        data-bs-dismiss="modal">
+			                    No
+			                </button>
+
+			                <a th:href="@{/api/forward/dashboard}"
+			                   class="btn btn-danger">
+			                    Yes, Exit
+			                </a>
+			            </div>
+
+			        </div>
+			    </div>
+			</div>
+
+
+		<!-- LOGOUT MODAL -->
+		<div class="modal fade" id="logoutModal" tabindex="-1">
+
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h5 class="modal-title">Confirm Logout</h5>
+						<button class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<div class="modal-body">
+						Are you sure you want to logout?
+					</div>
+
+					<div class="modal-footer">
+						<button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+
+						<a th:href="@{/api/forward/logout}" class="btn btn-danger">
+							Yes, Logout
+						</a>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script th:src="@{/bootstrap/bootstrap.bundle.min.js}"></script>
-	<script th:src="@{/js/header.js}"></script>
 
 
 </body>
-
-
 
 </html>
