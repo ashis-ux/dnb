@@ -143,7 +143,7 @@ function loadSPostSAPtatus() {
 	                document.getElementById("desktopPostSAPMenu");
 
 	            const mobileMenu =
-	                document.getElementById("mobileStipendMenu");
+	                document.getElementById("mobilePostSAPMenu");
 
 	            if (data.authorized) {
 

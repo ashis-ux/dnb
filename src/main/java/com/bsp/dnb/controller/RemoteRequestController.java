@@ -3,6 +3,7 @@ package com.bsp.dnb.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping("/api")
+@PreAuthorize("hasAuthority('APP_DNB')")
 public class RemoteRequestController {
 
     @Value("${app.iam.dashboard-url}")

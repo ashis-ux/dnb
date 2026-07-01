@@ -2,6 +2,7 @@ package com.bsp.dnb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api/post-sap")
 @Slf4j
+@PreAuthorize("hasAuthority('APP_DNB')")
 public class PostSapController {
 
     @Autowired
